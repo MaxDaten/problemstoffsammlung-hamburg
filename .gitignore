@@ -4,5 +4,9 @@ qa.txt
 schedule.txt
 geocode.log
 wf.js
+wf2.js
 *.pyc
 __pycache__/
+
+# build output
+_site/

@@ -15,12 +15,20 @@ OpenStreetMap-Karte.
 - Popup je Standort mit vollständiger Adresse und allen Abholterminen
   (`Freitag, 13.02.2026 · 09:00–10:30 Uhr`); vergangene Termine ausgegraut,
   der nächste hervorgehoben.
-- Seitenleiste mit Suche (Straße/Stadtteil), Stadtteil-Filter, „Nur kommende
+- Seitenleiste mit Suche (Straße/Stadtteil), Stadtteil-Filter, **Zeitraum-Filter**
+  (Schnellwahl 1 Woche / 1 Monat oder freie Von–Bis-Auswahl), „Nur kommende
   Termine“ und „Standort in meiner Nähe“ (Geolocation → nächster Standort).
 - Liste sortiert nach nächstem Termin, synchron mit der Karte.
+- **In den Kalender** (`.ics`): einzelner Termin oder alle Termine eines
+  Standorts; mit Europe/Berlin-Zeitzone, für Google/Apple/Outlook.
+- **Drei Sprachen**: Deutsch, English und **Deutsch (Leichte Sprache)** –
+  automatisch nach Systemsprache, manuell umschaltbar (Auswahl wird gemerkt).
 
 Die Seite ist eine einzelne, eigenständige `index.html` (Daten eingebettet,
-keine Server- oder Build-Schritte nötig – auch per `file://` lauffähig).
+keine Server- oder Build-Schritte nötig – auch per `file://` lauffähig). Auf
+GitHub Pages wird sie per GitHub Actions automatisch bei jedem Push veröffentlicht
+(`.github/workflows/deploy.yml` führt `build.py` aus, das `data.json` in die Seite
+einbettet).
 
 ## Datenherkunft
 

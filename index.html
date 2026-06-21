@@ -95,10 +95,26 @@ select{appearance:none;cursor:pointer;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235f6770' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 11px center;padding-right:30px}
 
+.lang-sel{width:auto;max-width:170px;font-size:13px;padding-top:8px;padding-bottom:8px}
 .near-me{width:100%;justify-content:center;margin-top:8px}
 .near-me[disabled]{opacity:.6;cursor:progress}
 .row-2{display:flex;gap:8px;align-items:flex-end}
 .row-2 .field{flex:1;margin-bottom:0}
+
+.chips{display:flex;gap:6px;margin-bottom:7px}
+.chip{flex:1;border:1px solid var(--line);background:#fff;border-radius:8px;
+  font-weight:600;font-size:12.5px;color:var(--ink-2);padding:8px 6px;cursor:pointer;
+  font-family:inherit;transition:.14s}
+.chip:hover{border-color:var(--ink-3)}
+.chip[aria-pressed=true]{background:var(--red);border-color:var(--red);color:#fff}
+.chip:focus-visible{box-shadow:0 0 0 3px var(--red-soft)}
+.date-range{display:flex;align-items:center;gap:7px}
+.date-range input[type=date]{flex:1;min-width:0;border:1px solid var(--line);
+  border-radius:9px;background:#fff;font-size:13px;color:var(--ink);
+  padding:8px 9px;font-family:inherit}
+.date-range input[type=date]:focus{border-color:var(--red);outline:none;
+  box-shadow:0 0 0 3px var(--red-soft)}
+.date-range .dr-sep{flex:0 0 auto;color:var(--ink-3);font-weight:600}
 
 .toggle-row{display:flex;align-items:center;justify-content:space-between;
   gap:10px;margin-top:12px}
@@ -194,6 +210,19 @@ select{appearance:none;cursor:pointer;
 .popup .p-next-tag{display:inline-block;font-size:9.5px;font-weight:800;
   text-transform:uppercase;letter-spacing:.5px;color:#fff;background:var(--upcoming);
   border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:1px}
+.popup .p-appt .cal-one{flex:0 0 auto;background:none;border:none;cursor:pointer;
+  color:var(--ink-3);padding:2px;border-radius:5px;line-height:0;display:inline-flex;
+  align-self:center}
+.popup .p-appt .cal-one:hover{color:var(--red);background:var(--red-soft)}
+.popup .p-appt .cal-one:focus-visible{box-shadow:0 0 0 2px var(--red-soft)}
+.popup .p-appt .cal-one svg{width:15px;height:15px}
+.popup .p-cal{margin-top:10px}
+.popup .cal-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;
+  gap:7px;background:var(--red);color:#fff;border:none;border-radius:8px;cursor:pointer;
+  font-weight:600;font-size:13px;font-family:inherit;padding:9px 10px}
+.popup .cal-btn:hover{background:var(--red-dark)}
+.popup .cal-btn:focus-visible{outline:none;box-shadow:0 0 0 3px var(--red-soft)}
+.popup .cal-btn svg{width:15px;height:15px}
 .popup .p-foot{margin-top:8px;font-size:11px;color:var(--ink-3)}
 .popup .p-approx{margin-top:6px;font-size:11px;color:#7a4a00;background:#fff5e0;
   border-radius:6px;padding:4px 7px}
@@ -296,49 +325,67 @@ body.info-open .info-fab{display:none}
       </svg>
     </div>
     <div class="brand-text">
-      <h1>Mobile Problemstoffsammlung Hamburg 2026</h1>
-      <p>Termine &amp; Standorte der Stadtreinigung auf der Karte</p>
+      <h1 data-i18n="title">Mobile Problemstoffsammlung Hamburg 2026</h1>
+      <p data-i18n="subtitle">Termine &amp; Standorte der Stadtreinigung auf der Karte</p>
     </div>
     <div class="topbar-spacer"></div>
     <div class="topbar-actions">
+      <select id="langSel" class="lang-sel" aria-label="Sprache / Language">
+        <option value="de">Deutsch</option>
+        <option value="en">English</option>
+        <option value="de-ls">Leichte Sprache</option>
+      </select>
       <button id="sidebarToggle" class="ghost-btn" aria-pressed="false"
               aria-controls="sidebar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
              stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        <span class="tgl-label">Liste</span>
+        <span class="tgl-label" data-i18n="toggleList">Liste</span>
       </button>
     </div>
   </header>
 
   <main class="body">
-    <aside class="sidebar" id="sidebar" aria-label="Standortliste und Filter">
-      <button class="sheet-handle-btn" aria-label="Liste ein- oder ausklappen"></button>
+    <aside class="sidebar" id="sidebar" aria-label="Standortliste und Filter" data-i18n-aria="sidebarAria">
+      <button class="sheet-handle-btn" aria-label="Liste ein- oder ausklappen" data-i18n-aria="sheetHandleAria"></button>
 
       <div class="controls">
         <div class="field">
-          <label class="lbl" for="search">Suche</label>
+          <label class="lbl" for="search" data-i18n="searchLabel">Suche</label>
           <div class="search-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                  stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
             <input type="search" id="search" placeholder="Straße oder Stadtteil…"
-                   aria-label="Nach Straße oder Stadtteil suchen" autocomplete="off">
+                   data-i18n-ph="searchPh" data-i18n-aria="searchLabel" autocomplete="off">
           </div>
           <button type="button" id="nearMe" class="ghost-btn near-me">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                  stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/>
               <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
-            <span class="nm-label">Standort in meiner Nähe</span>
+            <span class="nm-label" data-i18n="nearMe">Standort in meiner Nähe</span>
           </button>
         </div>
         <div class="field">
-          <label class="lbl" for="district">Stadtteil</label>
-          <select id="district" aria-label="Nach Stadtteil filtern">
-            <option value="">Alle Stadtteile</option>
+          <label class="lbl" for="district" data-i18n="districtLabel">Stadtteil</label>
+          <select id="district" data-i18n-aria="districtLabel">
+            <option value="" data-i18n="allDistricts">Alle Stadtteile</option>
           </select>
         </div>
+        <div class="field">
+          <label class="lbl" data-i18n="periodLabel">Zeitraum</label>
+          <div class="chips" role="group" data-i18n-aria="periodLabel">
+            <button type="button" class="chip" data-range="all" aria-pressed="true" data-i18n="chipAll">Alle</button>
+            <button type="button" class="chip" data-range="1w" aria-pressed="false" data-i18n="chip1w">1 Woche</button>
+            <button type="button" class="chip" data-range="1m" aria-pressed="false" data-i18n="chip1m">1 Monat</button>
+          </div>
+          <div class="date-range">
+            <input type="date" id="fromDate" aria-label="Termine ab Datum" data-i18n-aria="dateFromAria">
+            <span class="dr-sep" aria-hidden="true">–</span>
+            <input type="date" id="toDate" aria-label="Termine bis Datum" data-i18n-aria="dateToAria">
+          </div>
+        </div>
         <div class="toggle-row">
-          <span class="tl" id="upcomingLbl">Nur kommende Termine
-            <span>Vergangene Standorte ausblenden</span></span>
+          <span class="tl" id="upcomingLbl"><span data-i18n="upcomingTitle">Nur kommende Termine</span>
+            <span data-i18n="upcomingSub">Vergangene Standorte ausblenden</span></span>
           <label class="switch">
             <input type="checkbox" id="upcomingOnly" checked aria-labelledby="upcomingLbl">
             <span class="track" aria-hidden="true"></span>
@@ -349,33 +396,33 @@ body.info-open .info-fab{display:none}
 
       <div class="list-head">
         <span class="count" id="count" aria-live="polite"><b>–</b> Standorte</span>
-        <button class="reset-btn" id="reset" type="button">Zurücksetzen</button>
+        <button class="reset-btn" id="reset" type="button" data-i18n="reset">Zurücksetzen</button>
       </div>
 
       <div class="loclist" id="loclist" role="list" tabindex="0"
-           aria-label="Liste der Sammelstandorte"></div>
+           aria-label="Liste der Sammelstandorte" data-i18n-aria="loclistAria"></div>
     </aside>
 
     <div class="map-wrap">
-      <div id="map" role="application" aria-label="Karte der Sammelstandorte in Hamburg"></div>
+      <div id="map" role="application" aria-label="Karte der Sammelstandorte in Hamburg" data-i18n-aria="mapAria"></div>
 
       <div class="map-overlay legend" id="legend">
-        <h3>Legende</h3>
+        <h3 data-i18n="legendTitle">Legende</h3>
         <ul id="legendList"></ul>
       </div>
       <button class="legend-toggle" id="legendToggle" type="button" aria-expanded="false">
-        <span aria-hidden="true">📍</span> Legende
+        <span aria-hidden="true">📍</span> <span data-i18n="legendBtn">Legende</span>
       </button>
 
       <div class="info-box" id="infoBox">
-        <button class="close" id="infoClose" aria-label="Hinweis schließen">×</button>
+        <button class="close" id="infoClose" data-i18n-aria="infoClose" aria-label="Hinweis schließen">×</button>
         <div class="disclaimer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
-          <span>Inoffizielle Visualisierung. Maßgeblich sind ausschließlich die Angaben der
+          <span data-i18n="disclaimer">Inoffizielle Visualisierung. Maßgeblich sind ausschließlich die Angaben der
             Stadtreinigung Hamburg.</span>
         </div>
-        <p class="src">
+        <p class="src" id="srcLine">
           Daten © <a href="https://www.stadtreinigung.hamburg" target="_blank"
             rel="noopener">Stadtreinigung Hamburg</a> ·
           <a href="https://files.stadtreinigung.hamburg/website/download/PDF/Auszug_INFO_Mobile_Problemstoffsammlung_2026.pdf"
@@ -383,16 +430,14 @@ body.info-open .info-fab{display:none}
           Karte © <a href="https://www.openstreetmap.org/copyright" target="_blank"
             rel="noopener">OpenStreetMap</a>-Mitwirkende (ODbL)
         </p>
-        <div class="howto">
+        <div class="howto" id="howto">
           <b>Wie funktioniert's?</b>
           Nutze das Suchfeld für Straße oder Stadtteil oder „Standort in meiner Nähe",
-          um den nächstgelegenen Termin zu finden. Tippe einen Marker oder Listeneintrag an,
-          um alle Termine zu sehen. Grüne Marker stehen für einen Termin innerhalb von
-          14&nbsp;Tagen, rote für weitere kommende Termine, graue für abgeschlossene Standorte.
+          um den nächstgelegenen Termin zu finden.
         </div>
       </div>
       <button class="info-fab" id="infoFab" aria-label="Informationen und Hinweise anzeigen"
-              aria-expanded="false">i</button>
+              aria-expanded="false" data-i18n-aria="infoFabAria">i</button>
     </div>
   </main>
 </div>
@@ -408,12 +453,126 @@ body.info-open .info-fab{display:none}
 "use strict";
 (function(){
   var PDF_URL = "https://files.stadtreinigung.hamburg/website/download/PDF/Auszug_INFO_Mobile_Problemstoffsammlung_2026.pdf";
+
+  // HTML-escape helper (defined first: used by early load-error handler and,
+  // in strict mode, block-scoped declarations are not callable before this point).
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+
+  // ---------- i18n ----------
+  var I18N = {
+    "de": {
+      title:"Mobile Problemstoffsammlung Hamburg 2026",
+      subtitle:"Termine & Standorte der Stadtreinigung auf der Karte",
+      toggleList:"Liste", searchLabel:"Suche", searchPh:"Straße oder Stadtteil…",
+      nearMe:"Standort in meiner Nähe", districtLabel:"Stadtteil",
+      allDistricts:"Alle Stadtteile", periodLabel:"Zeitraum",
+      chipAll:"Alle", chip1w:"1 Woche", chip1m:"1 Monat",
+      upcomingTitle:"Nur kommende Termine", upcomingSub:"Vergangene Standorte ausblenden",
+      reset:"Zurücksetzen", countOne:"Standort", countMany:"Standorte",
+      empty:"Keine Standorte gefunden. Filter anpassen oder zurücksetzen.",
+      legendTitle:"Legende", legendBtn:"Legende",
+      legendSoon:"Nächster Termin innerhalb 14 Tage",
+      legendLater:"Weiterer kommender Termin 2026",
+      legendDone:"Abgeschlossen (alle Termine vorbei)",
+      cardDone:"Abgeschlossen", cardLast:"zuletzt {d}",
+      popupNext:"Nächster", popupCount:"Termine 2026", uhr:"Uhr",
+      approx:"Standort straßengenau angenähert.", infoClose:"Hinweis schließen",
+      disclaimer:"Inoffizielle Visualisierung. Maßgeblich sind ausschließlich die Angaben der Stadtreinigung Hamburg.",
+      srcData:"Daten", srcMap:"Karte", srcContrib:"-Mitwirkende (ODbL)", srcPdf:"Original-PDF",
+      howtoTitle:"Wie funktioniert's?",
+      howtoBody:"Nutze das Suchfeld für Straße oder Stadtteil oder „Standort in meiner Nähe\", um den nächstgelegenen Termin zu finden. Tippe einen Marker oder Listeneintrag an, um alle Termine zu sehen. Grüne Marker stehen für einen Termin innerhalb von 14 Tagen, rote für weitere kommende Termine, graue für abgeschlossene Standorte.",
+      nmSearching:"Suche Standort…", nmUnavailable:"Standort nicht verfügbar",
+      nmDenied:"Standort nicht freigegeben", yourLocation:"Ihr Standort",
+      loadErrorMsg:"Karte konnte nicht geladen werden. Bitte später erneut versuchen. Den Termin-Plan finden Sie auch direkt im ",
+      loadErrorPdf:"Original-PDF der Stadtreinigung Hamburg", langLabel:"Sprache",
+      calOne:"Diesen Termin in den Kalender", calAll:"Alle Termine in den Kalender",
+      calSummary:"Problemstoffsammlung", calSaved:"Kalender-Datei gespeichert",
+      sidebarAria:"Standortliste und Filter", sheetHandleAria:"Liste ein- oder ausklappen",
+      dateFromAria:"Termine ab Datum", dateToAria:"Termine bis Datum",
+      loclistAria:"Liste der Sammelstandorte", mapAria:"Karte der Sammelstandorte in Hamburg",
+      infoFabAria:"Informationen und Hinweise anzeigen"
+    },
+    "en": {
+      title:"Mobile Hazardous Waste Collection · Hamburg 2026",
+      subtitle:"Dates & locations of Hamburg's city cleaning service on the map",
+      toggleList:"List", searchLabel:"Search", searchPh:"Street or district…",
+      nearMe:"Find locations near me", districtLabel:"District",
+      allDistricts:"All districts", periodLabel:"Time period",
+      chipAll:"All", chip1w:"1 week", chip1m:"1 month",
+      upcomingTitle:"Upcoming only", upcomingSub:"Hide past locations",
+      reset:"Reset", countOne:"location", countMany:"locations",
+      empty:"No locations found. Adjust or reset the filters.",
+      legendTitle:"Legend", legendBtn:"Legend",
+      legendSoon:"Next collection within 14 days",
+      legendLater:"Later collection in 2026",
+      legendDone:"Finished (all dates have passed)",
+      cardDone:"Finished", cardLast:"last {d}",
+      popupNext:"Next", popupCount:"collections in 2026", uhr:"",
+      approx:"Approximate location (street level).", infoClose:"Close note",
+      disclaimer:"Unofficial visualization. Only the information from Stadtreinigung Hamburg is binding.",
+      srcData:"Data", srcMap:"Map", srcContrib:" contributors (ODbL)", srcPdf:"Original PDF",
+      howtoTitle:"How does it work?",
+      howtoBody:"Use the search box for a street or district, or “Find locations near me” to find the closest collection. Tap a marker or a list entry to see all dates. Green markers mean a collection within 14 days, red ones further upcoming collections, grey ones finished locations.",
+      nmSearching:"Finding location…", nmUnavailable:"Location unavailable",
+      nmDenied:"Location access denied", yourLocation:"Your location",
+      loadErrorMsg:"The map could not be loaded. Please try again later. You can also find the schedule directly in the ",
+      loadErrorPdf:"original PDF from Stadtreinigung Hamburg", langLabel:"Language",
+      calOne:"Add this date to calendar", calAll:"Add all dates to calendar",
+      calSummary:"Hazardous waste collection", calSaved:"Calendar file saved",
+      sidebarAria:"Location list and filters", sheetHandleAria:"Expand or collapse the list",
+      dateFromAria:"Dates from", dateToAria:"Dates until",
+      loclistAria:"List of collection locations", mapAria:"Map of collection locations in Hamburg",
+      infoFabAria:"Show information and notes"
+    },
+    "de-ls": {
+      title:"Sammlung von Problem-Müll in Hamburg 2026",
+      subtitle:"Hier sehen Sie: Wann und wo Sie Problem-Müll abgeben können.",
+      toggleList:"Liste", searchLabel:"Suche", searchPh:"Straße oder Stadt-Teil …",
+      nearMe:"Orte in der Nähe finden", districtLabel:"Stadt-Teil",
+      allDistricts:"Alle Stadt-Teile", periodLabel:"Zeit-Raum",
+      chipAll:"Alle", chip1w:"1 Woche", chip1m:"1 Monat",
+      upcomingTitle:"Nur nächste Termine", upcomingSub:"Alte Termine weg-lassen",
+      reset:"Neu anfangen", countOne:"Ort", countMany:"Orte",
+      empty:"Wir haben nichts gefunden. Bitte ändern Sie die Suche.",
+      legendTitle:"Erklärung", legendBtn:"Erklärung",
+      legendSoon:"Nächster Termin in 14 Tagen oder früher",
+      legendLater:"Weiterer Termin im Jahr 2026",
+      legendDone:"Fertig. Alle Termine sind vorbei.",
+      cardDone:"Fertig", cardLast:"letzter Termin: {d}",
+      popupNext:"Nächster", popupCount:"Termine im Jahr 2026", uhr:"Uhr",
+      approx:"Der Ort ist ungefähr. Nur die Straße ist genau.", infoClose:"Schließen",
+      disclaimer:"Diese Karte ist nicht offiziell. Es gelten nur die Infos von der Stadt-Reinigung Hamburg.",
+      srcData:"Daten", srcMap:"Karte", srcContrib:"-Mitwirkende (ODbL)", srcPdf:"Original-PDF",
+      howtoTitle:"So geht es:",
+      howtoBody:"Schreiben Sie eine Straße oder einen Stadt-Teil in das Such-Feld. Oder tippen Sie auf „Orte in der Nähe finden“. Tippen Sie dann auf einen Punkt auf der Karte. Dann sehen Sie alle Termine. Grün heißt: Der Termin ist bald, in 14 Tagen oder früher. Rot heißt: Der Termin ist später im Jahr. Grau heißt: Alle Termine sind vorbei.",
+      nmSearching:"Wir suchen Ihren Standort …", nmUnavailable:"Standort geht nicht.",
+      nmDenied:"Standort ist nicht erlaubt.", yourLocation:"Ihr Standort",
+      loadErrorMsg:"Die Karte geht gerade nicht. Bitte versuchen Sie es später noch einmal. Sie finden den Plan auch im ",
+      loadErrorPdf:"Original-PDF von der Stadt-Reinigung Hamburg", langLabel:"Sprache",
+      calOne:"Diesen Termin in den Kalender legen", calAll:"Alle Termine in den Kalender legen",
+      calSummary:"Problem-Müll-Sammlung", calSaved:"Die Kalender-Datei ist gespeichert",
+      sidebarAria:"Liste mit Orten und Filtern", sheetHandleAria:"Liste auf-klappen oder zu-klappen",
+      dateFromAria:"Termine ab diesem Datum", dateToAria:"Termine bis zu diesem Datum",
+      loclistAria:"Liste mit den Orten", mapAria:"Karte mit den Orten in Hamburg",
+      infoFabAria:"Infos und Hinweise zeigen"
+    }
+  };
+  var LANG_KEY = "hh-lang";
+  function detectLang(){
+    var saved=null; try{ saved=localStorage.getItem(LANG_KEY); }catch(e){}
+    if (saved && I18N[saved]) return saved;
+    var sys=(navigator.language||"de").toLowerCase();
+    return sys.indexOf("de")===0 ? "de" : (sys.indexOf("en")===0 ? "en" : "de");
+  }
+  var lang = detectLang();
+  function t(k){ return (I18N[lang]&&I18N[lang][k]!=null) ? I18N[lang][k] : (I18N.de[k]!=null?I18N.de[k]:k); }
+  function localeTag(){ return lang==="en" ? "en-GB" : "de-DE"; }
+
   function showLoadError(){
     var msg = '<div class="empty" style="padding:34px 22px">'+
-      '<strong>Karte konnte nicht geladen werden.</strong><br>'+
-      'Bitte später erneut versuchen. Den Termin-Plan finden Sie auch direkt im '+
-      '<a href="'+PDF_URL+'" target="_blank" rel="noopener">'+
-      'Original-PDF der Stadtreinigung Hamburg</a>.</div>';
+      '<strong>'+esc(t("loadErrorMsg"))+'</strong>'+
+      '<a href="'+PDF_URL+'" target="_blank" rel="noopener">'+esc(t("loadErrorPdf"))+'</a>.</div>';
     var list = document.getElementById("loclist");
     var mapEl = document.getElementById("map");
     if (list) list.innerHTML = msg;
@@ -427,14 +586,25 @@ body.info-open .info-fab{display:none}
   try {
   // ---------- Data ----------
   var DATA = JSON.parse(document.getElementById("schedule-data").textContent);
-  var WD = {"Mo.":"Montag","Di.":"Dienstag","Mi.":"Mittwoch","Do.":"Donnerstag",
-            "Fr.":"Freitag","Sa.":"Samstag","So.":"Sonntag"};
 
   // Real "today" at local midnight — never hardcoded.
   var TODAY = (function(){ var d=new Date(); d.setHours(0,0,0,0); return d; })();
   function isoToDate(iso){ var p=iso.split("-"); return new Date(+p[0],+p[1]-1,+p[2]); }
   function fmtDate(iso){ var p=iso.split("-"); return p[2]+"."+p[1]+"."+p[0]; }
   var SOON_MS = 14*24*60*60*1000; // "demnächst" window
+
+  // Locale-aware date formatters, rebuilt on language change.
+  var fmtLongF, fmtShortF;
+  function buildFormatters(){
+    fmtLongF = new Intl.DateTimeFormat(localeTag(),
+      {weekday:"long",day:"numeric",month:"long",year:"numeric"});
+    fmtShortF = new Intl.DateTimeFormat(localeTag(),
+      {weekday:"short",day:"2-digit",month:"2-digit",year:"numeric"});
+  }
+  function fmtLong(iso){ return fmtLongF.format(isoToDate(iso)); }
+  function fmtShort(iso){ return fmtShortF.format(isoToDate(iso)); }
+  function withUhr(slot){ var u=t("uhr"); return u ? slot+" "+u : slot; }
+  buildFormatters();  // ready before popups are built eagerly for the markers
 
   // Precompute per-location: sorted appts, next-upcoming index, sortKey.
   var locations = DATA.locations.map(function(l, i){
@@ -493,6 +663,7 @@ body.info-open .info-fab{display:none}
     var m = L.marker([l.lat,l.lon],{ icon:pinIcon(state),
       keyboard:true, title:l.name, alt:l.name+", "+l.district });
     m.bindPopup(buildPopup(l),{ minWidth:260, maxWidth:300, autoPanPadding:[40,60] });
+    m._loc = l;
     l.marker = m;
   });
 
@@ -502,20 +673,122 @@ body.info-open .info-fab{display:none}
       var isPast = d.getTime() < TODAY.getTime();
       var isNext = idx === l.nextIdx;
       var cls = "p-appt" + (isPast?" past":"") + (isNext?" next":"");
-      var wd = WD[a.weekday] || a.weekday;
       return '<li class="'+cls+'">'+
-        '<span class="p-date">'+esc(wd)+', '+fmtDate(a.date)+
-          (isNext?'<span class="p-next-tag">Nächster</span>':'')+'</span>'+
-        '<span class="p-time">'+esc(a.slot)+' Uhr</span></li>';
+        '<span class="p-date">'+esc(fmtLong(a.date))+
+          (isNext?'<span class="p-next-tag">'+esc(t("popupNext"))+'</span>':'')+'</span>'+
+        '<span class="p-time">'+esc(withUhr(a.slot))+'</span>'+
+        '<button type="button" class="cal-one" data-cal-one="'+idx+'" '+
+          'title="'+esc(t("calOne"))+'" aria-label="'+esc(t("calOne"))+'">'+calIcon()+'</button></li>';
     }).join("");
     var approx = l.precision==="street" ?
-      '<div class="p-approx">Standort straßengenau angenähert.</div>' : '';
+      '<div class="p-approx">'+esc(t("approx"))+'</div>' : '';
     return '<div class="popup">'+
       '<div class="p-district">'+esc(l.district)+'</div>'+
       '<div class="p-name">'+esc(l.name)+'</div>'+
       '<ul class="p-list">'+rows+'</ul>'+ approx +
-      '<div class="p-foot">'+l.appts.length+' Termine 2026</div></div>';
+      buildCalActions(l)+
+      '<div class="p-foot">'+l.appts.length+' '+esc(t("popupCount"))+'</div></div>';
   }
+
+  // ---------- Add to calendar (.ics) ----------
+  function calIcon(){
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '+
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
+      '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>'+
+      '<path d="M12 14v4M10 16h4"/></svg>';
+  }
+  function buildCalActions(l){
+    return '<div class="p-cal">'+
+      '<button type="button" class="cal-btn" data-cal-all>'+calIcon()+
+        '<span>'+esc(t("calAll"))+'</span></button></div>';
+  }
+  function icsEscape(s){
+    return String(s).replace(/[\\;,]/g, function(c){return "\\"+c;}).replace(/\r?\n/g,"\\n");
+  }
+  function p2(n){ return (n<10?"0":"")+n; }
+  function dtStamp(){
+    var d=new Date();
+    return d.getUTCFullYear()+p2(d.getUTCMonth()+1)+p2(d.getUTCDate())+"T"+
+      p2(d.getUTCHours())+p2(d.getUTCMinutes())+p2(d.getUTCSeconds())+"Z";
+  }
+  // UTF-8 byte length (RFC5545 folds at 75 octets, not chars)
+  function blen(s){ return encodeURIComponent(s).replace(/%[0-9A-Fa-f]{2}/g,"x").length; }
+  function foldLine(line){
+    if (blen(line)<=75) return line;
+    var segs=[], seg="", b=0, first=true;
+    for (var i=0;i<line.length;i++){
+      var ch=line.charAt(i), cb=blen(ch), max=first?75:74; // cont. lines start w/ a space
+      if (b+cb>max){ segs.push(seg); seg=ch; b=cb; first=false; }
+      else { seg+=ch; b+=cb; }
+    }
+    segs.push(seg);
+    return segs.join("\r\n ");
+  }
+  // Static Europe/Berlin VTIMEZONE so times are correct in any viewer's timezone.
+  var VTIMEZONE = [
+    "BEGIN:VTIMEZONE","TZID:Europe/Berlin",
+    "BEGIN:DAYLIGHT","TZOFFSETFROM:+0100","TZOFFSETTO:+0200","TZNAME:CEST",
+    "DTSTART:19700329T020000","RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU","END:DAYLIGHT",
+    "BEGIN:STANDARD","TZOFFSETFROM:+0200","TZOFFSETTO:+0100","TZNAME:CET",
+    "DTSTART:19701025T030000","RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU","END:STANDARD",
+    "END:VTIMEZONE"];
+  function icsForLocation(l, indices){
+    var lines=["BEGIN:VCALENDAR","VERSION:2.0",
+      "PRODID:-//problemstoffsammlung-hamburg//map//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH"];
+    lines = lines.concat(VTIMEZONE);
+    var stamp=dtStamp();
+    indices.forEach(function(idx){
+      var a=l.appts[idx]; if(!a) return;
+      var dp=a.date.split("-"), slot=a.slot.split("–"); // split on en-dash
+      if (slot.length<2) return;
+      var s=slot[0].split(":"), e=slot[1].split(":");
+      var day=dp[0]+dp[1]+dp[2];
+      var dstart=day+"T"+s[0]+s[1]+"00";    // Hamburg wall-clock, anchored via TZID
+      var dend  =day+"T"+e[0]+e[1]+"00";
+      var desc=withUhr(a.slot)+"\n"+t("disclaimer")+"\n"+PDF_URL;
+      lines.push("BEGIN:VEVENT",
+        // stable UID (location identity + date), survives data re-ordering
+        "UID:"+slug(l.name)+"-"+slug(l.district)+"-"+a.date+"@problemstoffsammlung-hamburg",
+        "DTSTAMP:"+stamp,
+        "DTSTART;TZID=Europe/Berlin:"+dstart, "DTEND;TZID=Europe/Berlin:"+dend,
+        "SUMMARY:"+icsEscape(t("calSummary")+": "+l.name),
+        "LOCATION:"+icsEscape(l.name+", "+l.district+", Hamburg"),
+        "DESCRIPTION:"+icsEscape(desc),
+        "END:VEVENT");
+    });
+    lines.push("END:VCALENDAR");
+    return lines.map(foldLine).join("\r\n");
+  }
+  function slug(s){
+    return s.toLowerCase().replace(/[äàá]/g,"a").replace(/[öòó]/g,"o")
+      .replace(/[üùú]/g,"u").replace(/ß/g,"ss")
+      .replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,42) || "termine";
+  }
+  function downloadICS(l, indices){
+    var ics=icsForLocation(l, indices);
+    var blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement("a");
+    a.href=url;
+    a.download="problemstoffsammlung-"+slug(l.name)+
+      (indices.length===1?"-"+l.appts[indices[0]].date:"")+".ics";
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(url); }, 1500);
+  }
+  map.on("popupopen", function(e){
+    var src=e.popup._source, l=src && src._loc; if(!l) return;
+    var el=e.popup.getElement(); if(!el) return;
+    var ones=el.querySelectorAll("[data-cal-one]");
+    for (var i=0;i<ones.length;i++){
+      (function(btn){ btn.addEventListener("click", function(){
+        downloadICS(l, [parseInt(btn.getAttribute("data-cal-one"),10)]);
+      }); })(ones[i]);
+    }
+    var all=el.querySelector("[data-cal-all]");
+    if (all) all.addEventListener("click", function(){
+      downloadICS(l, l.appts.map(function(_,i){return i;}));
+    });
+  });
 
   // ---------- Legend (marker colour key) ----------
   function keyPin(color){
@@ -523,16 +796,16 @@ body.info-open .info-fab{display:none}
       '<path d="M13 0C5.8 0 0 5.8 0 13c0 9 13 21 13 21s13-12 13-21C26 5.8 20.2 0 13 0z" fill="'+color+'"/>'+
       '<circle cx="13" cy="13" r="5" fill="#fff"/></svg></span>';
   }
-  (function(){
+  function buildLegend(){
     var items = [
-      ["#0a7d3a","Nächster Termin innerhalb 14 Tage"],
-      ["#e2001a","Weiterer kommender Termin 2026"],
-      ["#9aa1a9","Abgeschlossen (alle Termine vorbei)"]
+      ["#0a7d3a", t("legendSoon")],
+      ["#e2001a", t("legendLater")],
+      ["#9aa1a9", t("legendDone")]
     ];
     document.getElementById("legendList").innerHTML = items.map(function(it){
       return '<li>'+keyPin(it[0])+'<span>'+esc(it[1])+'</span></li>';
     }).join("");
-  })();
+  }
 
   // ---------- District filter options ----------
   (function(){
@@ -551,22 +824,45 @@ body.info-open .info-fab{display:none}
     search: document.getElementById("search"),
     district: document.getElementById("district"),
     upcoming: document.getElementById("upcomingOnly"),
+    from: document.getElementById("fromDate"),
+    to: document.getElementById("toDate"),
     list: document.getElementById("loclist"),
     count: document.getElementById("count"),
     reset: document.getElementById("reset")
   };
 
+  // constrain the date pickers to the range present in the data
+  (function(){
+    var all = [];
+    locations.forEach(function(l){ l.appts.forEach(function(a){ all.push(a.date); }); });
+    all.sort();
+    if (all.length){
+      els.from.min = els.to.min = all[0];
+      els.from.max = els.to.max = all[all.length-1];
+    }
+  })();
+
   function currentFilter(){
     return {
       q: els.search.value.trim().toLowerCase(),
       district: els.district.value,
-      upcomingOnly: els.upcoming.checked
+      upcomingOnly: els.upcoming.checked,
+      from: els.from.value ? isoToDate(els.from.value).getTime() : null,
+      to: els.to.value ? isoToDate(els.to.value).getTime() : null
     };
   }
   function matches(l, f){
     if (f.upcomingOnly && !l.hasUpcoming) return false;
     if (f.district && l.district !== f.district) return false;
     if (f.q && l.searchStr.indexOf(f.q) === -1) return false;
+    if (f.from !== null || f.to !== null){
+      var inRange = false;
+      for (var i=0;i<l.appts.length;i++){
+        var t = isoToDate(l.appts[i].date).getTime();
+        if ((f.from===null || t>=f.from) && (f.to===null || t<=f.to)){ inRange=true; break; }
+      }
+      if (!inRange) return false;
+    }
     return true;
   }
 
@@ -588,14 +884,14 @@ body.info-open .info-fab{display:none}
 
     // count
     els.count.innerHTML = "<b>"+visible.length+"</b> "+
-      (visible.length===1?"Standort":"Standorte");
+      esc(visible.length===1?t("countOne"):t("countMany"));
 
     // list
     if (!visible.length){
       els.list.innerHTML = '<div class="empty">'+
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">'+
         '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>'+
-        '<div>Keine Standorte gefunden.<br>Filter anpassen oder zurücksetzen.</div></div>';
+        '<div>'+esc(t("empty"))+'</div></div>';
       return;
     }
     var frag = document.createDocumentFragment();
@@ -614,12 +910,12 @@ body.info-open .info-fab{display:none}
     var nextHtml, slotHtml;
     if (l.hasUpcoming){
       var a = l.appts[l.nextIdx];
-      nextHtml = '<span class="lc-pill">'+esc(WD[a.weekday]||a.weekday)+' '+fmtDate(a.date)+'</span>';
-      slotHtml = '<span class="lc-slot">'+esc(a.slot)+' Uhr</span>';
+      nextHtml = '<span class="lc-pill">'+esc(fmtShort(a.date))+'</span>';
+      slotHtml = '<span class="lc-slot">'+esc(withUhr(a.slot))+'</span>';
     } else {
       var last = l.appts[l.appts.length-1];
-      nextHtml = '<span class="lc-pill past">Abgeschlossen</span>';
-      slotHtml = '<span class="lc-slot">zuletzt '+fmtDate(last.date)+'</span>';
+      nextHtml = '<span class="lc-pill past">'+esc(t("cardDone"))+'</span>';
+      slotHtml = '<span class="lc-slot">'+esc(t("cardLast").replace("{d}", fmtShort(last.date)))+'</span>';
     }
     btn.innerHTML =
       '<div class="lc-top"><span class="lc-district">'+esc(l.district)+'</span>'+
@@ -627,7 +923,7 @@ body.info-open .info-fab{display:none}
       '<div class="lc-name">'+esc(l.name)+'</div>'+
       '<div class="lc-next">'+nextHtml+slotHtml+'</div>';
     btn.setAttribute("aria-label", l.district+", "+l.name+
-      (l.hasUpcoming?", nächster Termin "+fmtDate(l.appts[l.nextIdx].date):", abgeschlossen"));
+      (l.hasUpcoming?", "+fmtLong(l.appts[l.nextIdx].date):", "+t("cardDone")));
     btn.addEventListener("click", function(){ focusLocation(l); });
     return btn;
   }
@@ -649,13 +945,52 @@ body.info-open .info-fab{display:none}
       document.body.classList.remove("sheet-open");
   }
 
+  // ---------- Date-range quick filters ----------
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".chip"));
+  function toISO(d){
+    return d.getFullYear()+"-"+
+      ("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);
+  }
+  function addDays(d,n){ var x=new Date(d); x.setDate(x.getDate()+n); return x; }
+  function addMonths(d,n){ var x=new Date(d); x.setMonth(x.getMonth()+n); return x; }
+  function pressChip(which){
+    chips.forEach(function(c){
+      c.setAttribute("aria-pressed", c.dataset.range===which ? "true":"false");
+    });
+  }
+  function clearRange(){ els.from.value=""; els.to.value=""; pressChip("all"); }
+  // reflect manual date edits in the chip state (Alle / 1 Woche / 1 Monat / eigener)
+  function syncChips(){
+    if (!els.from.value && !els.to.value){ pressChip("all"); return; }
+    if (els.from.value===toISO(TODAY)){
+      if (els.to.value===toISO(addDays(TODAY,7))){ pressChip("1w"); return; }
+      if (els.to.value===toISO(addMonths(TODAY,1))){ pressChip("1m"); return; }
+    }
+    pressChip("");   // custom range: no chip active
+  }
+  chips.forEach(function(c){
+    c.addEventListener("click", function(){
+      var r = c.dataset.range;
+      if (r==="all"){ els.from.value=""; els.to.value=""; }
+      else {
+        els.from.value = toISO(TODAY);
+        els.to.value = toISO(r==="1w" ? addDays(TODAY,7) : addMonths(TODAY,1));
+      }
+      pressChip(r);
+      render();
+    });
+  });
+
   // ---------- Events ----------
-  var t;
-  els.search.addEventListener("input", function(){ clearTimeout(t); t=setTimeout(render,120); });
+  var searchTimer;
+  els.search.addEventListener("input", function(){ clearTimeout(searchTimer); searchTimer=setTimeout(render,120); });
   els.district.addEventListener("change", render);
   els.upcoming.addEventListener("change", render);
+  els.from.addEventListener("change", function(){ syncChips(); render(); });
+  els.to.addEventListener("change", function(){ syncChips(); render(); });
   els.reset.addEventListener("click", function(){
-    els.search.value=""; els.district.value=""; els.upcoming.checked=true; render();
+    els.search.value=""; els.district.value=""; els.upcoming.checked=true;
+    clearRange(); render();
     els.search.focus();
   });
 
@@ -678,27 +1013,26 @@ body.info-open .info-fab{display:none}
   }
   if (nearMeBtn){
     var nmLabel = nearMeBtn.querySelector(".nm-label");
-    var nmDefault = nmLabel.textContent;
     nearMeBtn.addEventListener("click", function(){
       if (!("geolocation" in navigator)){
-        nmLabel.textContent="Standort nicht verfügbar"; return;
+        nmLabel.textContent=t("nmUnavailable"); return;
       }
-      nearMeBtn.disabled=true; nmLabel.textContent="Suche Standort…";
+      nearMeBtn.disabled=true; nmLabel.textContent=t("nmSearching");
       navigator.geolocation.getCurrentPosition(function(pos){
-        nearMeBtn.disabled=false; nmLabel.textContent=nmDefault;
+        nearMeBtn.disabled=false; nmLabel.textContent=t("nearMe");
         var r = nearest(pos.coords.latitude, pos.coords.longitude);
         if (!r.loc) return;
         // make sure it's visible regardless of filters
         els.search.value=""; els.district.value=""; els.upcoming.checked=r.loc.hasUpcoming;
-        render();
+        clearRange(); render();
         L.circleMarker([pos.coords.latitude,pos.coords.longitude],
           {radius:7,color:"#2563eb",weight:2,fillColor:"#2563eb",fillOpacity:.35})
-          .addTo(map).bindTooltip("Ihr Standort");
+          .addTo(map).bindTooltip(t("yourLocation"));
         focusLocation(r.loc);
       }, function(){
         nearMeBtn.disabled=false;
-        nmLabel.textContent="Standort nicht freigegeben";
-        setTimeout(function(){ nmLabel.textContent=nmDefault; }, 2600);
+        nmLabel.textContent=t("nmDenied");
+        setTimeout(function(){ nmLabel.textContent=t("nearMe"); }, 2600);
       }, {enableHighAccuracy:true, timeout:10000, maximumAge:60000});
     });
   }
@@ -745,11 +1079,43 @@ body.info-open .info-fab{display:none}
 
   window.addEventListener("resize", function(){ map.invalidateSize(); });
 
-  // ---------- helpers ----------
-  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){
-    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+  // ---------- apply translations to the static chrome ----------
+  function applyStatic(){
+    document.documentElement.lang = (lang==="en") ? "en" : "de";
+    document.title = t("title");
+    var nodes = document.querySelectorAll("[data-i18n]");
+    for (var i=0;i<nodes.length;i++) nodes[i].textContent = t(nodes[i].getAttribute("data-i18n"));
+    var ph = document.querySelectorAll("[data-i18n-ph]");
+    for (var j=0;j<ph.length;j++) ph[j].setAttribute("placeholder", t(ph[j].getAttribute("data-i18n-ph")));
+    var ar = document.querySelectorAll("[data-i18n-aria]");
+    for (var k=0;k<ar.length;k++) ar[k].setAttribute("aria-label", t(ar[k].getAttribute("data-i18n-aria")));
+    // attribution line + how-to carry links / markup -> build explicitly
+    var src = document.getElementById("srcLine");
+    if (src) src.innerHTML =
+      esc(t("srcData"))+' © <a href="https://www.stadtreinigung.hamburg" target="_blank" rel="noopener">Stadtreinigung Hamburg</a> · '+
+      '<a href="'+PDF_URL+'" target="_blank" rel="noopener">'+esc(t("srcPdf"))+'</a><br>'+
+      esc(t("srcMap"))+' © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'+esc(t("srcContrib"));
+    var howto = document.getElementById("howto");
+    if (howto) howto.innerHTML = '<b>'+esc(t("howtoTitle"))+'</b> '+esc(t("howtoBody"));
+  }
+
+  function setLang(l){
+    if (!I18N[l]) l = "de";
+    lang = l; try{ localStorage.setItem(LANG_KEY, l); }catch(e){}
+    buildFormatters(); applyStatic(); buildLegend();
+    locations.forEach(function(x){ if (x.marker) x.marker.setPopupContent(buildPopup(x)); });
+    var sel = document.getElementById("langSel"); if (sel) sel.value = l;
+    render();
+  }
+
+  var langSel = document.getElementById("langSel");
+  if (langSel){
+    langSel.value = lang;
+    langSel.addEventListener("change", function(){ setLang(this.value); });
+  }
 
   // initial render
+  buildFormatters(); applyStatic(); buildLegend();
   render();
   } catch (err){
     if (window.console) console.error(err);
