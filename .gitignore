@@ -3,8 +3,7 @@ linear.txt
 qa.txt
 schedule.txt
 geocode.log
-wf.js
-wf2.js
+wf*.js
 *.pyc
 __pycache__/
 
