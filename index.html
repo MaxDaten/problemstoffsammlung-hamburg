@@ -175,8 +175,19 @@ body.sidebar-collapsed aside.sidebar{margin-left:calc(-1 * var(--sidebar-w))}
 label.lbl{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;
   letter-spacing:.07em;color:var(--ink-3)}
 .search-wrap{position:relative}
-.search-wrap svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);
+.search-wrap svg{position:absolute;left:12px;top:21px;transform:translateY(-50%);
   width:16px;height:16px;color:var(--ink-3);pointer-events:none}
+.suggest{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:50;margin:0;padding:4px;
+  list-style:none;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius-sm);box-shadow:var(--shadow);max-height:46vh;overflow-y:auto}
+.suggest[hidden]{display:none}
+.suggest li{display:flex;align-items:baseline;gap:8px;padding:8px 10px;border-radius:7px;
+  cursor:pointer;font-size:var(--text-sm);color:var(--ink)}
+.suggest li[aria-selected="true"],.suggest li:hover{background:var(--surface-2)}
+.suggest .s-name{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.suggest .s-hint{flex:0 0 auto;font-size:var(--text-xs);color:var(--ink-3)}
+.suggest mark{background:var(--accent-soft);color:var(--accent-strong);border-radius:3px;
+  padding:0 1px;font-weight:700}
 input[type=search],input[type=date],select{
   width:100%;min-height:44px;border:1px solid var(--control-border);border-radius:var(--radius-sm);
   background:var(--surface);font-size:var(--text-sm);color:var(--ink);
@@ -518,7 +529,11 @@ body.info-open .info-fab{display:none}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                  stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
             <input type="search" id="search" placeholder="Straße oder Stadtteil…"
-                   data-i18n-ph="searchPh" data-i18n-aria="searchLabel" autocomplete="off">
+                   data-i18n-ph="searchPh" data-i18n-aria="searchLabel" autocomplete="off"
+                   role="combobox" aria-autocomplete="list" aria-expanded="false"
+                   aria-controls="searchSuggest">
+            <ul id="searchSuggest" class="suggest" role="listbox"
+                data-i18n-aria="suggestLabel" aria-label="Vorschläge" hidden></ul>
           </div>
           <button type="button" id="nearMe" class="ghost-btn near-me">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -663,7 +678,8 @@ body.info-open .info-fab{display:none}
       dateFromShort:"Von", dateToShort:"Bis",
       loclistAria:"Liste der Sammelstandorte", mapAria:"Karte der Sammelstandorte in Hamburg",
       infoFabAria:"Informationen und Hinweise anzeigen",
-      theme:"Darstellung", theme_auto:"Automatisch", theme_light:"Hell", theme_dark:"Dunkel"
+      theme:"Darstellung", theme_auto:"Automatisch", theme_light:"Hell", theme_dark:"Dunkel",
+      suggestLabel:"Vorschläge", suggestDistrict:"Stadtteil"
     },
     "en": {
       title:"Mobile Hazardous Waste Collection · Hamburg 2026",
@@ -700,7 +716,8 @@ body.info-open .info-fab{display:none}
       dateFromShort:"From", dateToShort:"To",
       loclistAria:"List of collection locations", mapAria:"Map of collection locations in Hamburg",
       infoFabAria:"Show information and notes",
-      theme:"Appearance", theme_auto:"Auto", theme_light:"Light", theme_dark:"Dark"
+      theme:"Appearance", theme_auto:"Auto", theme_light:"Light", theme_dark:"Dark",
+      suggestLabel:"Suggestions", suggestDistrict:"District"
     },
     "de-ls": {
       title:"Sammlung von Problem-Müll in Hamburg 2026",
@@ -737,7 +754,8 @@ body.info-open .info-fab{display:none}
       dateFromShort:"Von", dateToShort:"Bis",
       loclistAria:"Liste mit den Orten", mapAria:"Karte mit den Orten in Hamburg",
       infoFabAria:"Infos und Hinweise zeigen",
-      theme:"Ansicht", theme_auto:"Automatisch", theme_light:"Hell", theme_dark:"Dunkel"
+      theme:"Ansicht", theme_auto:"Automatisch", theme_light:"Hell", theme_dark:"Dunkel",
+      suggestLabel:"Vorschläge", suggestDistrict:"Stadt-Teil"
     }
   };
   var LANG_KEY = "hh-lang";
@@ -1308,16 +1326,101 @@ body.info-open .info-fab{display:none}
     });
   });
 
+  // ---------- Search autocomplete (ARIA combobox) ----------
+  var suggestEl = document.getElementById("searchSuggest");
+  function titleCase(s){
+    return s.toLowerCase().replace(/(^|[\s\-\/])([a-zäöüß])/g,
+      function(m,p,c){ return p + c.toUpperCase(); });
+  }
+  // suggestion pool: every street, plus each district once
+  var SUGGEST = (function(){
+    var a = locations.map(function(l){
+      return { label:l.name, value:l.name, kind:"street", district:titleCase(l.district) };
+    });
+    var seen = {};
+    locations.forEach(function(l){
+      if (seen[l.district]) return; seen[l.district] = 1;
+      a.push({ label:titleCase(l.district), value:titleCase(l.district), kind:"district" });
+    });
+    return a;
+  })();
+  var sgItems = [], sgActive = -1;
+  function hl(text, q){
+    var i = text.toLowerCase().indexOf(q);
+    if (i < 0) return esc(text);
+    return esc(text.slice(0,i)) + "<mark>" + esc(text.slice(i,i+q.length)) + "</mark>" + esc(text.slice(i+q.length));
+  }
+  function closeSuggest(){
+    if (suggestEl.hidden) return;
+    suggestEl.hidden = true; suggestEl.innerHTML = ""; sgItems = []; sgActive = -1;
+    els.search.setAttribute("aria-expanded","false");
+    els.search.removeAttribute("aria-activedescendant");
+  }
+  function updateSuggest(){
+    var q = els.search.value.trim().toLowerCase();
+    if (q.length < 2){ closeSuggest(); return; }
+    var m = SUGGEST.filter(function(s){
+      return (s.label + " " + (s.district || "")).toLowerCase().indexOf(q) > -1;
+    });
+    m.sort(function(a,b){
+      var ap = a.label.toLowerCase().indexOf(q) === 0 ? 0 : 1;
+      var bp = b.label.toLowerCase().indexOf(q) === 0 ? 0 : 1;
+      if (ap !== bp) return ap - bp;
+      return a.label.localeCompare(b.label, "de");
+    }).slice(0);
+    sgItems = m.slice(0, 8);
+    if (!sgItems.length){ closeSuggest(); return; }
+    suggestEl.innerHTML = sgItems.map(function(s,i){
+      var hint = s.kind === "district" ? t("suggestDistrict") : s.district;
+      return '<li id="sg-'+i+'" role="option" aria-selected="false">'+
+        '<span class="s-name">'+hl(s.label,q)+'</span>'+
+        (hint ? '<span class="s-hint">'+esc(hint)+'</span>' : '')+'</li>';
+    }).join("");
+    suggestEl.hidden = false; sgActive = -1;
+    els.search.setAttribute("aria-expanded","true");
+    els.search.removeAttribute("aria-activedescendant");
+  }
+  function sgSetActive(i){
+    var lis = suggestEl.children;
+    if (sgActive >= 0 && lis[sgActive]) lis[sgActive].setAttribute("aria-selected","false");
+    sgActive = i;
+    if (i >= 0 && lis[i]){
+      lis[i].setAttribute("aria-selected","true");
+      els.search.setAttribute("aria-activedescendant","sg-"+i);
+      lis[i].scrollIntoView({ block:"nearest" });
+    } else els.search.removeAttribute("aria-activedescendant");
+  }
+  function sgChoose(i){
+    if (i < 0 || i >= sgItems.length) return;
+    els.search.value = sgItems[i].value;
+    closeSuggest(); render(); els.search.focus();
+  }
+
   // ---------- Events ----------
   var searchTimer;
-  els.search.addEventListener("input", function(){ clearTimeout(searchTimer); searchTimer=setTimeout(render,120); });
+  els.search.addEventListener("input", function(){
+    clearTimeout(searchTimer); searchTimer=setTimeout(render,120); updateSuggest();
+  });
+  els.search.addEventListener("keydown", function(e){
+    if (suggestEl.hidden){ if (e.key === "ArrowDown") updateSuggest(); return; }
+    if (e.key === "ArrowDown"){ e.preventDefault(); sgSetActive((sgActive+1) % sgItems.length); }
+    else if (e.key === "ArrowUp"){ e.preventDefault(); sgSetActive((sgActive-1+sgItems.length) % sgItems.length); }
+    else if (e.key === "Enter"){ if (sgActive >= 0){ e.preventDefault(); sgChoose(sgActive); } }
+    else if (e.key === "Escape"){ closeSuggest(); }
+  });
+  suggestEl.addEventListener("mousedown", function(e){ e.preventDefault(); }); // keep input focus
+  suggestEl.addEventListener("click", function(e){
+    var li = e.target.closest("li[role=option]"); if (!li) return;
+    sgChoose(parseInt(li.id.slice(3), 10));
+  });
+  els.search.addEventListener("blur", function(){ setTimeout(closeSuggest, 120); });
   els.district.addEventListener("change", render);
   els.upcoming.addEventListener("change", render);
   els.from.addEventListener("change", function(){ syncChips(); render(); });
   els.to.addEventListener("change", function(){ syncChips(); render(); });
   els.reset.addEventListener("click", function(){
     els.search.value=""; els.district.value=""; els.upcoming.checked=true;
-    clearRange(); render();
+    clearRange(); closeSuggest(); render();
     els.search.focus();
   });
 
@@ -1357,7 +1460,7 @@ body.info-open .info-fab{display:none}
         if (!r.loc) return;
         // make sure it's visible regardless of filters
         els.search.value=""; els.district.value=""; els.upcoming.checked=r.loc.hasUpcoming;
-        clearRange(); render();
+        clearRange(); closeSuggest(); render();
         if (meMarker) map.removeLayer(meMarker);
         // resolve the focus token at click time so the dot tracks light/dark theme
         var meColor = getComputedStyle(document.documentElement).getPropertyValue("--focus").trim();
