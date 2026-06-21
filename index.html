@@ -131,7 +131,11 @@ header.topbar{
 .ghost-btn svg{width:15px;height:15px}
 #sidebarToggle{display:none}
 .theme-toggle{width:38px;height:38px;padding:0;justify-content:center}
-.theme-toggle svg{width:17px;height:17px}
+.theme-toggle svg{width:17px;height:17px;display:block}
+.theme-toggle .ti{display:none;line-height:0}
+.theme-toggle[data-mode="auto"] .ti-auto,
+.theme-toggle[data-mode="light"] .ti-light,
+.theme-toggle[data-mode="dark"] .ti-dark{display:inline-flex}
 
 main.body{flex:1 1 auto;display:flex;min-height:0;position:relative}
 
@@ -405,6 +409,18 @@ body.info-open .info-fab{display:none}
     </div>
     <div class="topbar-spacer"></div>
     <div class="topbar-actions">
+      <button id="themeToggle" class="ghost-btn theme-toggle" type="button" data-mode="auto"
+              aria-label="Darstellung umschalten" title="Darstellung">
+        <span class="ti ti-auto" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/>
+          <path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg></span>
+        <span class="ti ti-light" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/>
+          <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg></span>
+        <span class="ti ti-dark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8z"/></svg></span>
+      </button>
       <select id="langSel" class="lang-sel" aria-label="Sprache / Language">
         <option value="de">Deutsch</option>
         <option value="en">English</option>
@@ -566,7 +582,8 @@ body.info-open .info-fab{display:none}
       sidebarAria:"Standortliste und Filter", sheetHandleAria:"Liste ein- oder ausklappen",
       dateFromAria:"Termine ab Datum", dateToAria:"Termine bis Datum",
       loclistAria:"Liste der Sammelstandorte", mapAria:"Karte der Sammelstandorte in Hamburg",
-      infoFabAria:"Informationen und Hinweise anzeigen"
+      infoFabAria:"Informationen und Hinweise anzeigen",
+      theme:"Darstellung", theme_auto:"Automatisch", theme_light:"Hell", theme_dark:"Dunkel"
     },
     "en": {
       title:"Mobile Hazardous Waste Collection · Hamburg 2026",
@@ -598,7 +615,8 @@ body.info-open .info-fab{display:none}
       sidebarAria:"Location list and filters", sheetHandleAria:"Expand or collapse the list",
       dateFromAria:"Dates from", dateToAria:"Dates until",
       loclistAria:"List of collection locations", mapAria:"Map of collection locations in Hamburg",
-      infoFabAria:"Show information and notes"
+      infoFabAria:"Show information and notes",
+      theme:"Appearance", theme_auto:"Auto", theme_light:"Light", theme_dark:"Dark"
     },
     "de-ls": {
       title:"Sammlung von Problem-Müll in Hamburg 2026",
@@ -630,7 +648,8 @@ body.info-open .info-fab{display:none}
       sidebarAria:"Liste mit Orten und Filtern", sheetHandleAria:"Liste auf-klappen oder zu-klappen",
       dateFromAria:"Termine ab diesem Datum", dateToAria:"Termine bis zu diesem Datum",
       loclistAria:"Liste mit den Orten", mapAria:"Karte mit den Orten in Hamburg",
-      infoFabAria:"Infos und Hinweise zeigen"
+      infoFabAria:"Infos und Hinweise zeigen",
+      theme:"Ansicht", theme_auto:"Automatisch", theme_light:"Hell", theme_dark:"Dunkel"
     }
   };
   var LANG_KEY = "hh-lang";
@@ -1177,7 +1196,7 @@ body.info-open .info-fab{display:none}
   function setLang(l){
     if (!I18N[l]) l = "de";
     lang = l; try{ localStorage.setItem(LANG_KEY, l); }catch(e){}
-    buildFormatters(); applyStatic(); buildLegend();
+    buildFormatters(); applyStatic(); buildLegend(); applyTheme();
     locations.forEach(function(x){ if (x.marker) x.marker.setPopupContent(buildPopup(x)); });
     var sel = document.getElementById("langSel"); if (sel) sel.value = l;
     render();
@@ -1189,8 +1208,35 @@ body.info-open .info-fab{display:none}
     langSel.addEventListener("change", function(){ setLang(this.value); });
   }
 
+  // ---------- Theme (auto / light / dark) ----------
+  var THEME_KEY = "hh-theme";
+  var themeBtn = document.getElementById("themeToggle");
+  var themeMq = matchMedia("(prefers-color-scheme: dark)");
+  function themePref(){ try{ return localStorage.getItem(THEME_KEY) || "auto"; }catch(e){ return "auto"; } }
+  function applyTheme(){
+    var p = themePref();
+    document.documentElement.dataset.theme = (p==="light"||p==="dark") ? p : (themeMq.matches?"dark":"light");
+    if (themeBtn){
+      themeBtn.dataset.mode = p;
+      var lbl = t("theme") + ": " + t("theme_"+p);
+      themeBtn.setAttribute("aria-label", lbl); themeBtn.title = lbl;
+    }
+  }
+  if (themeBtn){
+    themeBtn.addEventListener("click", function(){
+      var order = ["auto","light","dark"];
+      var next = order[(order.indexOf(themePref())+1) % 3];
+      try{ localStorage.setItem(THEME_KEY, next); }catch(e){}
+      applyTheme();
+    });
+  }
+  // when on "auto", follow live OS changes
+  var onMq = function(){ if (themePref()==="auto") applyTheme(); };
+  if (themeMq.addEventListener) themeMq.addEventListener("change", onMq);
+  else if (themeMq.addListener) themeMq.addListener(onMq);
+
   // initial render
-  buildFormatters(); applyStatic(); buildLegend();
+  buildFormatters(); applyStatic(); buildLegend(); applyTheme();
   render();
   } catch (err){
     if (window.console) console.error(err);
