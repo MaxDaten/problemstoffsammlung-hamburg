@@ -33,16 +33,19 @@ Leichte Sprache). Unofficial visualization of the Stadtreinigung Hamburg schedul
 Three words: **dependable, plain-spoken, Hanseatic**. Authority through clarity, not decoration.
 
 ### Aesthetic Direction
-**Editorial** evolution of the Stadtreinigung-red civic look.
-- Type (replaces the system font): **Spectral** (editorial serif) for masthead/headings/large
-  dates; **Public Sans** (government-grade sans) for UI/body/data. Strong scale contrast.
-- Theme: **auto (follow system)** with a genuine, purpose-built dark variant.
+**Technical, neutral** civic look (not editorial) — restrained, utilitarian, high craft.
+- Type: a single **neutral sans, Public Sans** across the whole UI; hierarchy from weight +
+  size, **no serif display** (Spectral was tried and removed). Tabular numerals for data.
+- Dates: **compact green "status pills"** (kept from the previous version) — green chip
+  `Di. 23.06.2026` + muted grey time; grey pill for past/done. Not oversized display type.
+- Theme: **auto (follow system)** + manual toggle, with a genuine purpose-built dark variant.
 - Color: Stadtreinigung **red (~#e2001a)** as a rare accent over tinted **OKLCH** neutrals
   (60-30-10); no pure #000/#fff; status never color-only.
-- Layout: left-aligned, asymmetric, real spatial rhythm (4pt scale, `gap`-based). Map is the
-  stage, the list is the editorial column. No card-on-card, no uniform card grids.
-- Anti-references: admin/dashboard templates, cyan-on-dark / purple-gradient "AI" look,
-  glassmorphism, gradient text, colored left-border accent stripes, system-font blandness.
+- Layout: left-aligned, real spatial rhythm (4pt scale, `gap`-based). Map is the stage; the
+  sidebar is a clean divider-separated list. No card-on-card, no uniform card grids.
+- Anti-references: editorial serif display / oversized decorative dates, admin/dashboard
+  templates, cyan-on-dark / purple-gradient "AI" look, glassmorphism, gradient text,
+  colored left-border accent stripes.
 
 ### Accessibility
 **WCAG 2.1 AA** (aligns with German BITV). Marker status (soon / later / done) by **shape/icon
@@ -51,7 +54,7 @@ Three words: **dependable, plain-spoken, Hanseatic**. Authority through clarity,
 
 ### Design Principles
 1. **Find-my-date first** — legibility and task speed beat any flourish.
-2. **Editorial, not decorative** — character from type, hierarchy, and rhythm; never ornament.
+2. **Technical clarity over flourish** — neutral sans, hierarchy from weight/size/space; no serif display or ornament.
 3. **Civic palette, used with restraint** — red as a rare accent over tinted OKLCH neutrals.
 4. **Two honest themes** — light + a purpose-built dark, derived from system preference.
 5. **Accessible & multilingual by construction** — AA, keyboard-first, reduced-motion aware,
