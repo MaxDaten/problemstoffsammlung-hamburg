@@ -47,6 +47,12 @@ Three words: **dependable, plain-spoken, Hanseatic**. Authority through clarity,
   templates, cyan-on-dark / purple-gradient "AI" look, glassmorphism, gradient text,
   colored left-border accent stripes.
 
+### Viewport targets
+- **Desktop — 1280 px wide** (sidebar + map side-by-side).
+- **Mobile — iPhone 393 × 852** (iPhone 15/16; bottom-sheet layout). 393 px is inside the
+  `≤860 px` mobile regime (`≤380 px` rules sit just below) — verify header, date-range row,
+  search autocomplete, bottom sheet, and floating legend/info at 393 px specifically.
+
 ### Accessibility
 **WCAG 2.1 AA** (aligns with German BITV). Marker status (soon / later / done) by **shape/icon
 + color**, not red↔green alone. Full keyboard operability with visible focus. Respect

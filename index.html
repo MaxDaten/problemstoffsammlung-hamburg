@@ -135,7 +135,7 @@ header.topbar{
 .brand-text h1{
   margin:0; font-size:var(--text-lg);
   font-weight:600; letter-spacing:-.01em; line-height:1.05; color:var(--ink);
-  overflow-wrap:anywhere;
+  overflow-wrap:break-word; hyphens:auto; -webkit-hyphens:auto;
 }
 .brand-text p{margin:var(--space-3xs) 0 0;font-size:var(--text-xs);color:var(--ink-3);font-weight:500}
 .topbar-spacer{flex:1 1 auto}
@@ -450,10 +450,14 @@ body.info-open .info-fab{display:none}
   /* once expanded, shrink the grab-bar to the 24px handle strip so it stays the
      collapse control without capturing taps meant for the search field below */
   body.sheet-open .sheet-handle-btn{height:24px}
-  /* keep the long German H1 to <=2 lines: cap the language select and shrink the title
-     here rather than letting brand-text get squeezed below a sensible floor */
-  .lang-sel{min-width:0;max-width:120px}
-  .brand-text h1{font-size:var(--text-base);line-height:1.1}
+  /* Header at mobile: free the title's width (drop the flex spacer, make the List
+     toggle icon-only, cap the language select) and clamp the long German/English H1
+     to 2 lines so it never explodes into a 1-char column. */
+  .topbar-spacer{display:none}
+  .tgl-label{display:none}
+  .lang-sel{min-width:0;max-width:118px}
+  .brand-text h1{font-size:var(--text-base);line-height:1.15;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 }
 @media (max-width:380px){
   header.topbar{padding:8px 12px;gap:10px}
