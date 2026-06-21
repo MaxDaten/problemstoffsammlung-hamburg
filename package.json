@@ -1,0 +1,11 @@
+{
+  "name": "problemstoffsammlung-hamburg",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "uat": "node uat/run.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.61.0"
+  }
+}

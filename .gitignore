@@ -9,3 +9,8 @@ __pycache__/
 
 # build output
 _site/
+
+# node / playwright
+node_modules/
+test-results/
+playwright-report/

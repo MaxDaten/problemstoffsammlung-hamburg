@@ -25,6 +25,18 @@ jobs:
           python-version: "3.12"
       - name: Build site (inject data.json into index.html)
         run: python3 build.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: UAT — pre-deploy gate (built _site)
+        run: |
+          python3 -m http.server 8080 --directory _site &
+          for i in $(seq 1 30); do curl -sf http://localhost:8080/index.html >/dev/null && break; sleep 0.5; done
+          node uat/run.mjs "http://localhost:8080/index.html"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -33,9 +45,28 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  uat-post:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: UAT — post-deploy smoke (live site)
+        env:
+          UAT_URL: ${{ needs.deploy.outputs.page_url }}
+        run: node uat/run.mjs "$UAT_URL"
