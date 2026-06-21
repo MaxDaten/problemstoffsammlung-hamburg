@@ -1,50 +1,61 @@
-name: Deploy to GitHub Pages
+name: CI & Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
+# Least privilege by default; jobs widen only what they need.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
-# Allow one concurrent deployment; don't cancel an in-progress run.
+# One run per ref; cancel superseded PR runs, never cancel a main deploy.
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write        # configure-pages (push only)
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Build site (inject data.json into index.html)
         run: python3 build.py
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: "20"
           cache: npm
       - run: npm ci
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
-      - name: UAT — pre-deploy gate (built _site)
+      - name: UAT — built site (runs on every push and pull request)
         run: |
           python3 -m http.server 8080 --directory _site &
           for i in $(seq 1 30); do curl -sf http://localhost:8080/index.html >/dev/null && break; sleep 0.5; done
+          curl -sf http://localhost:8080/index.html >/dev/null || { echo "::error::built site did not start on :8080"; exit 1; }
           node uat/run.mjs "http://localhost:8080/index.html"
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      # Pages artifact is only needed for an actual deploy (push to main).
+      - uses: actions/configure-pages@v6
+        if: github.event_name == 'push'
+      - uses: actions/upload-pages-artifact@v5
+        if: github.event_name == 'push'
         with:
           path: _site
 
   deploy:
     needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     outputs:
       page_url: ${{ steps.deployment.outputs.page_url }}
     environment:
@@ -52,14 +63,17 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   uat-post:
     needs: deploy
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
         with:
           node-version: "20"
           cache: npm
