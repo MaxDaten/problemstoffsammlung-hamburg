@@ -61,6 +61,9 @@ document.documentElement.dataset.theme=d;}catch(e){}})();
   --control-border:oklch(0.66 0.012 45);
   /* pin/legend knob — stays light in both themes so the status glyph keeps contrast */
   --pin-knob:oklch(0.99 0.004 60);
+  /* glyph ink drawn on the always-light knob — decoupled from the pin body colour so
+     the check/dot/cross stays legible (WCAG 1.4.11) in both themes */
+  --pin-glyph:oklch(0.30 0.02 40);
   /* select chevron tinted to match --ink-3 in this theme (warm neutral, not flat #999) */
   --chevron:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23847d77' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   --focus:oklch(0.575 0.17 252);
@@ -89,6 +92,7 @@ document.documentElement.dataset.theme=d;}catch(e){}})();
   --done-soft:oklch(0.262 0.006 70);
   --control-border:oklch(0.55 0.014 50); /* verified ~3.1:1 non-text contrast vs --surface */
   --pin-knob:oklch(0.93 0.006 70);
+  --pin-glyph:oklch(0.30 0.02 40); /* knob is light in both themes, so one dark ink works */
   --chevron:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239c948c' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   --focus:oklch(0.72 0.13 252);
   --shadow-sm:0 1px 2px oklch(0 0 0/.45);
@@ -125,15 +129,19 @@ header.topbar{
   box-shadow:var(--shadow-sm);
 }
 .brand-mark svg{width:22px;height:22px} /* deliberate larger identity mark */
+/* min-width:0 lets the title column shrink below its longest unbreakable word so the
+   long German H1 wraps instead of overflowing the topbar on narrow screens */
+.brand-text{flex:1 1 auto;min-width:0}
 .brand-text h1{
   margin:0; font-size:var(--text-lg);
   font-weight:600; letter-spacing:-.01em; line-height:1.05; color:var(--ink);
+  overflow-wrap:anywhere;
 }
 .brand-text p{margin:var(--space-3xs) 0 0;font-size:var(--text-xs);color:var(--ink-3);font-weight:500}
 .topbar-spacer{flex:1 1 auto}
 .topbar-actions{display:flex;align-items:center;gap:var(--space-xs);flex:0 0 auto}
 .ghost-btn{
-  background:transparent;border:1px solid var(--line);color:var(--ink-2);
+  background:transparent;border:1px solid var(--control-border);color:var(--ink-2);
   border-radius:var(--radius-sm);min-height:var(--control-h);
   padding:var(--space-xs) var(--space-sm);font-size:var(--text-sm);font-weight:600;
   cursor:pointer;display:inline-flex;align-items:center;gap:var(--space-2xs);
@@ -307,12 +315,12 @@ select{appearance:none;cursor:pointer;padding-right:30px;
 .popup .p-name{font-size:var(--text-xl);font-weight:600;
   color:var(--ink);margin-bottom:10px;line-height:1.15;letter-spacing:-.01em}
 .popup .p-list{list-style:none;margin:0 -9px;padding:0 9px;max-height:212px;overflow-y:auto}
-.popup .p-appt{display:flex;align-items:center;gap:8px;padding:6px 0;
+.popup .p-appt{display:flex;align-items:center;flex-wrap:wrap;gap:3px 8px;padding:6px 0;
   border-top:1px solid var(--line);font-size:var(--text-sm)}
 .popup .p-appt:first-child{border-top:none}
-.popup .p-appt .p-date{flex:1;min-width:0;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.popup .p-appt .p-time{flex:0 0 auto;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.popup .p-appt .p-date{flex:0 0 auto;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;
+  white-space:nowrap}
+.popup .p-appt .p-time{flex:0 0 auto;margin-left:auto;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .popup .p-appt.past .p-date{color:var(--ink-2);text-decoration:line-through;text-decoration-color:var(--ink-3)}
 .popup .p-appt.past .p-time{color:var(--ink-3)}
 .popup .p-appt.next{background:var(--soon-soft);margin:0 -9px;padding:8px 9px;
@@ -420,6 +428,12 @@ body.info-open .info-fab{display:none}
     bottom:calc(52px + env(safe-area-inset-bottom, 0px) + 60px);max-width:none}
   .legend-toggle{display:inline-flex;z-index:1600;
     bottom:calc(52px + env(safe-area-inset-bottom, 0px) + 14px)}
+  /* When the bottom sheet is expanded the user is browsing the list; the map-context
+     legend would float on top of live sheet controls (overlapping the Upcoming-only
+     switch), so hide both the toggle pill and any open legend panel. They reappear
+     automatically when the sheet collapses. */
+  body.sheet-open .legend-toggle,
+  body.sheet-open .legend{display:none}
   .sheet-handle-btn{position:absolute;top:0;left:0;right:0;height:32px;background:none;
     border:none;cursor:pointer;z-index:2}
   /* once expanded, shrink the grab-bar to the 24px handle strip so it stays the
@@ -443,6 +457,10 @@ body.info-open .info-fab{display:none}
     Diese Kartenansicht benötigt JavaScript. Den Termin-Plan finden Sie auch direkt im
     <a href="https://files.stadtreinigung.hamburg/website/download/PDF/Auszug_INFO_Mobile_Problemstoffsammlung_2026.pdf">
     Original-PDF der Stadtreinigung Hamburg</a>. Inoffizielle Visualisierung.
+    <br><br>
+    This map needs JavaScript. You can also find the schedule directly in the
+    <a href="https://files.stadtreinigung.hamburg/website/download/PDF/Auszug_INFO_Mobile_Problemstoffsammlung_2026.pdf">
+    original PDF from Stadtreinigung Hamburg</a>. Unofficial visualization.
   </div>
 </noscript>
 <div id="app">
@@ -786,8 +804,11 @@ body.info-open .info-fab{display:none}
   function buildFormatters(){
     fmtLongF = new Intl.DateTimeFormat(localeTag(),
       {weekday:"long",day:"numeric",month:"long",year:"numeric"});
-    fmtShortF = new Intl.DateTimeFormat(localeTag(),
-      {weekday:"short",day:"2-digit",month:"2-digit",year:"numeric"});
+    // Leichte Sprache: spelled-out weekday/month, no dense abbreviations (design brief).
+    var shortOpts = (lang==="de-ls")
+      ? {weekday:"long",day:"numeric",month:"long",year:"numeric"}
+      : {weekday:"short",day:"2-digit",month:"2-digit",year:"numeric"};
+    fmtShortF = new Intl.DateTimeFormat(localeTag(), shortOpts);
   }
   function fmtLong(iso){ return fmtLongF.format(isoToDate(iso)); }
   function fmtShort(iso){ return fmtShortF.format(isoToDate(iso)); }
@@ -848,13 +869,13 @@ body.info-open .info-fab{display:none}
   // Colours are driven by currentColor / CSS tokens (see .pin.is-*), so pins and
   // legend keys track the light/dark theme without rebuilding markers.
   function pinGlyph(state){
-    if (state==="soon") return '<path d="M10.2 13.2l1.9 1.9 3.7-3.9" fill="none" stroke="currentColor"'+
+    if (state==="soon") return '<path d="M10.2 13.2l1.9 1.9 3.7-3.9" fill="none" stroke="var(--pin-glyph)"'+
       ' stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>';
-    if (state==="done") return '<path d="M10.6 10.6l4.8 4.8M15.4 10.6l-4.8 4.8" stroke="currentColor"'+
+    if (state==="done") return '<path d="M10.6 10.6l4.8 4.8M15.4 10.6l-4.8 4.8" stroke="var(--pin-glyph)"'+
       ' stroke-width="2.3" stroke-linecap="round"/>';
     // later: a solid dot (a neutral "scheduled point in time"). Avoids the dash/minus,
     // which read like a no-entry road sign; clearly distinct from check and cross.
-    return '<circle cx="13" cy="13" r="2.7" fill="currentColor"/>';
+    return '<circle cx="13" cy="13" r="2.7" fill="var(--pin-glyph)"/>';
   }
   function pinSVG(state, w, h){
     return '<svg width="'+w+'" height="'+h+'" viewBox="0 0 26 34">'+
@@ -917,6 +938,14 @@ body.info-open .info-fab{display:none}
       if (el){ el.setAttribute("alt", lbl); el.setAttribute("title", lbl); }
     });
   }
+  // Static calendar glyph — output never varies, so build the string once.
+  // MUST be defined before the marker loop below: buildPopup() consumes it eagerly
+  // when each popup is bound (a var defined after the loop would be undefined here).
+  var CAL_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '+
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
+    '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>'+
+    '<path d="M12 14v4M10 16h4"/></svg>';
+
   locations.forEach(function(l){
     var lbl = markerLabel(l);
     var m = L.marker([l.lat,l.lon],{ icon:pinIcon(l.state),
@@ -926,12 +955,6 @@ body.info-open .info-fab{display:none}
     m._state = l.state;   // exposed for cluster aggregate-status colouring
     l.marker = m;
   });
-
-  // Static calendar glyph — output never varies, so build the string once.
-  var CAL_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '+
-    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+
-    '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>'+
-    '<path d="M12 14v4M10 16h4"/></svg>';
 
   function buildPopup(l){
     var rows = l.appts.map(function(a,idx){
@@ -1031,9 +1054,10 @@ body.info-open .info-fab{display:none}
     announce(t("calSaved"));
     setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(url); }, 1500);
   }
-  map.on("popupopen", function(e){
-    var src=e.popup._source, l=src && src._loc; if(!l) return;
-    var el=e.popup.getElement(); if(!el) return;
+  // Wire the calendar buttons inside a popup's DOM. Re-runnable: used on popupopen and
+  // after setLang() rebuilds an already-open popup's content (else its buttons go inert).
+  function wireCalButtons(el, l){
+    if (!el || !l) return;
     var ones=el.querySelectorAll("[data-cal-one]");
     for (var i=0;i<ones.length;i++){
       (function(btn){ btn.addEventListener("click", function(){
@@ -1044,6 +1068,10 @@ body.info-open .info-fab{display:none}
     if (all) all.addEventListener("click", function(){
       downloadICS(l, l.appts.map(function(_,i){return i;}));
     });
+  }
+  map.on("popupopen", function(e){
+    var src=e.popup._source, l=src && src._loc;
+    wireCalButtons(e.popup.getElement(), l);
   });
 
   // ---------- Legend (marker key: colour + glyph) ----------
@@ -1271,7 +1299,9 @@ body.info-open .info-fab{display:none}
       if (r==="all"){ els.from.value=""; els.to.value=""; }
       else {
         els.from.value = toISO(TODAY);
-        els.to.value = toISO(r==="1w" ? addDays(TODAY,7) : addMonths(TODAY,1));
+        var to = toISO(r==="1w" ? addDays(TODAY,7) : addMonths(TODAY,1));
+        if (els.to.max && to > els.to.max) to = els.to.max;  // don't exceed last appointment
+        els.to.value = to;
       }
       pressChip(r);
       render();
@@ -1347,10 +1377,19 @@ body.info-open .info-fab{display:none}
   var sbToggle = document.getElementById("sidebarToggle");
   var sheetBtn = document.querySelector(".sheet-handle-btn");
   function isMobile(){ return window.matchMedia("(max-width:860px)").matches; }
+  // close any open mobile legend panel so it doesn't linger behind the sheet (the CSS
+  // also hides .legend/.legend-toggle while sheet-open, this resets aria + open state)
+  function closeLegendPanel(){
+    var lg = document.getElementById("legend");
+    var lgT = document.getElementById("legendToggle");
+    if (lg) lg.classList.remove("open");
+    if (lgT) lgT.setAttribute("aria-expanded", "false");
+  }
   sbToggle.addEventListener("click", function(){
     if (isMobile()){
       var open = document.body.classList.toggle("sheet-open");
       sbToggle.setAttribute("aria-pressed", open?"true":"false");
+      if (open) closeLegendPanel();
     } else {
       var col = document.body.classList.toggle("sidebar-collapsed");
       sbToggle.setAttribute("aria-pressed", col?"false":"true");
@@ -1358,7 +1397,7 @@ body.info-open .info-fab{display:none}
     }
   });
   sheetBtn.addEventListener("click", function(){
-    if (isMobile()) document.body.classList.toggle("sheet-open");
+    if (isMobile() && document.body.classList.toggle("sheet-open")) closeLegendPanel();
   });
   // tapping the map dismisses the expanded sheet (drag-to-dismiss alternative)
   map.on("click", function(){
@@ -1428,7 +1467,13 @@ body.info-open .info-fab{display:none}
     if (!I18N[l]) l = "de";
     lang = l; try{ localStorage.setItem(LANG_KEY, l); }catch(e){}
     buildFormatters(); applyStatic(); buildLegend(); applyTheme();
-    locations.forEach(function(x){ if (x.marker) x.marker.setPopupContent(buildPopup(x)); });
+    locations.forEach(function(x){
+      if (!x.marker) return;
+      x.marker.setPopupContent(buildPopup(x));
+      // re-wire calendar buttons of an already-open popup (setPopupContent won't refire popupopen)
+      if (x.marker.isPopupOpen && x.marker.isPopupOpen())
+        wireCalButtons(x.marker.getPopup().getElement(), x);
+    });
     refreshMarkerLabels();
     if (meMarker) meMarker.setTooltipContent(t("yourLocation"));
     if (langSel) langSel.value = l;
