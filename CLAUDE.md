@@ -9,8 +9,11 @@ Interactive OpenStreetMap view of Hamburg's **Mobile Problemstoffsammlung 2026**
 - `index.html` — self-contained site (Leaflet + markercluster, data embedded inline). DE / EN /
   Deutsch Leichte Sprache; date-range filter; add-to-calendar (.ics). Single source of truth
   for data is `data.json`; `build.py` injects it into `index.html` for deploy.
-- CI: `.github/workflows/deploy.yml` auto-deploys to GitHub Pages on push.
-  Live: https://maxdaten.github.io/problemstoffsammlung-hamburg/
+- `uat/run.mjs` — Playwright UAT (desktop 1280 + iPhone 393×852), 68 checks. Run locally:
+  `node uat/run.mjs <url>` (needs `npm i`; serve the site first, see gotcha below).
+- CI: `.github/workflows/deploy.yml` — runs the UAT as a **pre-deploy gate** (against the
+  built `_site`; a red UAT skips deploy) and a **post-deploy smoke** (against the live URL),
+  then deploys to GitHub Pages on push. Live: https://maxdaten.github.io/problemstoffsammlung-hamburg/
 
 ## Conventions
 
@@ -115,6 +118,14 @@ building (`esc`, formatters, `CAL_ICON`, glyph helpers) go ABOVE the marker loop
 - Resolved **before first paint** by a tiny inline `<head>` script (reads localStorage
   `hh-theme`, else `prefers-color-scheme`) setting `data-theme` — avoids FOUC. CSS keys off
   `:root[data-theme="dark"]`; "auto" follows the OS live via a `matchMedia` change listener.
+
+### UAT / local serving
+- `python3 -m http.server` can bind **IPv6-only** here, so `localhost` (IPv4) gets
+  connection-refused. Serve with `--bind 127.0.0.1` and hit `http://127.0.0.1:<port>`.
+- cmux uses WKWebView and **cannot set a viewport** (`browser.viewport` errors). To test the
+  iPhone 393×852 (and 1280) targets, use the Playwright UAT, not cmux.
+- The "no console errors" UAT check filters external resource noise (OSM tiles / unpkg) so
+  CDN blips don't false-fail; app `console.error` and `pageerror` still gate.
 
 ### Verifying with cmux browser
 - It caches aggressively — append `?v=N` to force a fresh load after edits, or DOM checks read stale.
