@@ -1,0 +1,5731 @@
+{
+  "year": 2026,
+  "symbols": {
+    "■": "09:00–10:30",
+    "✚": "11:00–12:30",
+    "●": "12:00–13:30",
+    "▲": "13:30–15:00",
+    "★": "14:30–16:00",
+    "◆": "16:30–18:00"
+  },
+  "locations": [
+    {
+      "name": "Allermöher Deich/Depotcontainer Regattastrecke",
+      "appts": [
+        {
+          "date": "2026-02-27",
+          "day": "27.02.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-03",
+          "day": "03.07.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-09-04",
+          "day": "04.09.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-10-27",
+          "day": "27.10.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-12-04",
+          "day": "04.12.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "ALLERMÖHE"
+    },
+    {
+      "name": "Alsterdorfer Markt",
+      "appts": [
+        {
+          "date": "2026-01-15",
+          "day": "15.01.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-04",
+          "day": "04.03.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-05-12",
+          "day": "12.05.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-31",
+          "day": "31.08.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-09-22",
+          "day": "22.09.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "ALSTERDORF"
+    },
+    {
+      "name": "Heubergredder/ U-Bahn Alsterdorf",
+      "appts": [
+        {
+          "date": "2026-01-19",
+          "day": "19.01.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-03-12",
+          "day": "12.03.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-01",
+          "day": "01.06.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-08-10",
+          "day": "10.08.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-18",
+          "day": "18.09.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-23",
+          "day": "23.11.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "ALSTERDORF"
+    },
+    {
+      "name": "Amundsenstr. 22",
+      "appts": [
+        {
+          "date": "2026-01-23",
+          "day": "23.01.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-05",
+          "day": "05.03.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-14",
+          "day": "14.04.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-07-27",
+          "day": "27.07.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-11-18",
+          "day": "18.11.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "ALTONA"
+    },
+    {
+      "name": "Harkortstraße 97",
+      "appts": [
+        {
+          "date": "2026-02-18",
+          "day": "18.02.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-06",
+          "day": "06.07.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-01",
+          "day": "01.10.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-12-09",
+          "day": "09.12.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "ALTONA"
+    },
+    {
+      "name": "Jessenstr. 4/ Bruno-Tesch-Platz",
+      "appts": [
+        {
+          "date": "2026-03-24",
+          "day": "24.03.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-05-07",
+          "day": "07.05.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-05",
+          "day": "05.08.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-01",
+          "day": "01.10.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-10",
+          "day": "10.11.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "ALTONA"
+    },
+    {
+      "name": "Ruhrstraße 51/",
+      "appts": [
+        {
+          "date": "2026-01-05",
+          "day": "05.01.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-04-09",
+          "day": "09.04.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-05-27",
+          "day": "27.05.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-08-04",
+          "day": "04.08.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-09-25",
+          "day": "25.09.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-25",
+          "day": "25.11.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "ALTONA"
+    },
+    {
+      "name": "Dosestr. 8–10",
+      "appts": [
+        {
+          "date": "2026-01-07",
+          "day": "07.01.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-02-23",
+          "day": "23.02.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-05-27",
+          "day": "27.05.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-08-04",
+          "day": "04.08.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-09-23",
+          "day": "23.09.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-12-09",
+          "day": "09.12.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "ALTONA-ALTSTADT"
+    },
+    {
+      "name": "Missundestr. ggü. Nr. 24",
+      "appts": [
+        {
+          "date": "2026-01-07",
+          "day": "07.01.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-23",
+          "day": "23.03.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-07-20",
+          "day": "20.07.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-10-01",
+          "day": "01.10.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-18",
+          "day": "18.11.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "ALTONA-NORD"
+    },
+    {
+      "name": "Waidmannstr. 10/Einrichtungshaus",
+      "appts": [
+        {
+          "date": "2026-02-18",
+          "day": "18.02.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-16",
+          "day": "16.04.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-13",
+          "day": "13.08.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-14",
+          "day": "14.10.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "ALTONA-NORD"
+    },
+    {
+      "name": "Celsiusweg ggü. Nr. 13",
+      "appts": [
+        {
+          "date": "2026-02-18",
+          "day": "18.02.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-04-21",
+          "day": "21.04.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-05-27",
+          "day": "27.05.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-08-13",
+          "day": "13.08.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-10",
+          "day": "10.09.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-12",
+          "day": "12.11.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "BAHRENFELD"
+    },
+    {
+      "name": "Friedensallee/Sibeliusstr.",
+      "appts": [
+        {
+          "date": "2026-01-27",
+          "day": "27.01.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-05",
+          "day": "05.03.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-04-28",
+          "day": "28.04.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-29",
+          "day": "29.06.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-08-14",
+          "day": "14.08.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-26",
+          "day": "26.10.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "BAHRENFELD"
+    },
+    {
+      "name": "Osdorfer Weg 95 a–f",
+      "appts": [
+        {
+          "date": "2026-01-08",
+          "day": "08.01.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-10",
+          "day": "10.03.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-05-18",
+          "day": "18.05.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-08-19",
+          "day": "19.08.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-11-13",
+          "day": "13.11.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "BAHRENFELD"
+    },
+    {
+      "name": "Marktfläche Hartzloh",
+      "appts": [
+        {
+          "date": "2026-01-12",
+          "day": "12.01.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-03-09",
+          "day": "09.03.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-07-06",
+          "day": "06.07.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-10-23",
+          "day": "23.10.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-23",
+          "day": "23.11.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "BARMBEK-NORD"
+    },
+    {
+      "name": "Wiesendamm/ Bert-Kaempfert-Platz",
+      "appts": [
+        {
+          "date": "2026-02-05",
+          "day": "05.02.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-25",
+          "day": "25.03.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-07-13",
+          "day": "13.07.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-10-14",
+          "day": "14.10.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-12-15",
+          "day": "15.12.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "BARMBEK-NORD"
+    },
+    {
+      "name": "Bartholomäusstraße 95",
+      "appts": [
+        {
+          "date": "2026-01-20",
+          "day": "20.01.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-02-18",
+          "day": "18.02.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-05-29",
+          "day": "29.05.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-25",
+          "day": "25.06.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-09-03",
+          "day": "03.09.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-23",
+          "day": "23.10.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-12-07",
+          "day": "07.12.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "BARMBEK-SÜD"
+    },
+    {
+      "name": "Curslacker Neuer Deich 16–20/Baumarkt",
+      "appts": [
+        {
+          "date": "2026-01-06",
+          "day": "06.01.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-02-24",
+          "day": "24.02.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-09",
+          "day": "09.07.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-08-04",
+          "day": "04.08.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-06",
+          "day": "06.10.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-11-10",
+          "day": "10.11.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "BERGEDORF"
+    },
+    {
+      "name": "Glasbläserhöfe 4",
+      "appts": [
+        {
+          "date": "2026-01-06",
+          "day": "06.01.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-30",
+          "day": "30.03.",
+          "weekday": "Mo.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-03",
+          "day": "03.07.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-10",
+          "day": "10.11.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "BERGEDORF"
+    },
+    {
+      "name": "Gojenbergsweg/Reimbold-weg",
+      "appts": [
+        {
+          "date": "2026-01-13",
+          "day": "13.01.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-02-24",
+          "day": "24.02.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-26",
+          "day": "26.06.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-14",
+          "day": "14.09.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-11-24",
+          "day": "24.11.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "BERGEDORF"
+    },
+    {
+      "name": "Neuer Weg 39",
+      "appts": [
+        {
+          "date": "2026-02-03",
+          "day": "03.02.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-30",
+          "day": "30.03.",
+          "weekday": "Mo.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-08-07",
+          "day": "07.08.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-09",
+          "day": "09.11.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "BERGEDORF"
+    },
+    {
+      "name": "Werner-Neben-Platz",
+      "appts": [
+        {
+          "date": "2026-01-28",
+          "day": "28.01.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-03-18",
+          "day": "18.03.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-03",
+          "day": "03.07.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-14",
+          "day": "14.09.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-11-25",
+          "day": "25.11.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "BERGEDORF-WEST"
+    },
+    {
+      "name": "Stüffelring 6–8",
+      "appts": [
+        {
+          "date": "2026-02-03",
+          "day": "03.02.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-03-24",
+          "day": "24.03.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-04",
+          "day": "04.06.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-07-29",
+          "day": "29.07.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-08-17",
+          "day": "17.08.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-09-28",
+          "day": "28.09.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-12-01",
+          "day": "01.12.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "BERGSTEDT"
+    },
+    {
+      "name": "Gundermannstr. 8",
+      "appts": [
+        {
+          "date": "2026-02-03",
+          "day": "03.02.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-05-21",
+          "day": "21.05.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-09",
+          "day": "09.07.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-25",
+          "day": "25.08.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-11-19",
+          "day": "19.11.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "BILLSTEDT"
+    },
+    {
+      "name": "Marktfläche Möllner Landstr.",
+      "appts": [
+        {
+          "date": "2026-01-26",
+          "day": "26.01.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-03-16",
+          "day": "16.03.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-18",
+          "day": "18.06.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-03",
+          "day": "03.08.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-30",
+          "day": "30.09.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-09",
+          "day": "09.11.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "BILLSTEDT"
+    },
+    {
+      "name": "Möllner Landstr./ Papyrusweg",
+      "appts": [
+        {
+          "date": "2026-01-06",
+          "day": "06.01.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-09",
+          "day": "09.04.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-05",
+          "day": "05.08.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-06",
+          "day": "06.10.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-12-18",
+          "day": "18.12.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "BILLSTEDT"
+    },
+    {
+      "name": "Schiffbeker Weg 127 b–e",
+      "appts": [
+        {
+          "date": "2026-02-11",
+          "day": "11.02.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-05-05",
+          "day": "05.05.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-16",
+          "day": "16.07.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-21",
+          "day": "21.08.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-19",
+          "day": "19.10.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-12-02",
+          "day": "02.12.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "BILLSTEDT"
+    },
+    {
+      "name": "Am Gleisdreieck/ Haus 23",
+      "appts": [
+        {
+          "date": "2026-01-13",
+          "day": "13.01.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-16",
+          "day": "16.07.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-08-04",
+          "day": "04.08.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-12-18",
+          "day": "18.12.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "BILLWERDER"
+    },
+    {
+      "name": "Mühlenberger Weg 61 ggü. Blankeneser Markt",
+      "appts": [
+        {
+          "date": "2026-01-07",
+          "day": "07.01.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-17",
+          "day": "17.04.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-21",
+          "day": "21.07.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-09-10",
+          "day": "10.09.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-27",
+          "day": "27.11.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "BLANKENESE"
+    },
+    {
+      "name": "Simrockstraße 84",
+      "appts": [
+        {
+          "date": "2026-01-27",
+          "day": "27.01.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-24",
+          "day": "24.03.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-11",
+          "day": "11.08.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-26",
+          "day": "26.10.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "BLANKENESE"
+    },
+    {
+      "name": "Bengelsdorfstr. 2–6",
+      "appts": [
+        {
+          "date": "2026-01-05",
+          "day": "05.01.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-03-13",
+          "day": "13.03.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-05",
+          "day": "05.06.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-07-29",
+          "day": "29.07.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-10-07",
+          "day": "07.10.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "BRAMFELD"
+    },
+    {
+      "name": "Fabriciusstr. 35",
+      "appts": [
+        {
+          "date": "2026-03-26",
+          "day": "26.03.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-07-06",
+          "day": "06.07.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-09-16",
+          "day": "16.09.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-11",
+          "day": "11.11.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "BRAMFELD"
+    },
+    {
+      "name": "Herthastraße Marktfläche",
+      "appts": [
+        {
+          "date": "2026-01-15",
+          "day": "15.01.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-05-06",
+          "day": "06.05.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-10",
+          "day": "10.06.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-29",
+          "day": "29.07.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-08-31",
+          "day": "31.08.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-11-11",
+          "day": "11.11.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "BRAMFELD"
+    },
+    {
+      "name": "Karlshöhe/Pezolddamm",
+      "appts": [
+        {
+          "date": "2026-02-09",
+          "day": "09.02.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-05-06",
+          "day": "06.05.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-06-30",
+          "day": "30.06.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-21",
+          "day": "21.09.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-14",
+          "day": "14.10.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "BRAMFELD"
+    },
+    {
+      "name": "Königsberger Str. 2–6",
+      "appts": [
+        {
+          "date": "2026-02-13",
+          "day": "13.02.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-04-15",
+          "day": "15.04.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-06-22",
+          "day": "22.06.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-30",
+          "day": "30.07.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-24",
+          "day": "24.11.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "BRAMFELD"
+    },
+    {
+      "name": "Estebogen/HVV-Haltestelle",
+      "appts": [
+        {
+          "date": "2026-01-13",
+          "day": "13.01.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-02-20",
+          "day": "20.02.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-04-29",
+          "day": "29.04.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-09",
+          "day": "09.09.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-04",
+          "day": "04.11.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "CRANZ"
+    },
+    {
+      "name": "Odemanns Heck/Sportplatz",
+      "appts": [
+        {
+          "date": "2026-01-22",
+          "day": "22.01.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-02-24",
+          "day": "24.02.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-05-19",
+          "day": "19.05.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-23",
+          "day": "23.06.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-23",
+          "day": "23.07.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-30",
+          "day": "30.09.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-25",
+          "day": "25.11.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "CURSLACK"
+    },
+    {
+      "name": "Straßburger Platz",
+      "appts": [
+        {
+          "date": "2026-01-12",
+          "day": "12.01.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-02-16",
+          "day": "16.02.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-16",
+          "day": "16.06.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-21",
+          "day": "21.09.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-12-17",
+          "day": "17.12.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "DULSBERG"
+    },
+    {
+      "name": "Duvenstedter Markt",
+      "appts": [
+        {
+          "date": "2026-02-06",
+          "day": "06.02.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-04-27",
+          "day": "27.04.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-06-30",
+          "day": "30.06.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-12",
+          "day": "12.08.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-10-28",
+          "day": "28.10.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "DUVENSTEDT"
+    },
+    {
+      "name": "Lohkampstr. 131-133",
+      "appts": [
+        {
+          "date": "2026-02-05",
+          "day": "05.02.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-06",
+          "day": "06.03.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-05-29",
+          "day": "29.05.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-06-25",
+          "day": "25.06.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-22",
+          "day": "22.09.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "EIDELSTEDT"
+    },
+    {
+      "name": "Marktfläche Alte Elbgaustr./Bürgerhaus",
+      "appts": [
+        {
+          "date": "2026-01-08",
+          "day": "08.01.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-10",
+          "day": "10.03.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-11",
+          "day": "11.06.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-07-27",
+          "day": "27.07.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-11-03",
+          "day": "03.11.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "EIDELSTEDT"
+    },
+    {
+      "name": "Maxstr./Eilbektal",
+      "appts": [
+        {
+          "date": "2026-01-21",
+          "day": "21.01.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-26",
+          "day": "26.03.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-21",
+          "day": "21.07.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-09-03",
+          "day": "03.09.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-20",
+          "day": "20.10.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-11-24",
+          "day": "24.11.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "EILBEK"
+    },
+    {
+      "name": "Eimsbütteler Chaussee 63",
+      "appts": [
+        {
+          "date": "2026-01-21",
+          "day": "21.01.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-04-14",
+          "day": "14.04.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-05-18",
+          "day": "18.05.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-08-18",
+          "day": "18.08.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-11-18",
+          "day": "18.11.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "EIMSBÜTTEL"
+    },
+    {
+      "name": "Lappenbergsallee/ Apostelkirche",
+      "appts": [
+        {
+          "date": "2026-01-14",
+          "day": "14.01.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-03-20",
+          "day": "20.03.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-04-27",
+          "day": "27.04.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-08",
+          "day": "08.07.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-08",
+          "day": "08.09.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-21",
+          "day": "21.10.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-12-08",
+          "day": "08.12.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "EIMSBÜTTEL"
+    },
+    {
+      "name": "Beerentalweg 156–158",
+      "appts": [
+        {
+          "date": "2026-01-28",
+          "day": "28.01.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-02-25",
+          "day": "25.02.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-05-20",
+          "day": "20.05.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-01",
+          "day": "01.09.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-12-01",
+          "day": "01.12.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "EIßENDORF"
+    },
+    {
+      "name": "Bremer Str. 56–60",
+      "appts": [
+        {
+          "date": "2026-02-17",
+          "day": "17.02.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-05-28",
+          "day": "28.05.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-06",
+          "day": "06.08.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-09-09",
+          "day": "09.09.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-29",
+          "day": "29.10.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "EIßENDORF"
+    },
+    {
+      "name": "Denickestr. 147/Eißendorfer Pferdeweg",
+      "appts": [
+        {
+          "date": "2026-02-20",
+          "day": "20.02.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-11",
+          "day": "11.03.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-30",
+          "day": "30.06.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-08-12",
+          "day": "12.08.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-10-09",
+          "day": "09.10.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-12-14",
+          "day": "14.12.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "EIßENDORF"
+    },
+    {
+      "name": "Marie-Jonas-Platz",
+      "appts": [
+        {
+          "date": "2026-01-12",
+          "day": "12.01.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-02-16",
+          "day": "16.02.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-05-18",
+          "day": "18.05.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-08",
+          "day": "08.07.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-09-21",
+          "day": "21.09.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-11-02",
+          "day": "02.11.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "EPPENDORF"
+    },
+    {
+      "name": "Berner Markt/Hermann-Balk-Str.",
+      "appts": [
+        {
+          "date": "2026-02-26",
+          "day": "26.02.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-04",
+          "day": "04.06.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-21",
+          "day": "21.07.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-28",
+          "day": "28.09.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-12-02",
+          "day": "02.12.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "FARMSEN-BERNE"
+    },
+    {
+      "name": "Marktfläche Berner Heerweg",
+      "appts": [
+        {
+          "date": "2026-01-05",
+          "day": "05.01.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-04-20",
+          "day": "20.04.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-07-30",
+          "day": "30.07.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-16",
+          "day": "16.11.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "FARMSEN-BERNE"
+    },
+    {
+      "name": "Marktfläche Finksweg",
+      "appts": [
+        {
+          "date": "2026-01-28",
+          "day": "28.01.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-11",
+          "day": "11.03.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-04-22",
+          "day": "22.04.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-15",
+          "day": "15.07.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-08-06",
+          "day": "06.08.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-09",
+          "day": "09.09.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-20",
+          "day": "20.11.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "FINKENWERDER"
+    },
+    {
+      "name": "Rudolf-Kinau-Allee 14",
+      "appts": [
+        {
+          "date": "2026-02-02",
+          "day": "02.02.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-04-24",
+          "day": "24.04.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-14",
+          "day": "14.07.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-08-27",
+          "day": "27.08.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-29",
+          "day": "29.10.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "FINKENWERDER"
+    },
+    {
+      "name": "Marktfläche Ratsmühlendamm",
+      "appts": [
+        {
+          "date": "2026-02-10",
+          "day": "10.02.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-05-12",
+          "day": "12.05.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-08-10",
+          "day": "10.08.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-10-22",
+          "day": "22.10.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "FUHLSBÜTTEL"
+    },
+    {
+      "name": "Borsteler Chaussee 111",
+      "appts": [
+        {
+          "date": "2026-01-27",
+          "day": "27.01.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-03-09",
+          "day": "09.03.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-05-08",
+          "day": "08.05.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-07-28",
+          "day": "28.07.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-12-08",
+          "day": "08.12.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "GROß BORSTEL"
+    },
+    {
+      "name": "Marktfläche Osdorfer Landstr.",
+      "appts": [
+        {
+          "date": "2026-01-23",
+          "day": "23.01.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-04-14",
+          "day": "14.04.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-07-21",
+          "day": "21.07.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-10",
+          "day": "10.09.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-13",
+          "day": "13.11.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "GROß FLOTTBEK"
+    },
+    {
+      "name": "Oelsnerring 38–40",
+      "appts": [
+        {
+          "date": "2026-01-16",
+          "day": "16.01.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-31",
+          "day": "31.03.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-04-10",
+          "day": "10.04.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-11",
+          "day": "11.08.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-11-25",
+          "day": "25.11.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "GROß FLOTTBEK"
+    },
+    {
+      "name": "Am Lohsepark 22",
+      "appts": [
+        {
+          "date": "2026-02-12",
+          "day": "12.02.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-26",
+          "day": "26.06.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-03",
+          "day": "03.08.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-06",
+          "day": "06.10.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-11-19",
+          "day": "19.11.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "HAFENCITY"
+    },
+    {
+      "name": "Marktfläche Bei der Vogelstange",
+      "appts": [
+        {
+          "date": "2026-01-26",
+          "day": "26.01.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-03-26",
+          "day": "26.03.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-06-10",
+          "day": "10.06.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-02",
+          "day": "02.07.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-09-07",
+          "day": "07.09.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-10-19",
+          "day": "19.10.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-12-10",
+          "day": "10.12.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "HAMM"
+    },
+    {
+      "name": "Süderstraße / Ecke Osterbrook 46",
+      "appts": [
+        {
+          "date": "2026-01-09",
+          "day": "09.01.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-02-27",
+          "day": "27.02.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-30",
+          "day": "30.03.",
+          "weekday": "Mo.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-09",
+          "day": "09.07.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-25",
+          "day": "25.08.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-10-16",
+          "day": "16.10.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "HAMMERBROOK"
+    },
+    {
+      "name": "Großmoordamm 98/Baumarkt",
+      "appts": [
+        {
+          "date": "2026-01-14",
+          "day": "14.01.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-17",
+          "day": "17.03.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-04-21",
+          "day": "21.04.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-15",
+          "day": "15.07.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-10-12",
+          "day": "12.10.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "HARBURG"
+    },
+    {
+      "name": "Neuwiedenthaler Str. 163",
+      "appts": [
+        {
+          "date": "2026-02-02",
+          "day": "02.02.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-05-05",
+          "day": "05.05.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-06-30",
+          "day": "30.06.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-08-06",
+          "day": "06.08.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-05",
+          "day": "05.11.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "HAUSBRUCH"
+    },
+    {
+      "name": "Striepenweg/Gerdauring",
+      "appts": [
+        {
+          "date": "2026-02-25",
+          "day": "25.02.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-04-29",
+          "day": "29.04.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-06-30",
+          "day": "30.06.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-01",
+          "day": "01.09.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "HAUSBRUCH"
+    },
+    {
+      "name": "Heimfelder Straße 10",
+      "appts": [
+        {
+          "date": "2026-02-02",
+          "day": "02.02.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-04-08",
+          "day": "08.04.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-14",
+          "day": "14.07.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-10-29",
+          "day": "29.10.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-12-03",
+          "day": "03.12.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "HEIMFELD"
+    },
+    {
+      "name": "Eppendorfer Weg 162",
+      "appts": [
+        {
+          "date": "2026-01-09",
+          "day": "09.01.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-11",
+          "day": "11.03.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-07",
+          "day": "07.07.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-10-02",
+          "day": "02.10.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "HOHELUFT-WEST"
+    },
+    {
+      "name": "Dannerallee/Böcklerstr.",
+      "appts": [
+        {
+          "date": "2026-03-04",
+          "day": "04.03.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-02",
+          "day": "02.06.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-02",
+          "day": "02.09.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-19",
+          "day": "19.11.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "HORN"
+    },
+    {
+      "name": "Horner Weg ggü. 274",
+      "appts": [
+        {
+          "date": "2026-01-21",
+          "day": "21.01.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-02-11",
+          "day": "11.02.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-08",
+          "day": "08.06.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-07-17",
+          "day": "17.07.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-07",
+          "day": "07.10.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "HORN"
+    },
+    {
+      "name": "Querkamp 68",
+      "appts": [
+        {
+          "date": "2026-01-29",
+          "day": "29.01.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-16",
+          "day": "16.03.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-05-19",
+          "day": "19.05.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-07-22",
+          "day": "22.07.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-07",
+          "day": "07.09.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-11-05",
+          "day": "05.11.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "HORN"
+    },
+    {
+      "name": "Hummelsbütteler Weg ggü. Nr 40",
+      "appts": [
+        {
+          "date": "2026-02-03",
+          "day": "03.02.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-03",
+          "day": "03.06.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-30",
+          "day": "30.07.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-11",
+          "day": "11.11.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "HUMMELSBÜTTEL"
+    },
+    {
+      "name": "Ruscheweyhstr. 37",
+      "appts": [
+        {
+          "date": "2026-03-04",
+          "day": "04.03.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-23",
+          "day": "23.06.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-08-28",
+          "day": "28.08.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-10-21",
+          "day": "21.10.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "HUMMELSBÜTTEL"
+    },
+    {
+      "name": "Bei den Höfen 7 a–e",
+      "appts": [
+        {
+          "date": "2026-03-13",
+          "day": "13.03.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-13",
+          "day": "13.04.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-07-08",
+          "day": "08.07.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-29",
+          "day": "29.09.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "JENFELD"
+    },
+    {
+      "name": "Oststeinbeker Weg 38",
+      "appts": [
+        {
+          "date": "2026-02-09",
+          "day": "09.02.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-07-23",
+          "day": "23.07.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-25",
+          "day": "25.08.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-19",
+          "day": "19.10.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "KIRCHSTEINBEK"
+    },
+    {
+      "name": "Durchdeich 72",
+      "appts": [
+        {
+          "date": "2026-01-28",
+          "day": "28.01.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-03-18",
+          "day": "18.03.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-12",
+          "day": "12.06.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-23",
+          "day": "23.07.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-20",
+          "day": "20.10.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-17",
+          "day": "17.11.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-12-04",
+          "day": "04.12.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "KIRCHWERDER"
+    },
+    {
+      "name": "Zollenspieker-Hauptdeich/Kirchwerder Elbdeich",
+      "appts": [
+        {
+          "date": "2026-01-22",
+          "day": "22.01.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-03",
+          "day": "03.03.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-23",
+          "day": "23.06.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-09-04",
+          "day": "04.09.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-25",
+          "day": "25.11.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "KIRCHWERDER"
+    },
+    {
+      "name": "Försterweg 45–47",
+      "appts": [
+        {
+          "date": "2026-01-07",
+          "day": "07.01.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-02-23",
+          "day": "23.02.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-08",
+          "day": "08.06.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-07",
+          "day": "07.07.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-02",
+          "day": "02.10.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "LANGENFELDE"
+    },
+    {
+      "name": "Eberhofweg 62–64",
+      "appts": [
+        {
+          "date": "2026-03-10",
+          "day": "10.03.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-06-09",
+          "day": "09.06.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-16",
+          "day": "16.09.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-26",
+          "day": "26.11.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-12-15",
+          "day": "15.12.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "LANGENHORN"
+    },
+    {
+      "name": "Essener Str. 59",
+      "appts": [
+        {
+          "date": "2026-01-15",
+          "day": "15.01.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-27",
+          "day": "27.03.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-05",
+          "day": "05.08.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-09-24",
+          "day": "24.09.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-12-11",
+          "day": "11.12.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "LANGENHORN"
+    },
+    {
+      "name": "Heerwisch/Langenhorner Chaussee",
+      "appts": [
+        {
+          "date": "2026-01-06",
+          "day": "06.01.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-03-24",
+          "day": "24.03.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-06-23",
+          "day": "23.06.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-24",
+          "day": "24.09.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-21",
+          "day": "21.10.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "LANGENHORN"
+    },
+    {
+      "name": "Tangstedter Landstr. 214–218",
+      "appts": [
+        {
+          "date": "2026-01-30",
+          "day": "30.01.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-12",
+          "day": "12.03.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-23",
+          "day": "23.04.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-19",
+          "day": "19.08.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-11-06",
+          "day": "06.11.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "LANGENHORN"
+    },
+    {
+      "name": "Tangstedter Landstr. 486",
+      "appts": [
+        {
+          "date": "2026-02-11",
+          "day": "11.02.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-04",
+          "day": "04.03.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-05-08",
+          "day": "08.05.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-24",
+          "day": "24.08.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-10-30",
+          "day": "30.10.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "LANGENHORN"
+    },
+    {
+      "name": "Wrangelkoppel/ Krohnstieg",
+      "appts": [
+        {
+          "date": "2026-01-19",
+          "day": "19.01.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-02-24",
+          "day": "24.02.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-05-29",
+          "day": "29.05.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-25",
+          "day": "25.06.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-28",
+          "day": "28.08.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-23",
+          "day": "23.11.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "LANGENHORN"
+    },
+    {
+      "name": "Tannenhof 53",
+      "appts": [
+        {
+          "date": "2026-02-26",
+          "day": "26.02.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-16",
+          "day": "16.06.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-08-24",
+          "day": "24.08.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-12-01",
+          "day": "01.12.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "LEMSAHL"
+    },
+    {
+      "name": "Korachstr./Fanny-David-Weg",
+      "appts": [
+        {
+          "date": "2026-03-03",
+          "day": "03.03.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-12",
+          "day": "12.06.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-03",
+          "day": "03.08.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-09-30",
+          "day": "30.09.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-12-04",
+          "day": "04.12.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "LOHBRÜGGE"
+    },
+    {
+      "name": "Marktfläche Lohbrügger Markt",
+      "appts": [
+        {
+          "date": "2026-01-22",
+          "day": "22.01.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-16",
+          "day": "16.03.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-02",
+          "day": "02.06.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-08-07",
+          "day": "07.08.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-24",
+          "day": "24.11.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "LOHBRÜGGE"
+    },
+    {
+      "name": "Röpraredder ggü. Nr. 70",
+      "appts": [
+        {
+          "date": "2026-03-02",
+          "day": "02.03.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-07-10",
+          "day": "10.07.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-04",
+          "day": "04.08.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-16",
+          "day": "16.10.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-17",
+          "day": "17.11.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "LOHBRÜGGE"
+    },
+    {
+      "name": "Grandweg ggü. Nr. 117",
+      "appts": [
+        {
+          "date": "2026-02-19",
+          "day": "19.02.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-06-17",
+          "day": "17.06.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-08-13",
+          "day": "13.08.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-23",
+          "day": "23.10.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-26",
+          "day": "26.11.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "LOKSTEDT"
+    },
+    {
+      "name": "Julius-Vosseler-Str. 135–143",
+      "appts": [
+        {
+          "date": "2026-02-05",
+          "day": "05.02.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-25",
+          "day": "25.03.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-23",
+          "day": "23.06.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-08-24",
+          "day": "24.08.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-11-12",
+          "day": "12.11.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "LOKSTEDT"
+    },
+    {
+      "name": "Wehmerweg ggü. Nr. 2",
+      "appts": [
+        {
+          "date": "2026-02-04",
+          "day": "04.02.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-23",
+          "day": "23.03.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-29",
+          "day": "29.06.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-08",
+          "day": "08.10.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "LOKSTEDT"
+    },
+    {
+      "name": "Franzosenkoppel 104/EKZ",
+      "appts": [
+        {
+          "date": "2026-01-16",
+          "day": "16.01.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-31",
+          "day": "31.07.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-14",
+          "day": "14.10.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-18",
+          "day": "18.11.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "LURUP"
+    },
+    {
+      "name": "Friedrichshulder Weg ggü. EKZ",
+      "appts": [
+        {
+          "date": "2026-01-21",
+          "day": "21.01.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-04-16",
+          "day": "16.04.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-20",
+          "day": "20.08.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-10-15",
+          "day": "15.10.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "LURUP"
+    },
+    {
+      "name": "Luruper Hauptstraße 136",
+      "appts": [
+        {
+          "date": "2026-01-27",
+          "day": "27.01.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-17",
+          "day": "17.04.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-08-18",
+          "day": "18.08.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-11-27",
+          "day": "27.11.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "LURUP"
+    },
+    {
+      "name": "Oderstr. 28–30/ Neißestr.",
+      "appts": [
+        {
+          "date": "2026-03-17",
+          "day": "17.03.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-01",
+          "day": "01.06.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-09-08",
+          "day": "08.09.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-10-14",
+          "day": "14.10.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-27",
+          "day": "27.11.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "LURUP"
+    },
+    {
+      "name": "Oktaviostr. 127",
+      "appts": [
+        {
+          "date": "2026-02-04",
+          "day": "04.02.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-13",
+          "day": "13.03.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-04",
+          "day": "04.06.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-21",
+          "day": "21.08.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-28",
+          "day": "28.09.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-12-17",
+          "day": "17.12.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "MARIENTHAL"
+    },
+    {
+      "name": "Ernst-Bergeest-Weg 51",
+      "appts": [
+        {
+          "date": "2026-02-10",
+          "day": "10.02.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-22",
+          "day": "22.04.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-08-26",
+          "day": "26.08.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-05",
+          "day": "05.10.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-11-04",
+          "day": "04.11.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "MARMSTORF"
+    },
+    {
+      "name": "Saseler Str. 111",
+      "appts": [
+        {
+          "date": "2026-04-13",
+          "day": "13.04.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-10",
+          "day": "10.07.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-10-13",
+          "day": "13.10.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-12-02",
+          "day": "02.12.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "MEIENDORF"
+    },
+    {
+      "name": "Wildschwanbrook 27",
+      "appts": [
+        {
+          "date": "2026-01-29",
+          "day": "29.01.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-12",
+          "day": "12.03.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-10",
+          "day": "10.06.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-11",
+          "day": "11.09.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-17",
+          "day": "17.11.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "MEIENDORF"
+    },
+    {
+      "name": "Moorburger Elbdeich 227",
+      "appts": [
+        {
+          "date": "2026-01-13",
+          "day": "13.01.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-04-08",
+          "day": "08.04.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-19",
+          "day": "19.06.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-09",
+          "day": "09.10.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "MOORBURG"
+    },
+    {
+      "name": "Andreas-Meyer-Str. 53",
+      "appts": [
+        {
+          "date": "2026-03-03",
+          "day": "03.03.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-06-12",
+          "day": "12.06.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-08-07",
+          "day": "07.08.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-16",
+          "day": "16.10.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-24",
+          "day": "24.11.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "MOORFLEET"
+    },
+    {
+      "name": "Havighorster Redder 35–37",
+      "appts": [
+        {
+          "date": "2026-03-04",
+          "day": "04.03.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-18",
+          "day": "18.06.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-07",
+          "day": "07.09.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-12-18",
+          "day": "18.12.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "MÜMMELMANNSBERG"
+    },
+    {
+      "name": "Henriette-Herz-Ring 39–41",
+      "appts": [
+        {
+          "date": "2026-01-13",
+          "day": "13.01.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-02-27",
+          "day": "27.02.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-26",
+          "day": "26.06.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-14",
+          "day": "14.09.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-10-27",
+          "day": "27.10.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "NEU-ALLERMÖHE"
+    },
+    {
+      "name": "Seehofring/Urenfleet",
+      "appts": [
+        {
+          "date": "2026-02-10",
+          "day": "10.02.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-17",
+          "day": "17.03.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-05-20",
+          "day": "20.05.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-19",
+          "day": "19.06.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-26",
+          "day": "26.08.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-20",
+          "day": "20.10.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-11-30",
+          "day": "30.11.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "NEUENFELDE"
+    },
+    {
+      "name": "Neugrabener Markt",
+      "appts": [
+        {
+          "date": "2026-04-08",
+          "day": "08.04.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-24",
+          "day": "24.06.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-10-12",
+          "day": "12.10.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-11-30",
+          "day": "30.11.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-12-14",
+          "day": "14.12.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "NEUGRABEN"
+    },
+    {
+      "name": "Ohrnsweg 12 e–f",
+      "appts": [
+        {
+          "date": "2026-02-17",
+          "day": "17.02.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-24",
+          "day": "24.04.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-07-14",
+          "day": "14.07.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-11-04",
+          "day": "04.11.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "NEUGRABEN"
+    },
+    {
+      "name": "Am Johannisland/Kälberweide",
+      "appts": [
+        {
+          "date": "2026-01-28",
+          "day": "28.01.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-02-25",
+          "day": "25.02.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-19",
+          "day": "19.06.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-17",
+          "day": "17.09.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-30",
+          "day": "30.11.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "NEUGRABEN-FISCHBEK"
+    },
+    {
+      "name": "Im Fischbeker Heidbrook/Landkärtchenweg",
+      "appts": [
+        {
+          "date": "2026-02-20",
+          "day": "20.02.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-06-24",
+          "day": "24.06.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-12",
+          "day": "12.08.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-09",
+          "day": "09.10.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-12-01",
+          "day": "01.12.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "NEUGRABEN-FISCHBEK"
+    },
+    {
+      "name": "Neumoorstück/Freibad",
+      "appts": [
+        {
+          "date": "2026-02-25",
+          "day": "25.02.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-04-29",
+          "day": "29.04.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-26",
+          "day": "26.08.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-10-05",
+          "day": "05.10.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-12-03",
+          "day": "03.12.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "NEUGRABEN-FISCHBEK"
+    },
+    {
+      "name": "Marktfläche Großneumarkt",
+      "appts": [
+        {
+          "date": "2026-01-20",
+          "day": "20.01.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-03-10",
+          "day": "10.03.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-05-19",
+          "day": "19.05.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-07-07",
+          "day": "07.07.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-09-04",
+          "day": "04.09.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "NEUSTADT"
+    },
+    {
+      "name": "Niendorfer Kirchenweg 18",
+      "appts": [
+        {
+          "date": "2026-01-30",
+          "day": "30.01.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-01",
+          "day": "01.04.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-01",
+          "day": "01.07.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-09-29",
+          "day": "29.09.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-12-15",
+          "day": "15.12.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "NIENDORF"
+    },
+    {
+      "name": "Teutonenweg/ Rahweg 62 a–d",
+      "appts": [
+        {
+          "date": "2026-02-13",
+          "day": "13.02.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-05-08",
+          "day": "08.05.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-05",
+          "day": "05.08.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-10-30",
+          "day": "30.10.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "NIENDORF"
+    },
+    {
+      "name": "Wagrierweg 5",
+      "appts": [
+        {
+          "date": "2026-03-06",
+          "day": "06.03.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-05",
+          "day": "05.06.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-13",
+          "day": "13.07.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-09-15",
+          "day": "15.09.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-12-16",
+          "day": "16.12.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "NIENDORF"
+    },
+    {
+      "name": "Nienstedtener Marktplatz",
+      "appts": [
+        {
+          "date": "2026-02-19",
+          "day": "19.02.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-04-28",
+          "day": "28.04.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-05-07",
+          "day": "07.05.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-20",
+          "day": "20.08.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-08",
+          "day": "08.10.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "NIENSTEDTEN"
+    },
+    {
+      "name": "Feuerbergstr./Rübenkamp",
+      "appts": [
+        {
+          "date": "2026-01-27",
+          "day": "27.01.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-05-06",
+          "day": "06.05.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-07-01",
+          "day": "01.07.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-24",
+          "day": "24.09.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-16",
+          "day": "16.11.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "OHLSDORF"
+    },
+    {
+      "name": "Röntgenstraße ggü. Nr. 19",
+      "appts": [
+        {
+          "date": "2026-02-13",
+          "day": "13.02.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-04-01",
+          "day": "01.04.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-17",
+          "day": "17.06.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-08-10",
+          "day": "10.08.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-30",
+          "day": "30.10.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "OHLSDORF"
+    },
+    {
+      "name": "Tornberg/S-Bahn Kornweg",
+      "appts": [
+        {
+          "date": "2026-02-18",
+          "day": "18.02.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-04-27",
+          "day": "27.04.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-09",
+          "day": "09.06.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-28",
+          "day": "28.07.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-22",
+          "day": "22.10.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-12-07",
+          "day": "07.12.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "OHLSDORF"
+    },
+    {
+      "name": "Brunskrogweg ggü. Nr. 9",
+      "appts": [
+        {
+          "date": "2026-01-19",
+          "day": "19.01.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-04-23",
+          "day": "23.04.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-15",
+          "day": "15.06.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-08-12",
+          "day": "12.08.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-14",
+          "day": "14.10.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "OHLSTEDT"
+    },
+    {
+      "name": "Achtern Born/Bornheide",
+      "appts": [
+        {
+          "date": "2026-03-17",
+          "day": "17.03.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-21",
+          "day": "21.04.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-21",
+          "day": "21.07.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-08",
+          "day": "08.10.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-12-09",
+          "day": "09.12.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "OSDORF"
+    },
+    {
+      "name": "Blomkamp 62",
+      "appts": [
+        {
+          "date": "2026-01-14",
+          "day": "14.01.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-03-31",
+          "day": "31.03.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-04-10",
+          "day": "10.04.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-11",
+          "day": "11.06.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-18",
+          "day": "18.08.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-11-18",
+          "day": "18.11.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "OSDORF"
+    },
+    {
+      "name": "Bernadottestr. 216",
+      "appts": [
+        {
+          "date": "2026-01-07",
+          "day": "07.01.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-03-20",
+          "day": "20.03.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-20",
+          "day": "20.07.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-23",
+          "day": "23.09.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-13",
+          "day": "13.11.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "OTHMARSCHEN"
+    },
+    {
+      "name": "Jungmannstr. 5",
+      "appts": [
+        {
+          "date": "2026-01-23",
+          "day": "23.01.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-23",
+          "day": "23.03.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-08-04",
+          "day": "04.08.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-11-12",
+          "day": "12.11.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "OTHMARSCHEN"
+    },
+    {
+      "name": "Marktfläche Spritzenplatz",
+      "appts": [
+        {
+          "date": "2026-02-23",
+          "day": "23.02.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-04-21",
+          "day": "21.04.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-05-07",
+          "day": "07.05.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-15",
+          "day": "15.10.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-12-07",
+          "day": "07.12.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "OTTENSEN"
+    },
+    {
+      "name": "Auf der Koppel 12",
+      "appts": [
+        {
+          "date": "2026-01-20",
+          "day": "20.01.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-06",
+          "day": "06.03.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-04-20",
+          "day": "20.04.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-08",
+          "day": "08.07.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-09-16",
+          "day": "16.09.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-12-11",
+          "day": "11.12.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "POPPENBÜTTEL"
+    },
+    {
+      "name": "Helmut-Steidl-Platz",
+      "appts": [
+        {
+          "date": "2026-02-06",
+          "day": "06.02.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-13",
+          "day": "13.04.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-02",
+          "day": "02.06.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-08-17",
+          "day": "17.08.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-09-25",
+          "day": "25.09.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-17",
+          "day": "17.11.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "RAHLSTEDT"
+    },
+    {
+      "name": "Hoffmannstieg ggü. Nr. 1–3",
+      "appts": [
+        {
+          "date": "2026-03-18",
+          "day": "18.03.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-18",
+          "day": "18.06.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-31",
+          "day": "31.08.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-28",
+          "day": "28.10.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "RAHLSTEDT"
+    },
+    {
+      "name": "Hüllenkamp 104-108",
+      "appts": [
+        {
+          "date": "2026-02-17",
+          "day": "17.02.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-04-09",
+          "day": "09.04.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-08-21",
+          "day": "21.08.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-06",
+          "day": "06.11.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "RAHLSTEDT"
+    },
+    {
+      "name": "Kamminerstr./bei der Kirche",
+      "appts": [
+        {
+          "date": "2026-01-20",
+          "day": "20.01.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-18",
+          "day": "18.03.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-03",
+          "day": "03.06.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-07-10",
+          "day": "10.07.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-02",
+          "day": "02.09.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-11",
+          "day": "11.11.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "RAHLSTEDT"
+    },
+    {
+      "name": "Treptower Str. 92–94",
+      "appts": [
+        {
+          "date": "2026-01-29",
+          "day": "29.01.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-27",
+          "day": "27.03.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-07-08",
+          "day": "08.07.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-10-13",
+          "day": "13.10.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "RAHLSTEDT"
+    },
+    {
+      "name": "Marschweg 15–17",
+      "appts": [
+        {
+          "date": "2026-02-19",
+          "day": "19.02.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-31",
+          "day": "31.03.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-10",
+          "day": "10.04.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-27",
+          "day": "27.07.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-11-03",
+          "day": "03.11.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "RISSEN"
+    },
+    {
+      "name": "Rissener Dorfstr. 41/Rackertwiete",
+      "appts": [
+        {
+          "date": "2026-01-16",
+          "day": "16.01.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-05",
+          "day": "05.03.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-29",
+          "day": "29.06.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-08-11",
+          "day": "11.08.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-09-23",
+          "day": "23.09.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "RISSEN"
+    },
+    {
+      "name": "Rothenburgsorter Marktplatz",
+      "appts": [
+        {
+          "date": "2026-01-26",
+          "day": "26.01.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-03-02",
+          "day": "02.03.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-05-21",
+          "day": "21.05.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-07-16",
+          "day": "16.07.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-27",
+          "day": "27.10.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "ROTHENBURGSORT"
+    },
+    {
+      "name": "Bei St. Johannis",
+      "appts": [
+        {
+          "date": "2026-02-10",
+          "day": "10.02.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-04-15",
+          "day": "15.04.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-08-14",
+          "day": "14.08.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-02",
+          "day": "02.11.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "ROTHERBAUM"
+    },
+    {
+      "name": "Grindelhof 23",
+      "appts": [
+        {
+          "date": "2026-01-14",
+          "day": "14.01.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-03-24",
+          "day": "24.03.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-07-13",
+          "day": "13.07.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-10-15",
+          "day": "15.10.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-10",
+          "day": "10.11.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "ROTHERBAUM"
+    },
+    {
+      "name": "Marmorweg 14–18/Ecke Heegbarg",
+      "appts": [
+        {
+          "date": "2026-01-30",
+          "day": "30.01.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-27",
+          "day": "27.03.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-09",
+          "day": "09.06.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-08-17",
+          "day": "17.08.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-10-07",
+          "day": "07.10.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-12-17",
+          "day": "17.12.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "SASEL"
+    },
+    {
+      "name": "Saseler Markt ggü. Nr. 21",
+      "appts": [
+        {
+          "date": "2026-01-06",
+          "day": "06.01.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-02-17",
+          "day": "17.02.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-22",
+          "day": "22.07.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-09-11",
+          "day": "11.09.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-11-16",
+          "day": "16.11.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "SASEL"
+    },
+    {
+      "name": "Graf-Johann-Weg 67–71",
+      "appts": [
+        {
+          "date": "2026-02-11",
+          "day": "11.02.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-04-01",
+          "day": "01.04.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-06-17",
+          "day": "17.06.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-31",
+          "day": "31.07.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-22",
+          "day": "22.09.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-11-26",
+          "day": "26.11.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "SCHNELSEN"
+    },
+    {
+      "name": "Roman-Zeller-Platz",
+      "appts": [
+        {
+          "date": "2026-03-10",
+          "day": "10.03.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-09",
+          "day": "09.06.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-31",
+          "day": "31.07.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-08",
+          "day": "08.09.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-12-16",
+          "day": "16.12.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "SCHNELSEN"
+    },
+    {
+      "name": "Hermannsburger Weg 36–44",
+      "appts": [
+        {
+          "date": "2026-02-17",
+          "day": "17.02.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-17",
+          "day": "17.03.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-07-02",
+          "day": "02.07.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-17",
+          "day": "17.09.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-10-12",
+          "day": "12.10.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "SINSTORF"
+    },
+    {
+      "name": "Danziger Str. 26/Rostocker Str.",
+      "appts": [
+        {
+          "date": "2026-01-20",
+          "day": "20.01.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-03-11",
+          "day": "11.03.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-16",
+          "day": "16.06.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-09-15",
+          "day": "15.09.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-12-10",
+          "day": "10.12.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "ST. GEORG"
+    },
+    {
+      "name": "Gazellenkamp 201–203",
+      "appts": [
+        {
+          "date": "2026-02-11",
+          "day": "11.02.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-04-16",
+          "day": "16.04.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-08-19",
+          "day": "19.08.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-11-03",
+          "day": "03.11.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "STELLINGEN"
+    },
+    {
+      "name": "Oldenburger Str. 57/ Steinburger Str.",
+      "appts": [
+        {
+          "date": "2026-03-17",
+          "day": "17.03.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-05-12",
+          "day": "12.05.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-20",
+          "day": "20.08.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-09-15",
+          "day": "15.09.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-12-16",
+          "day": "16.12.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "STELLINGEN"
+    },
+    {
+      "name": "Sülldorfer Kirchenweg 127–129",
+      "appts": [
+        {
+          "date": "2026-01-08",
+          "day": "08.01.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-20",
+          "day": "20.03.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-06-11",
+          "day": "11.06.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-20",
+          "day": "20.07.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-26",
+          "day": "26.10.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "SÜLLDORF"
+    },
+    {
+      "name": "Walddörferstr. 343–345",
+      "appts": [
+        {
+          "date": "2026-01-20",
+          "day": "20.01.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-03-18",
+          "day": "18.03.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-06-16",
+          "day": "16.06.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-10-13",
+          "day": "13.10.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-11-09",
+          "day": "09.11.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        }
+      ],
+      "district": "TONNDORF"
+    },
+    {
+      "name": "Marktfläche Immenhof",
+      "appts": [
+        {
+          "date": "2026-03-19",
+          "day": "19.03.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-06-22",
+          "day": "22.06.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-10-02",
+          "day": "02.10.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-12-02",
+          "day": "02.12.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "UHLENHORST"
+    },
+    {
+      "name": "Am Zollhafen ggü. 20-22",
+      "appts": [
+        {
+          "date": "2026-02-12",
+          "day": "12.02.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-11",
+          "day": "11.03.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-06-08",
+          "day": "08.06.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-07-15",
+          "day": "15.07.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-11-05",
+          "day": "05.11.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "VEDDEL"
+    },
+    {
+      "name": "Buchenring 61–63",
+      "appts": [
+        {
+          "date": "2026-02-03",
+          "day": "03.02.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-03",
+          "day": "03.06.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-07-24",
+          "day": "24.07.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-10-28",
+          "day": "28.10.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "VOLKSDORF"
+    },
+    {
+      "name": "Cornehlsweg ggü. Nr. 23–25",
+      "appts": [
+        {
+          "date": "2026-02-17",
+          "day": "17.02.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-16",
+          "day": "16.06.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-02",
+          "day": "02.09.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-12-01",
+          "day": "01.12.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "VOLKSDORF"
+    },
+    {
+      "name": "Marktfläche Kattjahren",
+      "appts": [
+        {
+          "date": "2026-02-26",
+          "day": "26.02.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-04-20",
+          "day": "20.04.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-07-24",
+          "day": "24.07.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-18",
+          "day": "18.09.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-24",
+          "day": "24.11.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "VOLKSDORF"
+    },
+    {
+      "name": "Brauhausstieg ggü. 54/ Wandsbeker Königstraße",
+      "appts": [
+        {
+          "date": "2026-01-27",
+          "day": "27.01.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-05-21",
+          "day": "21.05.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-17",
+          "day": "17.07.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-25",
+          "day": "25.09.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-11",
+          "day": "11.11.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "WANDSBEK"
+    },
+    {
+      "name": "Helbingstr. 63/",
+      "appts": [
+        {
+          "date": "2026-02-24",
+          "day": "24.02.",
+          "weekday": "Di.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-04-15",
+          "day": "15.04.",
+          "weekday": "Mi.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-07-17",
+          "day": "17.07.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-03",
+          "day": "03.09.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-17",
+          "day": "17.11.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "WANDSBEK"
+    },
+    {
+      "name": "Lesserstr. 126–132",
+      "appts": [
+        {
+          "date": "2026-02-09",
+          "day": "09.02.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-15",
+          "day": "15.06.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-08-05",
+          "day": "05.08.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-12-11",
+          "day": "11.12.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "WANDSBEK"
+    },
+    {
+      "name": "Ziethenstr. 2 a–b",
+      "appts": [
+        {
+          "date": "2026-02-10",
+          "day": "10.02.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-03-19",
+          "day": "19.03.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-07-22",
+          "day": "22.07.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-18",
+          "day": "18.09.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-11-10",
+          "day": "10.11.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "WANDSBEK"
+    },
+    {
+      "name": "Rolfinckstr. 22",
+      "appts": [
+        {
+          "date": "2026-02-06",
+          "day": "06.02.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-24",
+          "day": "24.03.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-06-15",
+          "day": "15.06.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-08-28",
+          "day": "28.08.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-06",
+          "day": "06.11.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        }
+      ],
+      "district": "WELLINGSBÜTTEL"
+    },
+    {
+      "name": "Berta-Kröger-Platz",
+      "appts": [
+        {
+          "date": "2026-01-14",
+          "day": "14.01.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-24",
+          "day": "24.06.",
+          "weekday": "Mi.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-08-12",
+          "day": "12.08.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-10-05",
+          "day": "05.10.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-12-10",
+          "day": "10.12.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "WILHELMSBURG"
+    },
+    {
+      "name": "Karl-Arnold-Ring ggü. Nr. 51",
+      "appts": [
+        {
+          "date": "2026-03-03",
+          "day": "03.03.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-05-20",
+          "day": "20.05.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-07-02",
+          "day": "02.07.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-09-17",
+          "day": "17.09.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-12-03",
+          "day": "03.12.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "WILHELMSBURG"
+    },
+    {
+      "name": "Kirchdorfer Str./ Schönefelder Str",
+      "appts": [
+        {
+          "date": "2026-02-12",
+          "day": "12.02.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-04-22",
+          "day": "22.04.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-05-28",
+          "day": "28.05.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-01",
+          "day": "01.09.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-11-20",
+          "day": "20.11.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        }
+      ],
+      "district": "WILHELMSBURG"
+    },
+    {
+      "name": "Marktfläche Stübenplatz",
+      "appts": [
+        {
+          "date": "2026-01-13",
+          "day": "13.01.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-04-21",
+          "day": "21.04.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-05-05",
+          "day": "05.05.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-08-27",
+          "day": "27.08.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-10-20",
+          "day": "20.10.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "WILHELMSBURG"
+    },
+    {
+      "name": "Rönneburger Str. 58",
+      "appts": [
+        {
+          "date": "2026-02-25",
+          "day": "25.02.",
+          "weekday": "Mi.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-03-03",
+          "day": "03.03.",
+          "weekday": "Di.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-08-27",
+          "day": "27.08.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-20",
+          "day": "20.11.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-12-14",
+          "day": "14.12.",
+          "weekday": "Mo.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "WILSTORF"
+    },
+    {
+      "name": "Lattenkamp 29",
+      "appts": [
+        {
+          "date": "2026-02-24",
+          "day": "24.02.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-04-23",
+          "day": "23.04.",
+          "weekday": "Do.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-06-22",
+          "day": "22.06.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-08-14",
+          "day": "14.08.",
+          "weekday": "Fr.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-09-29",
+          "day": "29.09.",
+          "weekday": "Di.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-12-02",
+          "day": "02.12.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "WINTERHUDE"
+    },
+    {
+      "name": "Marktfläche Winterhuder Marktplatz",
+      "appts": [
+        {
+          "date": "2026-02-16",
+          "day": "16.02.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-03-09",
+          "day": "09.03.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-06-01",
+          "day": "01.06.",
+          "weekday": "Mo.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-07-28",
+          "day": "28.07.",
+          "weekday": "Di.",
+          "slot": "14:30–16:00"
+        },
+        {
+          "date": "2026-09-11",
+          "day": "11.09.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-10-22",
+          "day": "22.10.",
+          "weekday": "Do.",
+          "slot": "09:00–10:30"
+        },
+        {
+          "date": "2026-12-08",
+          "day": "08.12.",
+          "weekday": "Di.",
+          "slot": "16:30–18:00"
+        }
+      ],
+      "district": "WINTERHUDE"
+    },
+    {
+      "name": "Stammannstr. 15",
+      "appts": [
+        {
+          "date": "2026-01-09",
+          "day": "09.01.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-25",
+          "day": "25.03.",
+          "weekday": "Mi.",
+          "slot": "16:30–18:00"
+        },
+        {
+          "date": "2026-07-01",
+          "day": "01.07.",
+          "weekday": "Mi.",
+          "slot": "12:00–13:30"
+        },
+        {
+          "date": "2026-11-10",
+          "day": "10.11.",
+          "weekday": "Di.",
+          "slot": "09:00–10:30"
+        }
+      ],
+      "district": "WINTERHUDE"
+    },
+    {
+      "name": "Wiesendamm 131-133",
+      "appts": [
+        {
+          "date": "2026-02-04",
+          "day": "04.02.",
+          "weekday": "Mi.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-03-19",
+          "day": "19.03.",
+          "weekday": "Do.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-06-05",
+          "day": "05.06.",
+          "weekday": "Fr.",
+          "slot": "11:00–12:30"
+        },
+        {
+          "date": "2026-07-24",
+          "day": "24.07.",
+          "weekday": "Fr.",
+          "slot": "13:30–15:00"
+        },
+        {
+          "date": "2026-11-02",
+          "day": "02.11.",
+          "weekday": "Mo.",
+          "slot": "14:30–16:00"
+        }
+      ],
+      "district": "WINTERHUDE"
+    }
+  ]
+}

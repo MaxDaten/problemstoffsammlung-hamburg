@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Inoffizielle Kartenansicht der Mobilen Problemstoffsammlung der Stadtreinigung Hamburg 2026.">
+<title>Mobile Problemstoffsammlung Hamburg 2026</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+  integrity="sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc=" crossorigin="">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+  integrity="sha256-YSWCMtmNZNwqex4CEw1nQhvFub2lmU7vcCKP+XVwwXA=" crossorigin="">
+
+<style>
+:root{
+  --red:#e2001a; --red-dark:#b30015; --red-soft:#fdecee;
+  --ink:#1a1d21; --ink-2:#4a5159; --ink-3:#5f6770;
+  --line:#e4e7eb; --bg:#f5f6f8; --card:#ffffff;
+  --upcoming:#0a7d3a; --upcoming-soft:#e7f5ec;
+  --soon:#0a7d3a; --later:#e2001a; --done:#9aa1a9;
+  --shadow:0 1px 3px rgba(20,24,31,.08),0 6px 24px rgba(20,24,31,.10);
+  --radius:12px;
+  --sidebar-w:380px;
+  --font:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  font-family:var(--font); color:var(--ink); background:var(--bg);
+  font-size:15px; line-height:1.45; -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+button{font-family:inherit}
+a{color:var(--red-dark)}
+:focus-visible{outline:3px solid #2563eb55;outline-offset:2px;border-radius:6px}
+
+/* ---------- Layout ---------- */
+#app{display:flex;flex-direction:column;height:100%}
+
+header.topbar{
+  flex:0 0 auto; display:flex; align-items:center; gap:14px;
+  padding:10px 18px; background:var(--card);
+  border-bottom:1px solid var(--line); z-index:1200; position:relative;
+}
+.brand-mark{
+  flex:0 0 auto; width:38px; height:38px; border-radius:9px;
+  background:var(--red); display:grid; place-items:center; color:#fff;
+  box-shadow:0 2px 8px rgba(226,0,26,.35);
+}
+.brand-mark svg{width:22px;height:22px}
+.brand-text h1{
+  margin:0; font-size:17px; font-weight:700; letter-spacing:-.2px; line-height:1.1;
+}
+.brand-text p{margin:1px 0 0;font-size:12px;color:var(--ink-3);font-weight:500}
+.topbar-spacer{flex:1 1 auto}
+.topbar-actions{display:flex;align-items:center;gap:8px}
+.ghost-btn{
+  background:transparent;border:1px solid var(--line);color:var(--ink-2);
+  border-radius:9px;padding:8px 12px;font-size:13px;font-weight:600;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;transition:.15s;
+}
+.ghost-btn:hover{background:var(--bg);border-color:var(--ink-3)}
+.ghost-btn svg{width:15px;height:15px}
+#sidebarToggle{display:none}
+
+main.body{flex:1 1 auto;display:flex;min-height:0;position:relative}
+
+/* ---------- Sidebar ---------- */
+aside.sidebar{
+  flex:0 0 var(--sidebar-w); width:var(--sidebar-w);
+  background:var(--card); border-right:1px solid var(--line);
+  display:flex; flex-direction:column; min-height:0; z-index:1000;
+  transition:margin-left .25s ease;
+}
+body.sidebar-collapsed aside.sidebar{margin-left:calc(-1 * var(--sidebar-w))}
+
+.controls{flex:0 0 auto;padding:16px 16px 12px;border-bottom:1px solid var(--line)}
+.field{margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+label.lbl{display:block;font-size:11.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.5px;color:var(--ink-3);margin-bottom:5px}
+.search-wrap{position:relative}
+.search-wrap svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);
+  width:16px;height:16px;color:var(--ink-3);pointer-events:none}
+input[type=search],select{
+  width:100%;border:1px solid var(--line);border-radius:9px;background:#fff;
+  font-size:14px;color:var(--ink);padding:9px 11px;font-family:inherit;
+}
+input[type=search]{padding-left:34px}
+input[type=search]:focus,select:focus{border-color:var(--red);outline:none;
+  box-shadow:0 0 0 3px var(--red-soft)}
+select{appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235f6770' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 11px center;padding-right:30px}
+
+.near-me{width:100%;justify-content:center;margin-top:8px}
+.near-me[disabled]{opacity:.6;cursor:progress}
+.row-2{display:flex;gap:8px;align-items:flex-end}
+.row-2 .field{flex:1;margin-bottom:0}
+
+.toggle-row{display:flex;align-items:center;justify-content:space-between;
+  gap:10px;margin-top:12px}
+.toggle-row .tl{font-size:13.5px;font-weight:600;color:var(--ink)}
+.toggle-row .tl span{display:block;font-size:11.5px;font-weight:500;color:var(--ink-3)}
+.switch{position:relative;flex:0 0 auto;width:44px;height:25px;cursor:pointer}
+.switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.switch .track{position:absolute;inset:0;background:#cfd4da;border-radius:999px;transition:.18s}
+.switch .knob{position:absolute;top:3px;left:3px;width:19px;height:19px;background:#fff;
+  border-radius:50%;transition:.18s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.switch input:checked + .track{background:var(--upcoming)}
+.switch input:checked + .track + .knob{transform:translateX(19px)}
+.switch input:focus-visible + .track{box-shadow:0 0 0 3px #2563eb55}
+
+.list-head{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+.list-head .count{font-size:13px;font-weight:700;color:var(--ink)}
+.list-head .count b{color:var(--red)}
+.reset-btn{background:none;border:none;color:var(--ink-3);font-size:12.5px;
+  font-weight:600;cursor:pointer;padding:2px 4px}
+.reset-btn:hover{color:var(--red)}
+
+.loclist{flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain;padding:6px}
+.loc-card{
+  width:100%;text-align:left;background:#fff;border:1px solid var(--line);
+  border-radius:10px;padding:11px 12px;margin-bottom:6px;cursor:pointer;
+  display:block;transition:.12s;font-family:inherit;
+}
+.loc-card:hover{border-color:var(--red);box-shadow:0 2px 10px rgba(226,0,26,.10)}
+.loc-card .lc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.loc-card .lc-district{font-size:10.5px;font-weight:800;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--red);white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis}
+.loc-card .lc-name{font-size:14px;font-weight:600;color:var(--ink);margin:3px 0 6px;
+  line-height:1.25}
+.loc-card .lc-next{display:flex;align-items:center;gap:7px;font-size:12.5px;
+  color:var(--ink-2);flex-wrap:wrap}
+.loc-card .lc-pill{flex:0 1 auto;display:inline-flex;align-items:center;gap:5px;
+  background:var(--upcoming-soft);color:var(--upcoming);font-weight:700;
+  border-radius:6px;padding:2px 7px;font-size:11.5px}
+.loc-card .lc-pill.past{background:#f0f1f3;color:var(--ink-3)}
+.loc-card .lc-slot{color:var(--ink-3);font-weight:500}
+.loc-card .lc-count{flex:0 0 auto;font-size:11px;color:var(--ink-3);font-weight:600}
+.empty{padding:34px 22px;text-align:center;color:var(--ink-3);font-size:13.5px}
+.empty svg{width:34px;height:34px;color:var(--line);margin-bottom:8px}
+
+/* ---------- Map ---------- */
+.map-wrap{flex:1 1 auto;position:relative;min-width:0}
+#map{position:absolute;inset:0;background:#dfe3e8}
+.leaflet-container{font-family:var(--font)}
+
+/* Legend + help float */
+.map-overlay{position:absolute;z-index:800;pointer-events:none}
+.map-overlay > *{pointer-events:auto}
+.legend{
+  bottom:18px;left:14px;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow);padding:12px 14px;max-width:280px;
+}
+.legend h3{margin:0 0 8px;font-size:12px;font-weight:800;text-transform:uppercase;
+  letter-spacing:.5px;color:var(--ink-2)}
+.legend ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+  gap:8px}
+.legend li{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink-2)}
+.legend .key{flex:0 0 auto;width:16px;height:21px}
+.legend .key svg{display:block}
+.legend-toggle{
+  position:absolute;bottom:18px;left:14px;display:none;background:var(--card);
+  border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow);
+  padding:9px 13px;font-size:12.5px;font-weight:700;color:var(--ink-2);cursor:pointer;
+  align-items:center;gap:6px;
+}
+
+/* Marker popup */
+.leaflet-popup-content-wrapper{border-radius:12px;box-shadow:var(--shadow);padding:2px}
+.leaflet-popup-content{margin:13px 15px;width:266px !important;line-height:1.4}
+.popup .p-district{font-size:10.5px;font-weight:800;letter-spacing:.6px;
+  text-transform:uppercase;color:var(--red);margin-bottom:2px}
+.popup .p-name{font-size:15.5px;font-weight:700;color:var(--ink);margin-bottom:9px;
+  line-height:1.25}
+.popup .p-list{list-style:none;margin:0;padding:0;max-height:210px;overflow-y:auto}
+.popup .p-appt{display:flex;align-items:baseline;gap:8px;padding:5px 0;
+  border-top:1px solid var(--line);font-size:13px}
+.popup .p-appt:first-child{border-top:none}
+.popup .p-appt .p-date{flex:1;font-weight:600;color:var(--ink)}
+.popup .p-appt .p-time{flex:0 0 auto;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.popup .p-appt.past{opacity:.42}
+.popup .p-appt.past .p-date{font-weight:500}
+.popup .p-appt.next{background:var(--upcoming-soft);margin:0 -8px;padding:6px 8px;
+  border-radius:7px;border-top:none}
+.popup .p-appt.next + .p-appt{border-top:none}
+.popup .p-appt.next .p-date{color:var(--upcoming)}
+.popup .p-appt.next .p-time{color:var(--upcoming);font-weight:600}
+.popup .p-next-tag{display:inline-block;font-size:9.5px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.5px;color:#fff;background:var(--upcoming);
+  border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:1px}
+.popup .p-foot{margin-top:8px;font-size:11px;color:var(--ink-3)}
+.popup .p-approx{margin-top:6px;font-size:11px;color:#7a4a00;background:#fff5e0;
+  border-radius:6px;padding:4px 7px}
+
+/* custom div marker */
+.pin{position:relative;width:26px;height:26px}
+.pin svg{display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3))}
+.marker-cluster-small,.marker-cluster-medium,.marker-cluster-large{
+  background:rgba(226,0,26,.18)}
+.marker-cluster-small div,.marker-cluster-medium div,.marker-cluster-large div{
+  background:var(--red);color:#fff;font-weight:700;font-family:var(--font)}
+
+/* ---------- Footer / info ---------- */
+/* Collapsed by default; opens from the always-visible "i" FAB on every breakpoint.
+   The persistent map attributionControl is the always-on legal fallback. */
+.info-box{
+  position:absolute;top:14px;right:14px;z-index:860;max-width:330px;display:none;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:16px 16px;font-size:12px;color:var(--ink-2);
+  line-height:1.5;
+}
+.info-box.open{display:block}
+.info-box .disclaimer{display:flex;gap:8px;align-items:flex-start;
+  background:var(--red-soft);border-radius:8px;padding:8px 10px;margin:4px 0 9px;
+  color:var(--ink);font-weight:600;font-size:11.5px}
+.info-box .disclaimer svg{flex:0 0 auto;width:16px;height:16px;color:var(--red);margin-top:1px}
+.info-box .src{margin:0}
+.info-box a{font-weight:600}
+.info-box .close{position:absolute;top:6px;right:6px;background:none;border:none;
+  width:34px;height:34px;border-radius:8px;font-size:24px;line-height:1;
+  color:var(--ink-2);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.info-box .close:hover{color:var(--red);background:var(--bg)}
+.info-fab{
+  position:absolute;top:14px;right:14px;z-index:850;display:flex;width:40px;height:40px;
+  border-radius:50%;background:var(--card);border:1px solid var(--line);
+  box-shadow:var(--shadow);color:var(--ink-2);font-weight:800;font-size:16px;cursor:pointer;
+  align-items:center;justify-content:center;
+}
+.info-fab:hover{border-color:var(--ink-3);color:var(--ink)}
+body.info-open .info-fab{display:none}
+
+.howto{margin-top:9px;padding-top:9px;border-top:1px solid var(--line)}
+.howto b{color:var(--ink);display:block;margin-bottom:3px;font-size:11.5px}
+
+/* ---------- Mobile ---------- */
+@media (max-width:860px){
+  body{overflow:auto}
+  #sidebarToggle{display:inline-flex}
+  .brand-text p{display:none}
+  main.body{flex-direction:column}
+  aside.sidebar{
+    position:fixed;left:0;right:0;bottom:0;top:auto;width:auto;flex:none;
+    height:72vh;border-right:none;border-top:1px solid var(--line);
+    border-radius:18px 18px 0 0;box-shadow:0 -4px 24px rgba(20,24,31,.18);
+    transform:translateY(calc(100% - 52px));transition:transform .28s ease;
+    z-index:1500;
+  }
+  aside.sidebar::before{content:"";position:absolute;top:8px;left:50%;
+    transform:translateX(-50%);width:40px;height:4px;border-radius:3px;background:var(--line)}
+  body.sheet-open aside.sidebar{transform:translateY(0)}
+  body.sidebar-collapsed aside.sidebar{margin-left:0}
+  .controls{padding-top:22px}
+  .map-wrap{flex:1 1 auto;height:100%}
+  /* Floating map controls must clear the 52px bottom-sheet peek (+ safe area). */
+  .info-box.open{max-width:none;left:14px;right:14px;top:64px;
+    bottom:auto;max-height:calc(100% - 64px - 72px);overflow-y:auto}
+  .legend{display:none}
+  .legend.open{display:block;left:14px;right:14px;
+    bottom:calc(52px + env(safe-area-inset-bottom, 0px) + 60px);max-width:none}
+  .legend-toggle{display:inline-flex;
+    bottom:calc(52px + env(safe-area-inset-bottom, 0px) + 14px)}
+  .sheet-handle-btn{position:absolute;top:0;left:0;right:0;height:50px;background:none;
+    border:none;cursor:pointer;z-index:2}
+}
+@media (max-width:380px){
+  header.topbar{padding:8px 12px;gap:10px}
+  .brand-text h1{font-size:15px}
+}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+</style>
+</head>
+<body class="sheet-collapsed">
+<noscript>
+  <div style="padding:18px;font:15px/1.5 system-ui,sans-serif;color:#1a1d21">
+    Diese Kartenansicht benötigt JavaScript. Den Termin-Plan finden Sie auch direkt im
+    <a href="https://files.stadtreinigung.hamburg/website/download/PDF/Auszug_INFO_Mobile_Problemstoffsammlung_2026.pdf">
+    Original-PDF der Stadtreinigung Hamburg</a>. Inoffizielle Visualisierung.
+  </div>
+</noscript>
+<div id="app">
+
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+        <path d="M10 11v6M14 11v6"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      <h1>Mobile Problemstoffsammlung Hamburg 2026</h1>
+      <p>Termine &amp; Standorte der Stadtreinigung auf der Karte</p>
+    </div>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-actions">
+      <button id="sidebarToggle" class="ghost-btn" aria-pressed="false"
+              aria-controls="sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="tgl-label">Liste</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="body">
+    <aside class="sidebar" id="sidebar" aria-label="Standortliste und Filter">
+      <button class="sheet-handle-btn" aria-label="Liste ein- oder ausklappen"></button>
+
+      <div class="controls">
+        <div class="field">
+          <label class="lbl" for="search">Suche</label>
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+            <input type="search" id="search" placeholder="Straße oder Stadtteil…"
+                   aria-label="Nach Straße oder Stadtteil suchen" autocomplete="off">
+          </div>
+          <button type="button" id="nearMe" class="ghost-btn near-me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/>
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+            <span class="nm-label">Standort in meiner Nähe</span>
+          </button>
+        </div>
+        <div class="field">
+          <label class="lbl" for="district">Stadtteil</label>
+          <select id="district" aria-label="Nach Stadtteil filtern">
+            <option value="">Alle Stadtteile</option>
+          </select>
+        </div>
+        <div class="toggle-row">
+          <span class="tl" id="upcomingLbl">Nur kommende Termine
+            <span>Vergangene Standorte ausblenden</span></span>
+          <label class="switch">
+            <input type="checkbox" id="upcomingOnly" checked aria-labelledby="upcomingLbl">
+            <span class="track" aria-hidden="true"></span>
+            <span class="knob" aria-hidden="true"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="list-head">
+        <span class="count" id="count" aria-live="polite"><b>–</b> Standorte</span>
+        <button class="reset-btn" id="reset" type="button">Zurücksetzen</button>
+      </div>
+
+      <div class="loclist" id="loclist" role="list" tabindex="0"
+           aria-label="Liste der Sammelstandorte"></div>
+    </aside>
+
+    <div class="map-wrap">
+      <div id="map" role="application" aria-label="Karte der Sammelstandorte in Hamburg"></div>
+
+      <div class="map-overlay legend" id="legend">
+        <h3>Legende</h3>
+        <ul id="legendList"></ul>
+      </div>
+      <button class="legend-toggle" id="legendToggle" type="button" aria-expanded="false">
+        <span aria-hidden="true">📍</span> Legende
+      </button>
+
+      <div class="info-box" id="infoBox">
+        <button class="close" id="infoClose" aria-label="Hinweis schließen">×</button>
+        <div class="disclaimer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+          <span>Inoffizielle Visualisierung. Maßgeblich sind ausschließlich die Angaben der
+            Stadtreinigung Hamburg.</span>
+        </div>
+        <p class="src">
+          Daten © <a href="https://www.stadtreinigung.hamburg" target="_blank"
+            rel="noopener">Stadtreinigung Hamburg</a> ·
+          <a href="https://files.stadtreinigung.hamburg/website/download/PDF/Auszug_INFO_Mobile_Problemstoffsammlung_2026.pdf"
+             target="_blank" rel="noopener">Original-PDF</a><br>
+          Karte © <a href="https://www.openstreetmap.org/copyright" target="_blank"
+            rel="noopener">OpenStreetMap</a>-Mitwirkende (ODbL)
+        </p>
+        <div class="howto">
+          <b>Wie funktioniert's?</b>
+          Nutze das Suchfeld für Straße oder Stadtteil oder „Standort in meiner Nähe",
+          um den nächstgelegenen Termin zu finden. Tippe einen Marker oder Listeneintrag an,
+          um alle Termine zu sehen. Grüne Marker stehen für einen Termin innerhalb von
+          14&nbsp;Tagen, rote für weitere kommende Termine, graue für abgeschlossene Standorte.
+        </div>
+      </div>
+      <button class="info-fab" id="infoFab" aria-label="Informationen und Hinweise anzeigen"
+              aria-expanded="false">i</button>
+    </div>
+  </main>
+</div>
+
+<script id="schedule-data" type="application/json">{"year":2026,"symbols":{"■":"09:00–10:30","✚":"11:00–12:30","●":"12:00–13:30","▲":"13:30–15:00","★":"14:30–16:00","◆":"16:30–18:00"},"locations":[{"name":"Allermöher Deich/Depotcontainer Regattastrecke","appts":[{"date":"2026-02-27","day":"27.02.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-07-03","day":"03.07.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-09-04","day":"04.09.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-10-27","day":"27.10.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-12-04","day":"04.12.","weekday":"Fr.","slot":"09:00–10:30"}],"district":"ALLERMÖHE","lat":53.4696581,"lon":10.1754945,"geo_precision":"exact","geo_query":"Allermöher Deich, Allermöhe, Hamburg, Deutschland"},{"name":"Alsterdorfer Markt","appts":[{"date":"2026-01-15","day":"15.01.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-03-04","day":"04.03.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-05-12","day":"12.05.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-08-31","day":"31.08.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-09-22","day":"22.09.","weekday":"Di.","slot":"12:00–13:30"}],"district":"ALSTERDORF","lat":53.6135099,"lon":10.0231734,"geo_precision":"exact","geo_query":"Alsterdorfer Markt, Alsterdorf, Hamburg, Deutschland"},{"name":"Heubergredder/ U-Bahn Alsterdorf","appts":[{"date":"2026-01-19","day":"19.01.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-03-12","day":"12.03.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-06-01","day":"01.06.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-08-10","day":"10.08.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-09-18","day":"18.09.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-11-23","day":"23.11.","weekday":"Mo.","slot":"14:30–16:00"}],"district":"ALSTERDORF","lat":53.6075094,"lon":10.0104049,"geo_precision":"exact","geo_query":"Heubergredder, Alsterdorf, Hamburg, Deutschland"},{"name":"Amundsenstr. 22","appts":[{"date":"2026-01-23","day":"23.01.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-03-05","day":"05.03.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-04-14","day":"14.04.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-07-27","day":"27.07.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-11-18","day":"18.11.","weekday":"Mi.","slot":"13:30–15:00"}],"district":"ALTONA","lat":53.5467864,"lon":9.9474262,"geo_precision":"exact","geo_query":"Amundsenstr. 22, Altona, Hamburg, Deutschland"},{"name":"Harkortstraße 97","appts":[{"date":"2026-02-18","day":"18.02.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-07-06","day":"06.07.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-10-01","day":"01.10.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-12-09","day":"09.12.","weekday":"Mi.","slot":"14:30–16:00"}],"district":"ALTONA","lat":53.5607784,"lon":9.9400382,"geo_precision":"exact","geo_query":"Harkortstraße 97, Altona, Hamburg, Deutschland"},{"name":"Jessenstr. 4/ Bruno-Tesch-Platz","appts":[{"date":"2026-03-24","day":"24.03.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-05-07","day":"07.05.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-08-05","day":"05.08.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-10-01","day":"01.10.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-11-10","day":"10.11.","weekday":"Di.","slot":"13:30–15:00"}],"district":"ALTONA","lat":53.551142,"lon":9.94529,"geo_precision":"exact","geo_query":"Jessenstr. 4, Altona, Hamburg, Deutschland"},{"name":"Ruhrstraße 51/","appts":[{"date":"2026-01-05","day":"05.01.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-04-09","day":"09.04.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-05-27","day":"27.05.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-08-04","day":"04.08.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-09-25","day":"25.09.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-11-25","day":"25.11.","weekday":"Mi.","slot":"11:00–12:30"}],"district":"ALTONA","lat":53.5655767,"lon":9.9246935,"geo_precision":"exact","geo_query":"Ruhrstraße 51, Altona, Hamburg, Deutschland"},{"name":"Dosestr. 8–10","appts":[{"date":"2026-01-07","day":"07.01.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-02-23","day":"23.02.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-05-27","day":"27.05.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-08-04","day":"04.08.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-09-23","day":"23.09.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-12-09","day":"09.12.","weekday":"Mi.","slot":"12:00–13:30"}],"district":"ALTONA-ALTSTADT","lat":53.5485089,"lon":9.9521529,"geo_precision":"exact","geo_query":"Dosestr. 8, Altona-altstadt, Hamburg, Deutschland"},{"name":"Missundestr. ggü. Nr. 24","appts":[{"date":"2026-01-07","day":"07.01.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-03-23","day":"23.03.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-07-20","day":"20.07.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-10-01","day":"01.10.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-11-18","day":"18.11.","weekday":"Mi.","slot":"12:00–13:30"}],"district":"ALTONA-NORD","lat":53.5636042,"lon":9.9523889,"geo_precision":"exact","geo_query":"Missundestr. 24, Altona-nord, Hamburg, Deutschland"},{"name":"Waidmannstr. 10/Einrichtungshaus","appts":[{"date":"2026-02-18","day":"18.02.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-04-16","day":"16.04.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-08-13","day":"13.08.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-10-14","day":"14.10.","weekday":"Mi.","slot":"13:30–15:00"}],"district":"ALTONA-NORD","lat":53.5697374,"lon":9.9422894,"geo_precision":"exact","geo_query":"Waidmannstr. 10, Altona-nord, Hamburg, Deutschland"},{"name":"Celsiusweg ggü. Nr. 13","appts":[{"date":"2026-02-18","day":"18.02.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-04-21","day":"21.04.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-05-27","day":"27.05.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-08-13","day":"13.08.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-09-10","day":"10.09.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-11-12","day":"12.11.","weekday":"Do.","slot":"11:00–12:30"}],"district":"BAHRENFELD","lat":53.5626665,"lon":9.9240714,"geo_precision":"exact","geo_query":"Celsiusweg 13, Bahrenfeld, Hamburg, Deutschland"},{"name":"Friedensallee/Sibeliusstr.","appts":[{"date":"2026-01-27","day":"27.01.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-03-05","day":"05.03.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-04-28","day":"28.04.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-06-29","day":"29.06.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-08-14","day":"14.08.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-10-26","day":"26.10.","weekday":"Mo.","slot":"12:00–13:30"}],"district":"BAHRENFELD","lat":53.5644502,"lon":9.9018379,"geo_precision":"exact","geo_query":"Friedensallee, Bahrenfeld, Hamburg, Deutschland"},{"name":"Osdorfer Weg 95 a–f","appts":[{"date":"2026-01-08","day":"08.01.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-03-10","day":"10.03.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-05-18","day":"18.05.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-08-19","day":"19.08.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-11-13","day":"13.11.","weekday":"Fr.","slot":"09:00–10:30"}],"district":"BAHRENFELD","lat":53.5677303,"lon":9.8897573,"geo_precision":"exact","geo_query":"Osdorfer Weg 95, Bahrenfeld, Hamburg, Deutschland"},{"name":"Marktfläche Hartzloh","appts":[{"date":"2026-01-12","day":"12.01.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-03-09","day":"09.03.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-07-06","day":"06.07.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-10-23","day":"23.10.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-11-23","day":"23.11.","weekday":"Mo.","slot":"16:30–18:00"}],"district":"BARMBEK-NORD","lat":53.6009992,"lon":10.0399325,"geo_precision":"exact","geo_query":"Hartzloh, Barmbek-nord, Hamburg, Deutschland"},{"name":"Wiesendamm/ Bert-Kaempfert-Platz","appts":[{"date":"2026-02-05","day":"05.02.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-03-25","day":"25.03.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-07-13","day":"13.07.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-10-14","day":"14.10.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-12-15","day":"15.12.","weekday":"Di.","slot":"13:30–15:00"}],"district":"BARMBEK-NORD","lat":53.5868335,"lon":10.0440718,"geo_precision":"exact","geo_query":"Wiesendamm, Barmbek-nord, Hamburg, Deutschland"},{"name":"Bartholomäusstraße 95","appts":[{"date":"2026-01-20","day":"20.01.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-02-18","day":"18.02.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-05-29","day":"29.05.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-06-25","day":"25.06.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-09-03","day":"03.09.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-10-23","day":"23.10.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-12-07","day":"07.12.","weekday":"Mo.","slot":"14:30–16:00"}],"district":"BARMBEK-SÜD","lat":53.5769282,"lon":10.0271706,"geo_precision":"exact","geo_query":"Bartholomäusstraße 95, Barmbek-süd, Hamburg, Deutschland"},{"name":"Curslacker Neuer Deich 16–20/Baumarkt","appts":[{"date":"2026-01-06","day":"06.01.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-02-24","day":"24.02.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-07-09","day":"09.07.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-08-04","day":"04.08.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-10-06","day":"06.10.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-11-10","day":"10.11.","weekday":"Di.","slot":"12:00–13:30"}],"district":"BERGEDORF","lat":53.483511,"lon":10.2065471,"geo_precision":"exact","geo_query":"Curslacker Neuer Deich 16, Bergedorf, Hamburg, Deutschland"},{"name":"Glasbläserhöfe 4","appts":[{"date":"2026-01-06","day":"06.01.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-03-30","day":"30.03.","weekday":"Mo.","slot":"11:00–12:30"},{"date":"2026-07-03","day":"03.07.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-11-10","day":"10.11.","weekday":"Di.","slot":"14:30–16:00"}],"district":"BERGEDORF","lat":53.4830148,"lon":10.2014685,"geo_precision":"exact","geo_query":"Glasbläserhöfe 4, Bergedorf, Hamburg, Deutschland"},{"name":"Gojenbergsweg/Reimbold-weg","appts":[{"date":"2026-01-13","day":"13.01.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-02-24","day":"24.02.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-06-26","day":"26.06.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-09-14","day":"14.09.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-11-24","day":"24.11.","weekday":"Di.","slot":"14:30–16:00"}],"district":"BERGEDORF","lat":53.480563,"lon":10.2351604,"geo_precision":"exact","geo_query":"Gojenbergsweg, Bergedorf, Hamburg, Deutschland"},{"name":"Neuer Weg 39","appts":[{"date":"2026-02-03","day":"03.02.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-03-30","day":"30.03.","weekday":"Mo.","slot":"09:00–10:30"},{"date":"2026-08-07","day":"07.08.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-11-09","day":"09.11.","weekday":"Mo.","slot":"16:30–18:00"}],"district":"BERGEDORF","lat":53.4833873,"lon":10.2126825,"geo_precision":"exact","geo_query":"Neuer Weg 39, Bergedorf, Hamburg, Deutschland"},{"name":"Werner-Neben-Platz","appts":[{"date":"2026-01-28","day":"28.01.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-03-18","day":"18.03.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-07-03","day":"03.07.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-09-14","day":"14.09.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-11-25","day":"25.11.","weekday":"Mi.","slot":"16:30–18:00"}],"district":"BERGEDORF-WEST","lat":53.4897546,"lon":10.1816844,"geo_precision":"exact","geo_query":"Werner-Neben-Platz, Bergedorf-west, Hamburg, Deutschland"},{"name":"Stüffelring 6–8","appts":[{"date":"2026-02-03","day":"03.02.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-03-24","day":"24.03.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-06-04","day":"04.06.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-07-29","day":"29.07.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-08-17","day":"17.08.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-09-28","day":"28.09.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-12-01","day":"01.12.","weekday":"Di.","slot":"14:30–16:00"}],"district":"BERGSTEDT","lat":53.6686694,"lon":10.1427388,"geo_precision":"exact","geo_query":"Stüffelring 6, Bergstedt, Hamburg, Deutschland"},{"name":"Gundermannstr. 8","appts":[{"date":"2026-02-03","day":"03.02.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-05-21","day":"21.05.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-07-09","day":"09.07.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-08-25","day":"25.08.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-11-19","day":"19.11.","weekday":"Do.","slot":"09:00–10:30"}],"district":"BILLSTEDT","lat":53.5440136,"lon":10.1154032,"geo_precision":"exact","geo_query":"Gundermannstr. 8, Billstedt, Hamburg, Deutschland"},{"name":"Marktfläche Möllner Landstr.","appts":[{"date":"2026-01-26","day":"26.01.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-03-16","day":"16.03.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-06-18","day":"18.06.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-08-03","day":"03.08.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-09-30","day":"30.09.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-11-09","day":"09.11.","weekday":"Mo.","slot":"14:30–16:00"}],"district":"BILLSTEDT","lat":53.541918,"lon":10.1391249,"geo_precision":"exact","geo_query":"Möllner Landstr, Billstedt, Hamburg, Deutschland"},{"name":"Möllner Landstr./ Papyrusweg","appts":[{"date":"2026-01-06","day":"06.01.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-04-09","day":"09.04.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-08-05","day":"05.08.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-10-06","day":"06.10.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-12-18","day":"18.12.","weekday":"Fr.","slot":"13:30–15:00"}],"district":"BILLSTEDT","lat":53.541918,"lon":10.1391249,"geo_precision":"exact","geo_query":"Möllner Landstr, Billstedt, Hamburg, Deutschland"},{"name":"Schiffbeker Weg 127 b–e","appts":[{"date":"2026-02-11","day":"11.02.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-05-05","day":"05.05.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-07-16","day":"16.07.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-08-21","day":"21.08.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-10-19","day":"19.10.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-12-02","day":"02.12.","weekday":"Mi.","slot":"13:30–15:00"}],"district":"BILLSTEDT","lat":53.5510749,"lon":10.1097454,"geo_precision":"exact","geo_query":"Schiffbeker Weg 127, Billstedt, Hamburg, Deutschland"},{"name":"Am Gleisdreieck/ Haus 23","appts":[{"date":"2026-01-13","day":"13.01.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-07-16","day":"16.07.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-08-04","day":"04.08.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-12-18","day":"18.12.","weekday":"Fr.","slot":"09:00–10:30"}],"district":"BILLWERDER","lat":53.4950623,"lon":10.13333,"geo_precision":"exact","geo_query":"Am Gleisdreieck, Billwerder, Hamburg, Deutschland"},{"name":"Mühlenberger Weg 61 ggü. Blankeneser Markt","appts":[{"date":"2026-01-07","day":"07.01.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-04-17","day":"17.04.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-07-21","day":"21.07.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-09-10","day":"10.09.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-11-27","day":"27.11.","weekday":"Fr.","slot":"09:00–10:30"}],"district":"BLANKENESE","lat":53.5609388,"lon":9.812707,"geo_precision":"exact","geo_query":"Mühlenberger Weg 61 Blankeneser Markt, Blankenese, Hamburg, Deutschland"},{"name":"Simrockstraße 84","appts":[{"date":"2026-01-27","day":"27.01.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-03-24","day":"24.03.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-08-11","day":"11.08.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-10-26","day":"26.10.","weekday":"Mo.","slot":"14:30–16:00"}],"district":"BLANKENESE","lat":53.5642386,"lon":9.8214215,"geo_precision":"exact","geo_query":"Simrockstraße 84, Blankenese, Hamburg, Deutschland"},{"name":"Bengelsdorfstr. 2–6","appts":[{"date":"2026-01-05","day":"05.01.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-03-13","day":"13.03.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-06-05","day":"05.06.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-07-29","day":"29.07.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-10-07","day":"07.10.","weekday":"Mi.","slot":"14:30–16:00"}],"district":"BRAMFELD","lat":53.5980544,"lon":10.0925998,"geo_precision":"exact","geo_query":"Bengelsdorfstr. 2, Bramfeld, Hamburg, Deutschland"},{"name":"Fabriciusstr. 35","appts":[{"date":"2026-03-26","day":"26.03.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-07-06","day":"06.07.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-09-16","day":"16.09.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-11-11","day":"11.11.","weekday":"Mi.","slot":"13:30–15:00"}],"district":"BRAMFELD","lat":53.5999495,"lon":10.0618961,"geo_precision":"exact","geo_query":"Fabriciusstr. 35, Bramfeld, Hamburg, Deutschland"},{"name":"Herthastraße Marktfläche","appts":[{"date":"2026-01-15","day":"15.01.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-05-06","day":"06.05.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-06-10","day":"10.06.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-07-29","day":"29.07.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-08-31","day":"31.08.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-11-11","day":"11.11.","weekday":"Mi.","slot":"12:00–13:30"}],"district":"BRAMFELD","lat":53.6118613,"lon":10.0790943,"geo_precision":"exact","geo_query":"Herthastraße, Bramfeld, Hamburg, Deutschland"},{"name":"Karlshöhe/Pezolddamm","appts":[{"date":"2026-02-09","day":"09.02.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-05-06","day":"06.05.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-06-30","day":"30.06.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-09-21","day":"21.09.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-10-14","day":"14.10.","weekday":"Mi.","slot":"14:30–16:00"}],"district":"BRAMFELD","lat":53.6256355,"lon":10.1096034,"geo_precision":"exact","geo_query":"Karlshöhe, Bramfeld, Hamburg, Deutschland"},{"name":"Königsberger Str. 2–6","appts":[{"date":"2026-02-13","day":"13.02.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-04-15","day":"15.04.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-06-22","day":"22.06.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-07-30","day":"30.07.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-11-24","day":"24.11.","weekday":"Di.","slot":"11:00–12:30"}],"district":"BRAMFELD","lat":53.6232391,"lon":10.0846096,"geo_precision":"exact","geo_query":"Königsberger Str. 2, Bramfeld, Hamburg, Deutschland"},{"name":"Estebogen/HVV-Haltestelle","appts":[{"date":"2026-01-13","day":"13.01.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-02-20","day":"20.02.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-04-29","day":"29.04.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-09-09","day":"09.09.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-11-04","day":"04.11.","weekday":"Mi.","slot":"09:00–10:30"}],"district":"CRANZ","lat":53.5305741,"lon":9.7720367,"geo_precision":"exact","geo_query":"Estebogen, Cranz, Hamburg, Deutschland"},{"name":"Odemanns Heck/Sportplatz","appts":[{"date":"2026-01-22","day":"22.01.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-02-24","day":"24.02.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-05-19","day":"19.05.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-06-23","day":"23.06.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-07-23","day":"23.07.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-09-30","day":"30.09.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-11-25","day":"25.11.","weekday":"Mi.","slot":"14:30–16:00"}],"district":"CURSLACK","lat":53.4473057,"lon":10.2210001,"geo_precision":"exact","geo_query":"Odemanns Heck, Curslack, Hamburg, Deutschland"},{"name":"Straßburger Platz","appts":[{"date":"2026-01-12","day":"12.01.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-02-16","day":"16.02.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-06-16","day":"16.06.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-09-21","day":"21.09.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-12-17","day":"17.12.","weekday":"Do.","slot":"11:00–12:30"}],"district":"DULSBERG","lat":53.581647,"lon":10.0624783,"geo_precision":"exact","geo_query":"Straßburger Platz, Dulsberg, Hamburg, Deutschland"},{"name":"Duvenstedter Markt","appts":[{"date":"2026-02-06","day":"06.02.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-04-27","day":"27.04.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-06-30","day":"30.06.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-08-12","day":"12.08.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-10-28","day":"28.10.","weekday":"Mi.","slot":"09:00–10:30"}],"district":"DUVENSTEDT","lat":53.7049864,"lon":10.1070573,"geo_precision":"exact","geo_query":"Duvenstedter Markt, Duvenstedt, Hamburg, Deutschland"},{"name":"Lohkampstr. 131-133","appts":[{"date":"2026-02-05","day":"05.02.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-03-06","day":"06.03.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-05-29","day":"29.05.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-06-25","day":"25.06.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-09-22","day":"22.09.","weekday":"Di.","slot":"16:30–18:00"}],"district":"EIDELSTEDT","lat":53.6126997,"lon":9.8898548,"geo_precision":"exact","geo_query":"Lohkampstr. 131, Eidelstedt, Hamburg, Deutschland"},{"name":"Marktfläche Alte Elbgaustr./Bürgerhaus","appts":[{"date":"2026-01-08","day":"08.01.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-03-10","day":"10.03.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-06-11","day":"11.06.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-07-27","day":"27.07.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-11-03","day":"03.11.","weekday":"Di.","slot":"16:30–18:00"}],"district":"EIDELSTEDT","lat":53.6070147,"lon":9.9033398,"geo_precision":"exact","geo_query":"Alte Elbgaustr, Eidelstedt, Hamburg, Deutschland"},{"name":"Maxstr./Eilbektal","appts":[{"date":"2026-01-21","day":"21.01.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-03-26","day":"26.03.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-07-21","day":"21.07.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-09-03","day":"03.09.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-10-20","day":"20.10.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-11-24","day":"24.11.","weekday":"Di.","slot":"13:30–15:00"}],"district":"EILBEK","lat":53.5710982,"lon":10.0480883,"geo_precision":"exact","geo_query":"Maxstr, Eilbek, Hamburg, Deutschland"},{"name":"Eimsbütteler Chaussee 63","appts":[{"date":"2026-01-21","day":"21.01.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-04-14","day":"14.04.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-05-18","day":"18.05.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-08-18","day":"18.08.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-11-18","day":"18.11.","weekday":"Mi.","slot":"11:00–12:30"}],"district":"EIMSBÜTTEL","lat":53.5681606,"lon":9.9554648,"geo_precision":"exact","geo_query":"Eimsbütteler Chaussee 63, Eimsbüttel, Hamburg, Deutschland"},{"name":"Lappenbergsallee/ Apostelkirche","appts":[{"date":"2026-01-14","day":"14.01.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-03-20","day":"20.03.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-04-27","day":"27.04.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-07-08","day":"08.07.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-09-08","day":"08.09.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-10-21","day":"21.10.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-12-08","day":"08.12.","weekday":"Di.","slot":"12:00–13:30"}],"district":"EIMSBÜTTEL","lat":53.5750707,"lon":9.945841,"geo_precision":"exact","geo_query":"Lappenbergsallee, Eimsbüttel, Hamburg, Deutschland"},{"name":"Beerentalweg 156–158","appts":[{"date":"2026-01-28","day":"28.01.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-02-25","day":"25.02.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-05-20","day":"20.05.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-09-01","day":"01.09.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-12-01","day":"01.12.","weekday":"Di.","slot":"13:30–15:00"}],"district":"EIßENDORF","lat":53.4469522,"lon":9.9434684,"geo_precision":"exact","geo_query":"Beerentalweg 156, Eißendorf, Hamburg, Deutschland"},{"name":"Bremer Str. 56–60","appts":[{"date":"2026-02-17","day":"17.02.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-05-28","day":"28.05.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-08-06","day":"06.08.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-09-09","day":"09.09.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-10-29","day":"29.10.","weekday":"Do.","slot":"11:00–12:30"}],"district":"EIßENDORF","lat":53.4463799,"lon":9.9572838,"geo_precision":"exact","geo_query":"Bremer Str. 56, Eißendorf, Hamburg, Deutschland"},{"name":"Denickestr. 147/Eißendorfer Pferdeweg","appts":[{"date":"2026-02-20","day":"20.02.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-03-11","day":"11.03.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-06-30","day":"30.06.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-08-12","day":"12.08.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-10-09","day":"09.10.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-12-14","day":"14.12.","weekday":"Mo.","slot":"12:00–13:30"}],"district":"EIßENDORF","lat":53.459287,"lon":9.956403,"geo_precision":"exact","geo_query":"Denickestr. 147, Eißendorf, Hamburg, Deutschland"},{"name":"Marie-Jonas-Platz","appts":[{"date":"2026-01-12","day":"12.01.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-02-16","day":"16.02.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-05-18","day":"18.05.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-07-08","day":"08.07.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-09-21","day":"21.09.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-11-02","day":"02.11.","weekday":"Mo.","slot":"12:00–13:30"}],"district":"EPPENDORF","lat":53.5905334,"lon":9.9864339,"geo_precision":"exact","geo_query":"Marie-Jonas-Platz, Eppendorf, Hamburg, Deutschland"},{"name":"Berner Markt/Hermann-Balk-Str.","appts":[{"date":"2026-02-26","day":"26.02.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-06-04","day":"04.06.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-07-21","day":"21.07.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-09-28","day":"28.09.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-12-02","day":"02.12.","weekday":"Mi.","slot":"12:00–13:30"}],"district":"FARMSEN-BERNE","lat":53.6257244,"lon":10.1397121,"geo_precision":"street","geo_query":"Berner Markt, Hamburg, Deutschland"},{"name":"Marktfläche Berner Heerweg","appts":[{"date":"2026-01-05","day":"05.01.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-04-20","day":"20.04.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-07-30","day":"30.07.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-11-16","day":"16.11.","weekday":"Mo.","slot":"14:30–16:00"}],"district":"FARMSEN-BERNE","lat":53.6271238,"lon":10.1389975,"geo_precision":"exact","geo_query":"Berner Heerweg, Farmsen-berne, Hamburg, Deutschland"},{"name":"Marktfläche Finksweg","appts":[{"date":"2026-01-28","day":"28.01.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-03-11","day":"11.03.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-04-22","day":"22.04.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-07-15","day":"15.07.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-08-06","day":"06.08.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-09-09","day":"09.09.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-11-20","day":"20.11.","weekday":"Fr.","slot":"09:00–10:30"}],"district":"FINKENWERDER","lat":53.5374183,"lon":9.8722901,"geo_precision":"exact","geo_query":"Finksweg, Finkenwerder, Hamburg, Deutschland"},{"name":"Rudolf-Kinau-Allee 14","appts":[{"date":"2026-02-02","day":"02.02.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-04-24","day":"24.04.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-07-14","day":"14.07.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-08-27","day":"27.08.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-10-29","day":"29.10.","weekday":"Do.","slot":"09:00–10:30"}],"district":"FINKENWERDER","lat":53.5338094,"lon":9.8508108,"geo_precision":"exact","geo_query":"Rudolf-Kinau-Allee 14, Finkenwerder, Hamburg, Deutschland"},{"name":"Marktfläche Ratsmühlendamm","appts":[{"date":"2026-02-10","day":"10.02.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-05-12","day":"12.05.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-08-10","day":"10.08.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-10-22","day":"22.10.","weekday":"Do.","slot":"11:00–12:30"}],"district":"FUHLSBÜTTEL","lat":53.626899,"lon":10.0198263,"geo_precision":"exact","geo_query":"Ratsmühlendamm, Fuhlsbüttel, Hamburg, Deutschland"},{"name":"Borsteler Chaussee 111","appts":[{"date":"2026-01-27","day":"27.01.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-03-09","day":"09.03.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-05-08","day":"08.05.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-07-28","day":"28.07.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-12-08","day":"08.12.","weekday":"Di.","slot":"14:30–16:00"}],"district":"GROß BORSTEL","lat":53.6064929,"lon":9.9787743,"geo_precision":"exact","geo_query":"Borsteler Chaussee 111, Groß Borstel, Hamburg, Deutschland"},{"name":"Marktfläche Osdorfer Landstr.","appts":[{"date":"2026-01-23","day":"23.01.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-04-14","day":"14.04.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-07-21","day":"21.07.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-09-10","day":"10.09.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-11-13","day":"13.11.","weekday":"Fr.","slot":"11:00–12:30"}],"district":"GROß FLOTTBEK","lat":53.5712756,"lon":9.8678056,"geo_precision":"exact","geo_query":"Osdorfer Landstr, Groß Flottbek, Hamburg, Deutschland"},{"name":"Oelsnerring 38–40","appts":[{"date":"2026-01-16","day":"16.01.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-03-31","day":"31.03.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-04-10","day":"10.04.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-08-11","day":"11.08.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-11-25","day":"25.11.","weekday":"Mi.","slot":"13:30–15:00"}],"district":"GROß FLOTTBEK","lat":53.5668379,"lon":9.8642272,"geo_precision":"street","geo_query":"Oelsnerring 38, Hamburg, Deutschland"},{"name":"Am Lohsepark 22","appts":[{"date":"2026-02-12","day":"12.02.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-06-26","day":"26.06.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-08-03","day":"03.08.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-10-06","day":"06.10.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-11-19","day":"19.11.","weekday":"Do.","slot":"13:30–15:00"}],"district":"HAFENCITY","lat":53.5413208,"lon":10.0051127,"geo_precision":"exact","geo_query":"Am Lohsepark 22, Hafencity, Hamburg, Deutschland"},{"name":"Marktfläche Bei der Vogelstange","appts":[{"date":"2026-01-26","day":"26.01.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-03-26","day":"26.03.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-06-10","day":"10.06.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-07-02","day":"02.07.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-09-07","day":"07.09.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-10-19","day":"19.10.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-12-10","day":"10.12.","weekday":"Do.","slot":"11:00–12:30"}],"district":"HAMM","lat":53.5578932,"lon":10.0547562,"geo_precision":"exact","geo_query":"Bei der Vogelstange, Hamm, Hamburg, Deutschland"},{"name":"Süderstraße / Ecke Osterbrook 46","appts":[{"date":"2026-01-09","day":"09.01.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-02-27","day":"27.02.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-03-30","day":"30.03.","weekday":"Mo.","slot":"13:30–15:00"},{"date":"2026-07-09","day":"09.07.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-08-25","day":"25.08.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-10-16","day":"16.10.","weekday":"Fr.","slot":"13:30–15:00"}],"district":"HAMMERBROOK","lat":53.5480804,"lon":10.0411257,"geo_precision":"exact","geo_query":"Süderstraße, Hammerbrook, Hamburg, Deutschland"},{"name":"Großmoordamm 98/Baumarkt","appts":[{"date":"2026-01-14","day":"14.01.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-03-17","day":"17.03.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-04-21","day":"21.04.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-07-15","day":"15.07.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-10-12","day":"12.10.","weekday":"Mo.","slot":"12:00–13:30"}],"district":"HARBURG","lat":53.4536133,"lon":10.001611,"geo_precision":"exact","geo_query":"Großmoordamm 98, Harburg, Hamburg, Deutschland"},{"name":"Neuwiedenthaler Str. 163","appts":[{"date":"2026-02-02","day":"02.02.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-05-05","day":"05.05.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-06-30","day":"30.06.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-08-06","day":"06.08.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-11-05","day":"05.11.","weekday":"Do.","slot":"09:00–10:30"}],"district":"HAUSBRUCH","lat":53.4776768,"lon":9.8944475,"geo_precision":"exact","geo_query":"Neuwiedenthaler Str. 163, Hausbruch, Hamburg, Deutschland"},{"name":"Striepenweg/Gerdauring","appts":[{"date":"2026-02-25","day":"25.02.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-04-29","day":"29.04.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-06-30","day":"30.06.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-09-01","day":"01.09.","weekday":"Di.","slot":"12:00–13:30"}],"district":"HAUSBRUCH","lat":53.4737657,"lon":9.8768569,"geo_precision":"exact","geo_query":"Striepenweg, Hausbruch, Hamburg, Deutschland"},{"name":"Heimfelder Straße 10","appts":[{"date":"2026-02-02","day":"02.02.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-04-08","day":"08.04.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-07-14","day":"14.07.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-10-29","day":"29.10.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-12-03","day":"03.12.","weekday":"Do.","slot":"11:00–12:30"}],"district":"HEIMFELD","lat":53.4651535,"lon":9.9616315,"geo_precision":"exact","geo_query":"Heimfelder Straße 10, Heimfeld, Hamburg, Deutschland"},{"name":"Eppendorfer Weg 162","appts":[{"date":"2026-01-09","day":"09.01.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-03-11","day":"11.03.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-07-07","day":"07.07.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-10-02","day":"02.10.","weekday":"Fr.","slot":"11:00–12:30"}],"district":"HOHELUFT-WEST","lat":53.5795554,"lon":9.9670712,"geo_precision":"exact","geo_query":"Eppendorfer Weg 162, Hoheluft-west, Hamburg, Deutschland"},{"name":"Dannerallee/Böcklerstr.","appts":[{"date":"2026-03-04","day":"04.03.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-06-02","day":"02.06.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-09-02","day":"02.09.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-11-19","day":"19.11.","weekday":"Do.","slot":"11:00–12:30"}],"district":"HORN","lat":53.563733,"lon":10.1081717,"geo_precision":"exact","geo_query":"Dannerallee, Horn, Hamburg, Deutschland"},{"name":"Horner Weg ggü. 274","appts":[{"date":"2026-01-21","day":"21.01.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-02-11","day":"11.02.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-06-08","day":"08.06.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-07-17","day":"17.07.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-10-07","day":"07.10.","weekday":"Mi.","slot":"12:00–13:30"}],"district":"HORN","lat":53.5545722,"lon":10.0823636,"geo_precision":"exact","geo_query":"Horner Weg 274, Horn, Hamburg, Deutschland"},{"name":"Querkamp 68","appts":[{"date":"2026-01-29","day":"29.01.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-03-16","day":"16.03.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-05-19","day":"19.05.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-07-22","day":"22.07.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-09-07","day":"07.09.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-11-05","day":"05.11.","weekday":"Do.","slot":"13:30–15:00"}],"district":"HORN","lat":53.5560291,"lon":10.103568,"geo_precision":"exact","geo_query":"Querkamp 68, Horn, Hamburg, Deutschland"},{"name":"Hummelsbütteler Weg ggü. Nr 40","appts":[{"date":"2026-02-03","day":"03.02.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-06-03","day":"03.06.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-07-30","day":"30.07.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-11-11","day":"11.11.","weekday":"Mi.","slot":"11:00–12:30"}],"district":"HUMMELSBÜTTEL","lat":53.6420128,"lon":10.045663,"geo_precision":"exact","geo_query":"Hummelsbütteler Weg 40, Hummelsbüttel, Hamburg, Deutschland"},{"name":"Ruscheweyhstr. 37","appts":[{"date":"2026-03-04","day":"04.03.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-06-23","day":"23.06.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-08-28","day":"28.08.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-10-21","day":"21.10.","weekday":"Mi.","slot":"09:00–10:30"}],"district":"HUMMELSBÜTTEL","lat":53.6526356,"lon":10.061698,"geo_precision":"exact","geo_query":"Ruscheweyhstr. 37, Hummelsbüttel, Hamburg, Deutschland"},{"name":"Bei den Höfen 7 a–e","appts":[{"date":"2026-03-13","day":"13.03.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-04-13","day":"13.04.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-07-08","day":"08.07.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-09-29","day":"29.09.","weekday":"Di.","slot":"13:30–15:00"}],"district":"JENFELD","lat":53.5727829,"lon":10.1327029,"geo_precision":"exact","geo_query":"Bei den Höfen 7, Jenfeld, Hamburg, Deutschland"},{"name":"Oststeinbeker Weg 38","appts":[{"date":"2026-02-09","day":"09.02.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-07-23","day":"23.07.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-08-25","day":"25.08.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-10-19","day":"19.10.","weekday":"Mo.","slot":"12:00–13:30"}],"district":"KIRCHSTEINBEK","lat":53.5373938,"lon":10.1375901,"geo_precision":"exact","geo_query":"Oststeinbeker Weg 38, Kirchsteinbek, Hamburg, Deutschland"},{"name":"Durchdeich 72","appts":[{"date":"2026-01-28","day":"28.01.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-03-18","day":"18.03.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-06-12","day":"12.06.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-07-23","day":"23.07.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-10-20","day":"20.10.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-11-17","day":"17.11.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-12-04","day":"04.12.","weekday":"Fr.","slot":"13:30–15:00"}],"district":"KIRCHWERDER","lat":53.4443612,"lon":10.1294009,"geo_precision":"exact","geo_query":"Durchdeich 72, Kirchwerder, Hamburg, Deutschland"},{"name":"Zollenspieker-Hauptdeich/Kirchwerder Elbdeich","appts":[{"date":"2026-01-22","day":"22.01.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-03-03","day":"03.03.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-06-23","day":"23.06.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-09-04","day":"04.09.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-11-25","day":"25.11.","weekday":"Mi.","slot":"12:00–13:30"}],"district":"KIRCHWERDER","lat":53.4058161,"lon":10.159147,"geo_precision":"exact","geo_query":"Zollenspieker-Hauptdeich, Kirchwerder, Hamburg, Deutschland"},{"name":"Försterweg 45–47","appts":[{"date":"2026-01-07","day":"07.01.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-02-23","day":"23.02.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-06-08","day":"08.06.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-07-07","day":"07.07.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-10-02","day":"02.10.","weekday":"Fr.","slot":"09:00–10:30"}],"district":"LANGENFELDE","lat":53.5786053,"lon":9.9287925,"geo_precision":"street","geo_query":"Försterweg 45, Hamburg, Deutschland"},{"name":"Eberhofweg 62–64","appts":[{"date":"2026-03-10","day":"10.03.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-06-09","day":"09.06.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-09-16","day":"16.09.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-11-26","day":"26.11.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-12-15","day":"15.12.","weekday":"Di.","slot":"09:00–10:30"}],"district":"LANGENHORN","lat":53.6501665,"lon":10.0147498,"geo_precision":"exact","geo_query":"Eberhofweg 62, Langenhorn, Hamburg, Deutschland"},{"name":"Essener Str. 59","appts":[{"date":"2026-01-15","day":"15.01.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-03-27","day":"27.03.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-08-05","day":"05.08.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-09-24","day":"24.09.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-12-11","day":"11.12.","weekday":"Fr.","slot":"13:30–15:00"}],"district":"LANGENHORN","lat":53.6713508,"lon":9.9916905,"geo_precision":"exact","geo_query":"Essener Str. 59, Langenhorn, Hamburg, Deutschland"},{"name":"Heerwisch/Langenhorner Chaussee","appts":[{"date":"2026-01-06","day":"06.01.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-03-24","day":"24.03.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-06-23","day":"23.06.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-09-24","day":"24.09.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-10-21","day":"21.10.","weekday":"Mi.","slot":"11:00–12:30"}],"district":"LANGENHORN","lat":53.6572187,"lon":10.0041313,"geo_precision":"exact","geo_query":"Heerwisch, Langenhorn, Hamburg, Deutschland"},{"name":"Tangstedter Landstr. 214–218","appts":[{"date":"2026-01-30","day":"30.01.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-03-12","day":"12.03.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-04-23","day":"23.04.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-08-19","day":"19.08.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-11-06","day":"06.11.","weekday":"Fr.","slot":"13:30–15:00"}],"district":"LANGENHORN","lat":53.6621641,"lon":10.0237098,"geo_precision":"exact","geo_query":"Tangstedter Landstr. 214, Langenhorn, Hamburg, Deutschland"},{"name":"Tangstedter Landstr. 486","appts":[{"date":"2026-02-11","day":"11.02.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-03-04","day":"04.03.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-05-08","day":"08.05.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-08-24","day":"24.08.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-10-30","day":"30.10.","weekday":"Fr.","slot":"09:00–10:30"}],"district":"LANGENHORN","lat":53.6654014,"lon":10.0241079,"geo_precision":"exact","geo_query":"Tangstedter Landstr. 486, Langenhorn, Hamburg, Deutschland"},{"name":"Wrangelkoppel/ Krohnstieg","appts":[{"date":"2026-01-19","day":"19.01.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-02-24","day":"24.02.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-05-29","day":"29.05.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-06-25","day":"25.06.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-08-28","day":"28.08.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-11-23","day":"23.11.","weekday":"Mo.","slot":"12:00–13:30"}],"district":"LANGENHORN","lat":53.6440211,"lon":9.9965743,"geo_precision":"exact","geo_query":"Wrangelkoppel, Langenhorn, Hamburg, Deutschland"},{"name":"Tannenhof 53","appts":[{"date":"2026-02-26","day":"26.02.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-06-16","day":"16.06.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-08-24","day":"24.08.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-12-01","day":"01.12.","weekday":"Di.","slot":"12:00–13:30"}],"district":"LEMSAHL","lat":53.6862176,"lon":10.0925921,"geo_precision":"exact","geo_query":"Tannenhof 53, Lemsahl, Hamburg, Deutschland"},{"name":"Korachstr./Fanny-David-Weg","appts":[{"date":"2026-03-03","day":"03.03.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-06-12","day":"12.06.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-08-03","day":"03.08.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-09-30","day":"30.09.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-12-04","day":"04.12.","weekday":"Fr.","slot":"11:00–12:30"}],"district":"LOHBRÜGGE","lat":53.5103099,"lon":10.2005525,"geo_precision":"exact","geo_query":"Korachstr, Lohbrügge, Hamburg, Deutschland"},{"name":"Marktfläche Lohbrügger Markt","appts":[{"date":"2026-01-22","day":"22.01.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-03-16","day":"16.03.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-06-02","day":"02.06.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-08-07","day":"07.08.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-11-24","day":"24.11.","weekday":"Di.","slot":"16:30–18:00"}],"district":"LOHBRÜGGE","lat":53.4954586,"lon":10.2075429,"geo_precision":"exact","geo_query":"Lohbrügger Markt, Lohbrügge, Hamburg, Deutschland"},{"name":"Röpraredder ggü. Nr. 70","appts":[{"date":"2026-03-02","day":"02.03.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-07-10","day":"10.07.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-08-04","day":"04.08.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-10-16","day":"16.10.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-11-17","day":"17.11.","weekday":"Di.","slot":"13:30–15:00"}],"district":"LOHBRÜGGE","lat":53.510847,"lon":10.2104843,"geo_precision":"exact","geo_query":"Röpraredder 70, Lohbrügge, Hamburg, Deutschland"},{"name":"Grandweg ggü. Nr. 117","appts":[{"date":"2026-02-19","day":"19.02.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-06-17","day":"17.06.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-08-13","day":"13.08.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-10-23","day":"23.10.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-11-26","day":"26.11.","weekday":"Do.","slot":"09:00–10:30"}],"district":"LOKSTEDT","lat":53.5874427,"lon":9.9671391,"geo_precision":"exact","geo_query":"Grandweg 117, Lokstedt, Hamburg, Deutschland"},{"name":"Julius-Vosseler-Str. 135–143","appts":[{"date":"2026-02-05","day":"05.02.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-03-25","day":"25.03.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-06-23","day":"23.06.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-08-24","day":"24.08.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-11-12","day":"12.11.","weekday":"Do.","slot":"09:00–10:30"}],"district":"LOKSTEDT","lat":53.5883501,"lon":9.948667,"geo_precision":"exact","geo_query":"Julius-Vosseler-Str. 135, Lokstedt, Hamburg, Deutschland"},{"name":"Wehmerweg ggü. Nr. 2","appts":[{"date":"2026-02-04","day":"04.02.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-03-23","day":"23.03.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-06-29","day":"29.06.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-10-08","day":"08.10.","weekday":"Do.","slot":"09:00–10:30"}],"district":"LOKSTEDT","lat":53.6055056,"lon":9.948794,"geo_precision":"exact","geo_query":"Wehmerweg 2, Lokstedt, Hamburg, Deutschland"},{"name":"Franzosenkoppel 104/EKZ","appts":[{"date":"2026-01-16","day":"16.01.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-07-31","day":"31.07.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-10-14","day":"14.10.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-11-18","day":"18.11.","weekday":"Mi.","slot":"16:30–18:00"}],"district":"LURUP","lat":53.606086,"lon":9.8746205,"geo_precision":"exact","geo_query":"Franzosenkoppel 104, Lurup, Hamburg, Deutschland"},{"name":"Friedrichshulder Weg ggü. EKZ","appts":[{"date":"2026-01-21","day":"21.01.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-04-16","day":"16.04.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-08-20","day":"20.08.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-10-15","day":"15.10.","weekday":"Do.","slot":"13:30–15:00"}],"district":"LURUP","lat":53.6055352,"lon":9.8820034,"geo_precision":"exact","geo_query":"Friedrichshulder Weg, Lurup, Hamburg, Deutschland"},{"name":"Luruper Hauptstraße 136","appts":[{"date":"2026-01-27","day":"27.01.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-04-17","day":"17.04.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-08-18","day":"18.08.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-11-27","day":"27.11.","weekday":"Fr.","slot":"11:00–12:30"}],"district":"LURUP","lat":53.5913936,"lon":9.8733824,"geo_precision":"exact","geo_query":"Luruper Hauptstraße 136, Lurup, Hamburg, Deutschland"},{"name":"Oderstr. 28–30/ Neißestr.","appts":[{"date":"2026-03-17","day":"17.03.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-06-01","day":"01.06.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-09-08","day":"08.09.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-10-14","day":"14.10.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-11-27","day":"27.11.","weekday":"Fr.","slot":"13:30–15:00"}],"district":"LURUP","lat":53.6075776,"lon":9.8652619,"geo_precision":"exact","geo_query":"Oderstr. 28, Lurup, Hamburg, Deutschland"},{"name":"Oktaviostr. 127","appts":[{"date":"2026-02-04","day":"04.02.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-03-13","day":"13.03.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-06-04","day":"04.06.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-08-21","day":"21.08.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-09-28","day":"28.09.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-12-17","day":"17.12.","weekday":"Do.","slot":"13:30–15:00"}],"district":"MARIENTHAL","lat":53.5662832,"lon":10.1004288,"geo_precision":"exact","geo_query":"Oktaviostr. 127, Marienthal, Hamburg, Deutschland"},{"name":"Ernst-Bergeest-Weg 51","appts":[{"date":"2026-02-10","day":"10.02.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-04-22","day":"22.04.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-08-26","day":"26.08.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-10-05","day":"05.10.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-11-04","day":"04.11.","weekday":"Mi.","slot":"13:30–15:00"}],"district":"MARMSTORF","lat":53.4392186,"lon":9.9652867,"geo_precision":"exact","geo_query":"Ernst-Bergeest-Weg 51, Marmstorf, Hamburg, Deutschland"},{"name":"Saseler Str. 111","appts":[{"date":"2026-04-13","day":"13.04.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-07-10","day":"10.07.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-10-13","day":"13.10.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-12-02","day":"02.12.","weekday":"Mi.","slot":"11:00–12:30"}],"district":"MEIENDORF","lat":53.6277184,"lon":10.1518534,"geo_precision":"street","geo_query":"Saseler Str. 111, Hamburg, Deutschland"},{"name":"Wildschwanbrook 27","appts":[{"date":"2026-01-29","day":"29.01.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-03-12","day":"12.03.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-06-10","day":"10.06.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-09-11","day":"11.09.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-11-17","day":"17.11.","weekday":"Di.","slot":"12:00–13:30"}],"district":"MEIENDORF","lat":53.6288894,"lon":10.1717564,"geo_precision":"exact","geo_query":"Wildschwanbrook 27, Meiendorf, Hamburg, Deutschland"},{"name":"Moorburger Elbdeich 227","appts":[{"date":"2026-01-13","day":"13.01.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-04-08","day":"08.04.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-06-19","day":"19.06.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-10-09","day":"09.10.","weekday":"Fr.","slot":"11:00–12:30"}],"district":"MOORBURG","lat":53.493446,"lon":9.9317546,"geo_precision":"exact","geo_query":"Moorburger Elbdeich 227, Moorburg, Hamburg, Deutschland"},{"name":"Andreas-Meyer-Str. 53","appts":[{"date":"2026-03-03","day":"03.03.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-06-12","day":"12.06.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-08-07","day":"07.08.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-10-16","day":"16.10.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-11-24","day":"24.11.","weekday":"Di.","slot":"12:00–13:30"}],"district":"MOORFLEET","lat":53.5101588,"lon":10.0903315,"geo_precision":"exact","geo_query":"Andreas-Meyer-Str. 53, Moorfleet, Hamburg, Deutschland"},{"name":"Havighorster Redder 35–37","appts":[{"date":"2026-03-04","day":"04.03.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-06-18","day":"18.06.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-09-07","day":"07.09.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-12-18","day":"18.12.","weekday":"Fr.","slot":"11:00–12:30"}],"district":"MÜMMELMANNSBERG","lat":53.5276418,"lon":10.1462557,"geo_precision":"exact","geo_query":"Havighorster Redder 35, Mümmelmannsberg, Hamburg, Deutschland"},{"name":"Henriette-Herz-Ring 39–41","appts":[{"date":"2026-01-13","day":"13.01.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-02-27","day":"27.02.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-06-26","day":"26.06.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-09-14","day":"14.09.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-10-27","day":"27.10.","weekday":"Di.","slot":"12:00–13:30"}],"district":"NEU-ALLERMÖHE","lat":53.4839998,"lon":10.1720648,"geo_precision":"street","geo_query":"Henriette-Herz-Ring 39, Hamburg, Deutschland"},{"name":"Seehofring/Urenfleet","appts":[{"date":"2026-02-10","day":"10.02.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-03-17","day":"17.03.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-05-20","day":"20.05.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-06-19","day":"19.06.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-08-26","day":"26.08.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-10-20","day":"20.10.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-11-30","day":"30.11.","weekday":"Mo.","slot":"12:00–13:30"}],"district":"NEUENFELDE","lat":53.5228462,"lon":9.7838893,"geo_precision":"exact","geo_query":"Seehofring, Neuenfelde, Hamburg, Deutschland"},{"name":"Neugrabener Markt","appts":[{"date":"2026-04-08","day":"08.04.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-06-24","day":"24.06.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-10-12","day":"12.10.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-11-30","day":"30.11.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-12-14","day":"14.12.","weekday":"Mo.","slot":"14:30–16:00"}],"district":"NEUGRABEN","lat":53.4697236,"lon":9.8518629,"geo_precision":"exact","geo_query":"Neugrabener Markt, Neugraben, Hamburg, Deutschland"},{"name":"Ohrnsweg 12 e–f","appts":[{"date":"2026-02-17","day":"17.02.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-04-24","day":"24.04.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-07-14","day":"14.07.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-11-04","day":"04.11.","weekday":"Mi.","slot":"11:00–12:30"}],"district":"NEUGRABEN","lat":53.4741661,"lon":9.8233927,"geo_precision":"exact","geo_query":"Ohrnsweg 12, Neugraben, Hamburg, Deutschland"},{"name":"Am Johannisland/Kälberweide","appts":[{"date":"2026-01-28","day":"28.01.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-02-25","day":"25.02.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-06-19","day":"19.06.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-09-17","day":"17.09.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-11-30","day":"30.11.","weekday":"Mo.","slot":"16:30–18:00"}],"district":"NEUGRABEN-FISCHBEK","lat":53.4774223,"lon":9.853527,"geo_precision":"exact","geo_query":"Am Johannisland, Neugraben-fischbek, Hamburg, Deutschland"},{"name":"Im Fischbeker Heidbrook/Landkärtchenweg","appts":[{"date":"2026-02-20","day":"20.02.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-06-24","day":"24.06.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-08-12","day":"12.08.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-10-09","day":"09.10.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-12-01","day":"01.12.","weekday":"Di.","slot":"11:00–12:30"}],"district":"NEUGRABEN-FISCHBEK","lat":53.4669033,"lon":9.8101072,"geo_precision":"exact","geo_query":"Im Fischbeker Heidbrook, Neugraben-fischbek, Hamburg, Deutschland"},{"name":"Neumoorstück/Freibad","appts":[{"date":"2026-02-25","day":"25.02.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-04-29","day":"29.04.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-08-26","day":"26.08.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-10-05","day":"05.10.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-12-03","day":"03.12.","weekday":"Do.","slot":"09:00–10:30"}],"district":"NEUGRABEN-FISCHBEK","lat":53.4776066,"lon":9.8663867,"geo_precision":"exact","geo_query":"Neumoorstück, Neugraben-fischbek, Hamburg, Deutschland"},{"name":"Marktfläche Großneumarkt","appts":[{"date":"2026-01-20","day":"20.01.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-03-10","day":"10.03.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-05-19","day":"19.05.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-07-07","day":"07.07.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-09-04","day":"04.09.","weekday":"Fr.","slot":"13:30–15:00"}],"district":"NEUSTADT","lat":53.5503862,"lon":9.9801678,"geo_precision":"exact","geo_query":"Großneumarkt, Neustadt, Hamburg, Deutschland"},{"name":"Niendorfer Kirchenweg 18","appts":[{"date":"2026-01-30","day":"30.01.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-04-01","day":"01.04.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-07-01","day":"01.07.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-09-29","day":"29.09.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-12-15","day":"15.12.","weekday":"Di.","slot":"11:00–12:30"}],"district":"NIENDORF","lat":53.620315,"lon":9.9495396,"geo_precision":"exact","geo_query":"Niendorfer Kirchenweg 18, Niendorf, Hamburg, Deutschland"},{"name":"Teutonenweg/ Rahweg 62 a–d","appts":[{"date":"2026-02-13","day":"13.02.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-05-08","day":"08.05.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-08-05","day":"05.08.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-10-30","day":"30.10.","weekday":"Fr.","slot":"13:30–15:00"}],"district":"NIENDORF","lat":53.6366065,"lon":9.9718142,"geo_precision":"exact","geo_query":"Teutonenweg, Niendorf, Hamburg, Deutschland"},{"name":"Wagrierweg 5","appts":[{"date":"2026-03-06","day":"06.03.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-06-05","day":"05.06.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-07-13","day":"13.07.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-09-15","day":"15.09.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-12-16","day":"16.12.","weekday":"Mi.","slot":"09:00–10:30"}],"district":"NIENDORF","lat":53.6400179,"lon":9.945336,"geo_precision":"exact","geo_query":"Wagrierweg 5, Niendorf, Hamburg, Deutschland"},{"name":"Nienstedtener Marktplatz","appts":[{"date":"2026-02-19","day":"19.02.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-04-28","day":"28.04.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-05-07","day":"07.05.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-08-20","day":"20.08.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-10-08","day":"08.10.","weekday":"Do.","slot":"13:30–15:00"}],"district":"NIENSTEDTEN","lat":53.5525113,"lon":9.8441696,"geo_precision":"exact","geo_query":"Nienstedtener Marktplatz, Nienstedten, Hamburg, Deutschland"},{"name":"Feuerbergstr./Rübenkamp","appts":[{"date":"2026-01-27","day":"27.01.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-05-06","day":"06.05.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-07-01","day":"01.07.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-09-24","day":"24.09.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-11-16","day":"16.11.","weekday":"Mo.","slot":"16:30–18:00"}],"district":"OHLSDORF","lat":53.6140479,"lon":10.0339537,"geo_precision":"exact","geo_query":"Feuerbergstr, Ohlsdorf, Hamburg, Deutschland"},{"name":"Röntgenstraße ggü. Nr. 19","appts":[{"date":"2026-02-13","day":"13.02.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-04-01","day":"01.04.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-06-17","day":"17.06.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-08-10","day":"10.08.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-10-30","day":"30.10.","weekday":"Fr.","slot":"11:00–12:30"}],"district":"OHLSDORF","lat":53.6236702,"lon":10.0188414,"geo_precision":"exact","geo_query":"Röntgenstraße 19, Ohlsdorf, Hamburg, Deutschland"},{"name":"Tornberg/S-Bahn Kornweg","appts":[{"date":"2026-02-18","day":"18.02.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-04-27","day":"27.04.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-06-09","day":"09.06.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-07-28","day":"28.07.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-10-22","day":"22.10.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-12-07","day":"07.12.","weekday":"Mo.","slot":"16:30–18:00"}],"district":"OHLSDORF","lat":53.6325787,"lon":10.0549339,"geo_precision":"exact","geo_query":"Tornberg, Ohlsdorf, Hamburg, Deutschland"},{"name":"Brunskrogweg ggü. Nr. 9","appts":[{"date":"2026-01-19","day":"19.01.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-04-23","day":"23.04.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-06-15","day":"15.06.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-08-12","day":"12.08.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-10-14","day":"14.10.","weekday":"Mi.","slot":"12:00–13:30"}],"district":"OHLSTEDT","lat":53.6937169,"lon":10.1385279,"geo_precision":"exact","geo_query":"Brunskrogweg 9, Ohlstedt, Hamburg, Deutschland"},{"name":"Achtern Born/Bornheide","appts":[{"date":"2026-03-17","day":"17.03.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-04-21","day":"21.04.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-07-21","day":"21.07.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-10-08","day":"08.10.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-12-09","day":"09.12.","weekday":"Mi.","slot":"16:30–18:00"}],"district":"OSDORF","lat":53.5872486,"lon":9.8418078,"geo_precision":"exact","geo_query":"Achtern Born, Osdorf, Hamburg, Deutschland"},{"name":"Blomkamp 62","appts":[{"date":"2026-01-14","day":"14.01.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-03-31","day":"31.03.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-04-10","day":"10.04.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-06-11","day":"11.06.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-08-18","day":"18.08.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-11-18","day":"18.11.","weekday":"Mi.","slot":"14:30–16:00"}],"district":"OSDORF","lat":53.5766204,"lon":9.8582288,"geo_precision":"exact","geo_query":"Blomkamp 62, Osdorf, Hamburg, Deutschland"},{"name":"Bernadottestr. 216","appts":[{"date":"2026-01-07","day":"07.01.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-03-20","day":"20.03.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-07-20","day":"20.07.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-09-23","day":"23.09.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-11-13","day":"13.11.","weekday":"Fr.","slot":"13:30–15:00"}],"district":"OTHMARSCHEN","lat":53.5486955,"lon":9.887767,"geo_precision":"exact","geo_query":"Bernadottestr. 216, Othmarschen, Hamburg, Deutschland"},{"name":"Jungmannstr. 5","appts":[{"date":"2026-01-23","day":"23.01.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-03-23","day":"23.03.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-08-04","day":"04.08.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-11-12","day":"12.11.","weekday":"Do.","slot":"13:30–15:00"}],"district":"OTHMARSCHEN","lat":53.557152,"lon":9.8880549,"geo_precision":"exact","geo_query":"Jungmannstr. 5, Othmarschen, Hamburg, Deutschland"},{"name":"Marktfläche Spritzenplatz","appts":[{"date":"2026-02-23","day":"23.02.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-04-21","day":"21.04.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-05-07","day":"07.05.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-10-15","day":"15.10.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-12-07","day":"07.12.","weekday":"Mo.","slot":"12:00–13:30"}],"district":"OTTENSEN","lat":53.5515987,"lon":9.9305075,"geo_precision":"exact","geo_query":"Spritzenplatz, Ottensen, Hamburg, Deutschland"},{"name":"Auf der Koppel 12","appts":[{"date":"2026-01-20","day":"20.01.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-03-06","day":"06.03.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-04-20","day":"20.04.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-07-08","day":"08.07.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-09-16","day":"16.09.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-12-11","day":"11.12.","weekday":"Fr.","slot":"11:00–12:30"}],"district":"POPPENBÜTTEL","lat":53.6615174,"lon":10.0782714,"geo_precision":"exact","geo_query":"Auf der Koppel 12, Poppenbüttel, Hamburg, Deutschland"},{"name":"Helmut-Steidl-Platz","appts":[{"date":"2026-02-06","day":"06.02.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-04-13","day":"13.04.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-06-02","day":"02.06.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-08-17","day":"17.08.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-09-25","day":"25.09.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-11-17","day":"17.11.","weekday":"Di.","slot":"14:30–16:00"}],"district":"RAHLSTEDT","lat":53.6046014,"lon":10.155021,"geo_precision":"exact","geo_query":"Helmut-Steidl-Platz, Rahlstedt, Hamburg, Deutschland"},{"name":"Hoffmannstieg ggü. Nr. 1–3","appts":[{"date":"2026-03-18","day":"18.03.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-06-18","day":"18.06.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-08-31","day":"31.08.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-10-28","day":"28.10.","weekday":"Mi.","slot":"13:30–15:00"}],"district":"RAHLSTEDT","lat":53.6033211,"lon":10.180759,"geo_precision":"exact","geo_query":"Hoffmannstieg 1, Rahlstedt, Hamburg, Deutschland"},{"name":"Hüllenkamp 104-108","appts":[{"date":"2026-02-17","day":"17.02.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-04-09","day":"09.04.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-08-21","day":"21.08.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-11-06","day":"06.11.","weekday":"Fr.","slot":"09:00–10:30"}],"district":"RAHLSTEDT","lat":53.5871456,"lon":10.1549329,"geo_precision":"exact","geo_query":"Hüllenkamp 104, Rahlstedt, Hamburg, Deutschland"},{"name":"Kamminerstr./bei der Kirche","appts":[{"date":"2026-01-20","day":"20.01.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-03-18","day":"18.03.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-06-03","day":"03.06.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-07-10","day":"10.07.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-09-02","day":"02.09.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-11-11","day":"11.11.","weekday":"Mi.","slot":"16:30–18:00"}],"district":"RAHLSTEDT","lat":53.6190368,"lon":10.1404337,"geo_precision":"exact","geo_query":"Kamminerstr, Rahlstedt, Hamburg, Deutschland"},{"name":"Treptower Str. 92–94","appts":[{"date":"2026-01-29","day":"29.01.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-03-27","day":"27.03.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-07-08","day":"08.07.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-10-13","day":"13.10.","weekday":"Di.","slot":"14:30–16:00"}],"district":"RAHLSTEDT","lat":53.6140198,"lon":10.1375338,"geo_precision":"exact","geo_query":"Treptower Str. 92, Rahlstedt, Hamburg, Deutschland"},{"name":"Marschweg 15–17","appts":[{"date":"2026-02-19","day":"19.02.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-03-31","day":"31.03.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-04-10","day":"10.04.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-07-27","day":"27.07.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-11-03","day":"03.11.","weekday":"Di.","slot":"12:00–13:30"}],"district":"RISSEN","lat":53.5853051,"lon":9.7627135,"geo_precision":"exact","geo_query":"Marschweg 15, Rissen, Hamburg, Deutschland"},{"name":"Rissener Dorfstr. 41/Rackertwiete","appts":[{"date":"2026-01-16","day":"16.01.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-03-05","day":"05.03.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-06-29","day":"29.06.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-08-11","day":"11.08.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-09-23","day":"23.09.","weekday":"Mi.","slot":"13:30–15:00"}],"district":"RISSEN","lat":53.5808385,"lon":9.755923,"geo_precision":"exact","geo_query":"Rissener Dorfstr. 41, Rissen, Hamburg, Deutschland"},{"name":"Rothenburgsorter Marktplatz","appts":[{"date":"2026-01-26","day":"26.01.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-03-02","day":"02.03.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-05-21","day":"21.05.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-07-16","day":"16.07.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-10-27","day":"27.10.","weekday":"Di.","slot":"16:30–18:00"}],"district":"ROTHENBURGSORT","lat":53.534149,"lon":10.039068,"geo_precision":"exact","geo_query":"Rothenburgsorter Marktplatz, Rothenburgsort, Hamburg, Deutschland"},{"name":"Bei St. Johannis","appts":[{"date":"2026-02-10","day":"10.02.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-04-15","day":"15.04.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-08-14","day":"14.08.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-11-02","day":"02.11.","weekday":"Mo.","slot":"16:30–18:00"}],"district":"ROTHERBAUM","lat":53.5705778,"lon":9.9940057,"geo_precision":"exact","geo_query":"Bei St. Johannis, Rotherbaum, Hamburg, Deutschland"},{"name":"Grindelhof 23","appts":[{"date":"2026-01-14","day":"14.01.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-03-24","day":"24.03.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-07-13","day":"13.07.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-10-15","day":"15.10.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-11-10","day":"10.11.","weekday":"Di.","slot":"11:00–12:30"}],"district":"ROTHERBAUM","lat":53.5683927,"lon":9.982405,"geo_precision":"exact","geo_query":"Grindelhof 23, Rotherbaum, Hamburg, Deutschland"},{"name":"Marmorweg 14–18/Ecke Heegbarg","appts":[{"date":"2026-01-30","day":"30.01.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-03-27","day":"27.03.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-06-09","day":"09.06.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-08-17","day":"17.08.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-10-07","day":"07.10.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-12-17","day":"17.12.","weekday":"Do.","slot":"09:00–10:30"}],"district":"SASEL","lat":53.6602717,"lon":10.0965707,"geo_precision":"exact","geo_query":"Marmorweg 14, Sasel, Hamburg, Deutschland"},{"name":"Saseler Markt ggü. Nr. 21","appts":[{"date":"2026-01-06","day":"06.01.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-02-17","day":"17.02.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-07-22","day":"22.07.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-09-11","day":"11.09.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-11-16","day":"16.11.","weekday":"Mo.","slot":"12:00–13:30"}],"district":"SASEL","lat":53.6530874,"lon":10.1109175,"geo_precision":"exact","geo_query":"Saseler Markt 21, Sasel, Hamburg, Deutschland"},{"name":"Graf-Johann-Weg 67–71","appts":[{"date":"2026-02-11","day":"11.02.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-04-01","day":"01.04.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-06-17","day":"17.06.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-07-31","day":"31.07.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-09-22","day":"22.09.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-11-26","day":"26.11.","weekday":"Do.","slot":"11:00–12:30"}],"district":"SCHNELSEN","lat":53.6245568,"lon":9.9168882,"geo_precision":"exact","geo_query":"Graf-Johann-Weg 67, Schnelsen, Hamburg, Deutschland"},{"name":"Roman-Zeller-Platz","appts":[{"date":"2026-03-10","day":"10.03.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-06-09","day":"09.06.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-07-31","day":"31.07.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-09-08","day":"08.09.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-12-16","day":"16.12.","weekday":"Mi.","slot":"11:00–12:30"}],"district":"SCHNELSEN","lat":53.6470698,"lon":9.9099431,"geo_precision":"exact","geo_query":"Roman-Zeller-Platz, Schnelsen, Hamburg, Deutschland"},{"name":"Hermannsburger Weg 36–44","appts":[{"date":"2026-02-17","day":"17.02.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-03-17","day":"17.03.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-07-02","day":"02.07.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-09-17","day":"17.09.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-10-12","day":"12.10.","weekday":"Mo.","slot":"14:30–16:00"}],"district":"SINSTORF","lat":53.4279212,"lon":9.9886689,"geo_precision":"exact","geo_query":"Hermannsburger Weg 36, Sinstorf, Hamburg, Deutschland"},{"name":"Danziger Str. 26/Rostocker Str.","appts":[{"date":"2026-01-20","day":"20.01.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-03-11","day":"11.03.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-06-16","day":"16.06.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-09-15","day":"15.09.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-12-10","day":"10.12.","weekday":"Do.","slot":"13:30–15:00"}],"district":"ST. GEORG","lat":53.5562241,"lon":10.0146145,"geo_precision":"exact","geo_query":"Danziger Str. 26, St. Georg, Hamburg, Deutschland"},{"name":"Gazellenkamp 201–203","appts":[{"date":"2026-02-11","day":"11.02.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-04-16","day":"16.04.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-08-19","day":"19.08.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-11-03","day":"03.11.","weekday":"Di.","slot":"14:30–16:00"}],"district":"STELLINGEN","lat":53.596837,"lon":9.9303868,"geo_precision":"exact","geo_query":"Gazellenkamp 201, Stellingen, Hamburg, Deutschland"},{"name":"Oldenburger Str. 57/ Steinburger Str.","appts":[{"date":"2026-03-17","day":"17.03.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-05-12","day":"12.05.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-08-20","day":"20.08.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-09-15","day":"15.09.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-12-16","day":"16.12.","weekday":"Mi.","slot":"13:30–15:00"}],"district":"STELLINGEN","lat":53.604584,"lon":9.926851,"geo_precision":"exact","geo_query":"Oldenburger Str. 57, Stellingen, Hamburg, Deutschland"},{"name":"Sülldorfer Kirchenweg 127–129","appts":[{"date":"2026-01-08","day":"08.01.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-03-20","day":"20.03.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-06-11","day":"11.06.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-07-20","day":"20.07.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-10-26","day":"26.10.","weekday":"Mo.","slot":"16:30–18:00"}],"district":"SÜLLDORF","lat":53.5746051,"lon":9.804784,"geo_precision":"exact","geo_query":"Sülldorfer Kirchenweg 127, Sülldorf, Hamburg, Deutschland"},{"name":"Walddörferstr. 343–345","appts":[{"date":"2026-01-20","day":"20.01.","weekday":"Di.","slot":"09:00–10:30"},{"date":"2026-03-18","day":"18.03.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-06-16","day":"16.06.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-10-13","day":"13.10.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-11-09","day":"09.11.","weekday":"Mo.","slot":"12:00–13:30"}],"district":"TONNDORF","lat":53.5871436,"lon":10.1052892,"geo_precision":"exact","geo_query":"Walddörferstr. 343, Tonndorf, Hamburg, Deutschland"},{"name":"Marktfläche Immenhof","appts":[{"date":"2026-03-19","day":"19.03.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-06-22","day":"22.06.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-10-02","day":"02.10.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-12-02","day":"02.12.","weekday":"Mi.","slot":"14:30–16:00"}],"district":"UHLENHORST","lat":53.5672519,"lon":10.0300176,"geo_precision":"exact","geo_query":"Immenhof, Uhlenhorst, Hamburg, Deutschland"},{"name":"Am Zollhafen ggü. 20-22","appts":[{"date":"2026-02-12","day":"12.02.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-03-11","day":"11.03.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-06-08","day":"08.06.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-07-15","day":"15.07.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-11-05","day":"05.11.","weekday":"Do.","slot":"11:00–12:30"}],"district":"VEDDEL","lat":53.5233756,"lon":10.0209193,"geo_precision":"exact","geo_query":"Am Zollhafen 20, Veddel, Hamburg, Deutschland"},{"name":"Buchenring 61–63","appts":[{"date":"2026-02-03","day":"03.02.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-06-03","day":"03.06.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-07-24","day":"24.07.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-10-28","day":"28.10.","weekday":"Mi.","slot":"11:00–12:30"}],"district":"VOLKSDORF","lat":53.6526369,"lon":10.1847971,"geo_precision":"exact","geo_query":"Buchenring 61, Volksdorf, Hamburg, Deutschland"},{"name":"Cornehlsweg ggü. Nr. 23–25","appts":[{"date":"2026-02-17","day":"17.02.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-06-16","day":"16.06.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-09-02","day":"02.09.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-12-01","day":"01.12.","weekday":"Di.","slot":"16:30–18:00"}],"district":"VOLKSDORF","lat":53.6464595,"lon":10.1770792,"geo_precision":"exact","geo_query":"Cornehlsweg 23, Volksdorf, Hamburg, Deutschland"},{"name":"Marktfläche Kattjahren","appts":[{"date":"2026-02-26","day":"26.02.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-04-20","day":"20.04.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-07-24","day":"24.07.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-09-18","day":"18.09.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-11-24","day":"24.11.","weekday":"Di.","slot":"09:00–10:30"}],"district":"VOLKSDORF","lat":53.6520041,"lon":10.1624414,"geo_precision":"exact","geo_query":"Kattjahren, Volksdorf, Hamburg, Deutschland"},{"name":"Brauhausstieg ggü. 54/ Wandsbeker Königstraße","appts":[{"date":"2026-01-27","day":"27.01.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-05-21","day":"21.05.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-07-17","day":"17.07.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-09-25","day":"25.09.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-11-11","day":"11.11.","weekday":"Mi.","slot":"14:30–16:00"}],"district":"WANDSBEK","lat":53.5724681,"lon":10.0636105,"geo_precision":"exact","geo_query":"Brauhausstieg 54, Wandsbek, Hamburg, Deutschland"},{"name":"Helbingstr. 63/","appts":[{"date":"2026-02-24","day":"24.02.","weekday":"Di.","slot":"12:00–13:30"},{"date":"2026-04-15","day":"15.04.","weekday":"Mi.","slot":"14:30–16:00"},{"date":"2026-07-17","day":"17.07.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-09-03","day":"03.09.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-11-17","day":"17.11.","weekday":"Di.","slot":"16:30–18:00"}],"district":"WANDSBEK","lat":53.5864725,"lon":10.0955667,"geo_precision":"exact","geo_query":"Helbingstr. 63, Wandsbek, Hamburg, Deutschland"},{"name":"Lesserstr. 126–132","appts":[{"date":"2026-02-09","day":"09.02.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-06-15","day":"15.06.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-08-05","day":"05.08.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-12-11","day":"11.12.","weekday":"Fr.","slot":"09:00–10:30"}],"district":"WANDSBEK","lat":53.5906065,"lon":10.0778489,"geo_precision":"exact","geo_query":"Lesserstr. 126, Wandsbek, Hamburg, Deutschland"},{"name":"Ziethenstr. 2 a–b","appts":[{"date":"2026-02-10","day":"10.02.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-03-19","day":"19.03.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-07-22","day":"22.07.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-09-18","day":"18.09.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-11-10","day":"10.11.","weekday":"Di.","slot":"16:30–18:00"}],"district":"WANDSBEK","lat":53.5754898,"lon":10.0980555,"geo_precision":"exact","geo_query":"Ziethenstr. 2, Wandsbek, Hamburg, Deutschland"},{"name":"Rolfinckstr. 22","appts":[{"date":"2026-02-06","day":"06.02.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-03-24","day":"24.03.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-06-15","day":"15.06.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-08-28","day":"28.08.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-11-06","day":"06.11.","weekday":"Fr.","slot":"11:00–12:30"}],"district":"WELLINGSBÜTTEL","lat":53.6399526,"lon":10.0847391,"geo_precision":"exact","geo_query":"Rolfinckstr. 22, Wellingsbüttel, Hamburg, Deutschland"},{"name":"Berta-Kröger-Platz","appts":[{"date":"2026-01-14","day":"14.01.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-06-24","day":"24.06.","weekday":"Mi.","slot":"09:00–10:30"},{"date":"2026-08-12","day":"12.08.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-10-05","day":"05.10.","weekday":"Mo.","slot":"16:30–18:00"},{"date":"2026-12-10","day":"10.12.","weekday":"Do.","slot":"09:00–10:30"}],"district":"WILHELMSBURG","lat":53.4978916,"lon":10.0106777,"geo_precision":"exact","geo_query":"Berta-Kröger-Platz, Wilhelmsburg, Hamburg, Deutschland"},{"name":"Karl-Arnold-Ring ggü. Nr. 51","appts":[{"date":"2026-03-03","day":"03.03.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-05-20","day":"20.05.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-07-02","day":"02.07.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-09-17","day":"17.09.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-12-03","day":"03.12.","weekday":"Do.","slot":"13:30–15:00"}],"district":"WILHELMSBURG","lat":53.4840667,"lon":10.0205148,"geo_precision":"exact","geo_query":"Karl-Arnold-Ring 51, Wilhelmsburg, Hamburg, Deutschland"},{"name":"Kirchdorfer Str./ Schönefelder Str","appts":[{"date":"2026-02-12","day":"12.02.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-04-22","day":"22.04.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-05-28","day":"28.05.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-09-01","day":"01.09.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-11-20","day":"20.11.","weekday":"Fr.","slot":"13:30–15:00"}],"district":"WILHELMSBURG","lat":53.5031995,"lon":10.0272265,"geo_precision":"exact","geo_query":"Kirchdorfer Str, Wilhelmsburg, Hamburg, Deutschland"},{"name":"Marktfläche Stübenplatz","appts":[{"date":"2026-01-13","day":"13.01.","weekday":"Di.","slot":"16:30–18:00"},{"date":"2026-04-21","day":"21.04.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-05-05","day":"05.05.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-08-27","day":"27.08.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-10-20","day":"20.10.","weekday":"Di.","slot":"14:30–16:00"}],"district":"WILHELMSBURG","lat":53.517123,"lon":9.9869682,"geo_precision":"exact","geo_query":"Stübenplatz, Wilhelmsburg, Hamburg, Deutschland"},{"name":"Rönneburger Str. 58","appts":[{"date":"2026-02-25","day":"25.02.","weekday":"Mi.","slot":"13:30–15:00"},{"date":"2026-03-03","day":"03.03.","weekday":"Di.","slot":"13:30–15:00"},{"date":"2026-08-27","day":"27.08.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-11-20","day":"20.11.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-12-14","day":"14.12.","weekday":"Mo.","slot":"16:30–18:00"}],"district":"WILSTORF","lat":53.4383861,"lon":9.9968532,"geo_precision":"exact","geo_query":"Rönneburger Str. 58, Wilstorf, Hamburg, Deutschland"},{"name":"Lattenkamp 29","appts":[{"date":"2026-02-24","day":"24.02.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-04-23","day":"23.04.","weekday":"Do.","slot":"13:30–15:00"},{"date":"2026-06-22","day":"22.06.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-08-14","day":"14.08.","weekday":"Fr.","slot":"09:00–10:30"},{"date":"2026-09-29","day":"29.09.","weekday":"Di.","slot":"11:00–12:30"},{"date":"2026-12-02","day":"02.12.","weekday":"Mi.","slot":"16:30–18:00"}],"district":"WINTERHUDE","lat":53.5987737,"lon":9.9953271,"geo_precision":"exact","geo_query":"Lattenkamp 29, Winterhude, Hamburg, Deutschland"},{"name":"Marktfläche Winterhuder Marktplatz","appts":[{"date":"2026-02-16","day":"16.02.","weekday":"Mo.","slot":"14:30–16:00"},{"date":"2026-03-09","day":"09.03.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-06-01","day":"01.06.","weekday":"Mo.","slot":"12:00–13:30"},{"date":"2026-07-28","day":"28.07.","weekday":"Di.","slot":"14:30–16:00"},{"date":"2026-09-11","day":"11.09.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-10-22","day":"22.10.","weekday":"Do.","slot":"09:00–10:30"},{"date":"2026-12-08","day":"08.12.","weekday":"Di.","slot":"16:30–18:00"}],"district":"WINTERHUDE","lat":53.5946266,"lon":9.9997012,"geo_precision":"exact","geo_query":"Winterhuder Marktplatz, Winterhude, Hamburg, Deutschland"},{"name":"Stammannstr. 15","appts":[{"date":"2026-01-09","day":"09.01.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-03-25","day":"25.03.","weekday":"Mi.","slot":"16:30–18:00"},{"date":"2026-07-01","day":"01.07.","weekday":"Mi.","slot":"12:00–13:30"},{"date":"2026-11-10","day":"10.11.","weekday":"Di.","slot":"09:00–10:30"}],"district":"WINTERHUDE","lat":53.5866006,"lon":10.0231032,"geo_precision":"exact","geo_query":"Stammannstr. 15, Winterhude, Hamburg, Deutschland"},{"name":"Wiesendamm 131-133","appts":[{"date":"2026-02-04","day":"04.02.","weekday":"Mi.","slot":"11:00–12:30"},{"date":"2026-03-19","day":"19.03.","weekday":"Do.","slot":"11:00–12:30"},{"date":"2026-06-05","day":"05.06.","weekday":"Fr.","slot":"11:00–12:30"},{"date":"2026-07-24","day":"24.07.","weekday":"Fr.","slot":"13:30–15:00"},{"date":"2026-11-02","day":"02.11.","weekday":"Mo.","slot":"14:30–16:00"}],"district":"WINTERHUDE","lat":53.5890437,"lon":10.0212816,"geo_precision":"exact","geo_query":"Wiesendamm 131, Winterhude, Hamburg, Deutschland"}]}</script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"
+  integrity="sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg=" crossorigin=""></script>
+
+<script>
+"use strict";
+(function(){
+  var PDF_URL = "https://files.stadtreinigung.hamburg/website/download/PDF/Auszug_INFO_Mobile_Problemstoffsammlung_2026.pdf";
+  function showLoadError(){
+    var msg = '<div class="empty" style="padding:34px 22px">'+
+      '<strong>Karte konnte nicht geladen werden.</strong><br>'+
+      'Bitte später erneut versuchen. Den Termin-Plan finden Sie auch direkt im '+
+      '<a href="'+PDF_URL+'" target="_blank" rel="noopener">'+
+      'Original-PDF der Stadtreinigung Hamburg</a>.</div>';
+    var list = document.getElementById("loclist");
+    var mapEl = document.getElementById("map");
+    if (list) list.innerHTML = msg;
+    if (mapEl){ mapEl.style.display="grid"; mapEl.style.placeItems="center";
+      mapEl.innerHTML = msg; }
+  }
+  // If the map library failed to load (CDN/SRI issue), fail gracefully.
+  if (typeof L === "undefined" || typeof L.markerClusterGroup === "undefined"){
+    showLoadError(); return;
+  }
+  try {
+  // ---------- Data ----------
+  var DATA = JSON.parse(document.getElementById("schedule-data").textContent);
+  var WD = {"Mo.":"Montag","Di.":"Dienstag","Mi.":"Mittwoch","Do.":"Donnerstag",
+            "Fr.":"Freitag","Sa.":"Samstag","So.":"Sonntag"};
+
+  // Real "today" at local midnight — never hardcoded.
+  var TODAY = (function(){ var d=new Date(); d.setHours(0,0,0,0); return d; })();
+  function isoToDate(iso){ var p=iso.split("-"); return new Date(+p[0],+p[1]-1,+p[2]); }
+  function fmtDate(iso){ var p=iso.split("-"); return p[2]+"."+p[1]+"."+p[0]; }
+  var SOON_MS = 14*24*60*60*1000; // "demnächst" window
+
+  // Precompute per-location: sorted appts, next-upcoming index, sortKey.
+  var locations = DATA.locations.map(function(l, i){
+    var appts = l.appts.slice().sort(function(a,b){ return a.date<b.date?-1:a.date>b.date?1:0; });
+    var nextIdx = -1;
+    for (var k=0;k<appts.length;k++){
+      if (isoToDate(appts[k].date).getTime() >= TODAY.getTime()){ nextIdx=k; break; }
+    }
+    var soon = nextIdx !== -1 &&
+      (isoToDate(appts[nextIdx].date).getTime() - TODAY.getTime()) <= SOON_MS;
+    return {
+      id:i, name:l.name, district:l.district, lat:l.lat, lon:l.lon,
+      precision:l.geo_precision, appts:appts, nextIdx:nextIdx,
+      hasUpcoming: nextIdx !== -1, soon: soon,
+      // sort: upcoming first by date, past locations after, by last past date desc
+      sortKey: nextIdx !== -1 ? appts[nextIdx].date : "9999-12-31",
+      searchStr: (l.name+" "+l.district).toLowerCase()
+    };
+  });
+
+  var districts = Array.from(new Set(locations.map(function(l){return l.district;})))
+    .sort(function(a,b){return a.localeCompare(b,"de");});
+
+  // ---------- Map ----------
+  var map = L.map("map",{ zoomControl:true, center:[53.55,10.00], zoom:11,
+    minZoom:9, maxZoom:18, preferCanvas:false });
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
+    maxZoom:19, crossOrigin:true,
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende'
+  }).addTo(map);
+  map.attributionControl.setPrefix(
+    'Daten &copy; Stadtreinigung Hamburg | <a href="https://leafletjs.com">Leaflet</a>');
+
+  // state: "soon" (green), "later" (red), "done" (grey)
+  function pinIcon(state){
+    var color = state==="done" ? "#9aa1a9" : state==="soon" ? "#0a7d3a" : "#e2001a";
+    return L.divIcon({
+      className:"", iconSize:[26,34], iconAnchor:[13,33], popupAnchor:[0,-30],
+      html:'<div class="pin">'+
+        '<svg width="26" height="34" viewBox="0 0 26 34">'+
+        '<path d="M13 0C5.8 0 0 5.8 0 13c0 9 13 21 13 21s13-12 13-21C26 5.8 20.2 0 13 0z" '+
+        'fill="'+color+'"/>'+
+        '<circle cx="13" cy="13" r="5" fill="#fff"/></svg></div>'
+    });
+  }
+
+  var cluster = L.markerClusterGroup({
+    showCoverageOnHover:false, maxClusterRadius:46, spiderfyOnMaxZoom:true,
+    chunkedLoading:true
+  });
+  map.addLayer(cluster);
+
+  // build markers
+  locations.forEach(function(l){
+    var state = !l.hasUpcoming ? "done" : l.soon ? "soon" : "later";
+    var m = L.marker([l.lat,l.lon],{ icon:pinIcon(state),
+      keyboard:true, title:l.name, alt:l.name+", "+l.district });
+    m.bindPopup(buildPopup(l),{ minWidth:260, maxWidth:300, autoPanPadding:[40,60] });
+    l.marker = m;
+  });
+
+  function buildPopup(l){
+    var rows = l.appts.map(function(a,idx){
+      var d = isoToDate(a.date);
+      var isPast = d.getTime() < TODAY.getTime();
+      var isNext = idx === l.nextIdx;
+      var cls = "p-appt" + (isPast?" past":"") + (isNext?" next":"");
+      var wd = WD[a.weekday] || a.weekday;
+      return '<li class="'+cls+'">'+
+        '<span class="p-date">'+esc(wd)+', '+fmtDate(a.date)+
+          (isNext?'<span class="p-next-tag">Nächster</span>':'')+'</span>'+
+        '<span class="p-time">'+esc(a.slot)+' Uhr</span></li>';
+    }).join("");
+    var approx = l.precision==="street" ?
+      '<div class="p-approx">Standort straßengenau angenähert.</div>' : '';
+    return '<div class="popup">'+
+      '<div class="p-district">'+esc(l.district)+'</div>'+
+      '<div class="p-name">'+esc(l.name)+'</div>'+
+      '<ul class="p-list">'+rows+'</ul>'+ approx +
+      '<div class="p-foot">'+l.appts.length+' Termine 2026</div></div>';
+  }
+
+  // ---------- Legend (marker colour key) ----------
+  function keyPin(color){
+    return '<span class="key" aria-hidden="true"><svg width="16" height="21" viewBox="0 0 26 34">'+
+      '<path d="M13 0C5.8 0 0 5.8 0 13c0 9 13 21 13 21s13-12 13-21C26 5.8 20.2 0 13 0z" fill="'+color+'"/>'+
+      '<circle cx="13" cy="13" r="5" fill="#fff"/></svg></span>';
+  }
+  (function(){
+    var items = [
+      ["#0a7d3a","Nächster Termin innerhalb 14 Tage"],
+      ["#e2001a","Weiterer kommender Termin 2026"],
+      ["#9aa1a9","Abgeschlossen (alle Termine vorbei)"]
+    ];
+    document.getElementById("legendList").innerHTML = items.map(function(it){
+      return '<li>'+keyPin(it[0])+'<span>'+esc(it[1])+'</span></li>';
+    }).join("");
+  })();
+
+  // ---------- District filter options ----------
+  (function(){
+    var sel = document.getElementById("district");
+    var counts = {};
+    locations.forEach(function(l){counts[l.district]=(counts[l.district]||0)+1;});
+    districts.forEach(function(d){
+      var o = document.createElement("option");
+      o.value = d; o.textContent = d + " (" + counts[d] + ")";
+      sel.appendChild(o);
+    });
+  })();
+
+  // ---------- Filtering & list ----------
+  var els = {
+    search: document.getElementById("search"),
+    district: document.getElementById("district"),
+    upcoming: document.getElementById("upcomingOnly"),
+    list: document.getElementById("loclist"),
+    count: document.getElementById("count"),
+    reset: document.getElementById("reset")
+  };
+
+  function currentFilter(){
+    return {
+      q: els.search.value.trim().toLowerCase(),
+      district: els.district.value,
+      upcomingOnly: els.upcoming.checked
+    };
+  }
+  function matches(l, f){
+    if (f.upcomingOnly && !l.hasUpcoming) return false;
+    if (f.district && l.district !== f.district) return false;
+    if (f.q && l.searchStr.indexOf(f.q) === -1) return false;
+    return true;
+  }
+
+  function sortLocations(arr){
+    return arr.sort(function(a,b){
+      if (a.sortKey !== b.sortKey) return a.sortKey < b.sortKey ? -1 : 1;
+      return a.name.localeCompare(b.name,"de");
+    });
+  }
+
+  function render(){
+    var f = currentFilter();
+    var visible = sortLocations(locations.filter(function(l){return matches(l,f);}));
+
+    // sync markers
+    cluster.clearLayers();
+    var markers = visible.map(function(l){return l.marker;});
+    cluster.addLayers(markers);
+
+    // count
+    els.count.innerHTML = "<b>"+visible.length+"</b> "+
+      (visible.length===1?"Standort":"Standorte");
+
+    // list
+    if (!visible.length){
+      els.list.innerHTML = '<div class="empty">'+
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">'+
+        '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>'+
+        '<div>Keine Standorte gefunden.<br>Filter anpassen oder zurücksetzen.</div></div>';
+      return;
+    }
+    var frag = document.createDocumentFragment();
+    visible.forEach(function(l){
+      frag.appendChild(buildCard(l));
+    });
+    els.list.innerHTML = "";
+    els.list.appendChild(frag);
+  }
+
+  function buildCard(l){
+    var btn = document.createElement("button");
+    btn.className = "loc-card";
+    btn.type = "button";
+    btn.setAttribute("role","listitem");
+    var nextHtml, slotHtml;
+    if (l.hasUpcoming){
+      var a = l.appts[l.nextIdx];
+      nextHtml = '<span class="lc-pill">'+esc(WD[a.weekday]||a.weekday)+' '+fmtDate(a.date)+'</span>';
+      slotHtml = '<span class="lc-slot">'+esc(a.slot)+' Uhr</span>';
+    } else {
+      var last = l.appts[l.appts.length-1];
+      nextHtml = '<span class="lc-pill past">Abgeschlossen</span>';
+      slotHtml = '<span class="lc-slot">zuletzt '+fmtDate(last.date)+'</span>';
+    }
+    btn.innerHTML =
+      '<div class="lc-top"><span class="lc-district">'+esc(l.district)+'</span>'+
+        '<span class="lc-count">'+l.appts.length+'×</span></div>'+
+      '<div class="lc-name">'+esc(l.name)+'</div>'+
+      '<div class="lc-next">'+nextHtml+slotHtml+'</div>';
+    btn.setAttribute("aria-label", l.district+", "+l.name+
+      (l.hasUpcoming?", nächster Termin "+fmtDate(l.appts[l.nextIdx].date):", abgeschlossen"));
+    btn.addEventListener("click", function(){ focusLocation(l); });
+    return btn;
+  }
+
+  function focusLocation(l){
+    // make sure marker is in cluster (it is if visible); fly then open popup
+    map.closePopup();
+    map.flyTo([l.lat,l.lon], Math.max(map.getZoom(),15), {duration:.6});
+    var done = false;
+    var open = function(){
+      if (done) return; done = true;
+      map.off("moveend", open);
+      cluster.zoomToShowLayer(l.marker, function(){ l.marker.openPopup(); });
+    };
+    map.once("moveend", open);
+    // fallback in case moveend never fires (e.g. already at target)
+    setTimeout(open, 750);
+    if (document.body.classList.contains("sheet-open"))
+      document.body.classList.remove("sheet-open");
+  }
+
+  // ---------- Events ----------
+  var t;
+  els.search.addEventListener("input", function(){ clearTimeout(t); t=setTimeout(render,120); });
+  els.district.addEventListener("change", render);
+  els.upcoming.addEventListener("change", render);
+  els.reset.addEventListener("click", function(){
+    els.search.value=""; els.district.value=""; els.upcoming.checked=true; render();
+    els.search.focus();
+  });
+
+  // "Near me" — geolocate and focus the closest location (upcoming first).
+  var nearMeBtn = document.getElementById("nearMe");
+  function distKm(aLat,aLon,bLat,bLon){
+    function r(d){return d*Math.PI/180;}
+    var dLat=r(bLat-aLat), dLon=r(bLon-aLon);
+    var s=Math.sin(dLat/2)*Math.sin(dLat/2)+
+      Math.cos(r(aLat))*Math.cos(r(bLat))*Math.sin(dLon/2)*Math.sin(dLon/2);
+    return 6371*2*Math.atan2(Math.sqrt(s),Math.sqrt(1-s));
+  }
+  function nearest(lat,lon){
+    var pool = locations.filter(function(l){return l.hasUpcoming;});
+    if (!pool.length) pool = locations;
+    var best=null, bd=Infinity;
+    pool.forEach(function(l){ var d=distKm(lat,lon,l.lat,l.lon);
+      if (d<bd){ bd=d; best=l; } });
+    return {loc:best, km:bd};
+  }
+  if (nearMeBtn){
+    var nmLabel = nearMeBtn.querySelector(".nm-label");
+    var nmDefault = nmLabel.textContent;
+    nearMeBtn.addEventListener("click", function(){
+      if (!("geolocation" in navigator)){
+        nmLabel.textContent="Standort nicht verfügbar"; return;
+      }
+      nearMeBtn.disabled=true; nmLabel.textContent="Suche Standort…";
+      navigator.geolocation.getCurrentPosition(function(pos){
+        nearMeBtn.disabled=false; nmLabel.textContent=nmDefault;
+        var r = nearest(pos.coords.latitude, pos.coords.longitude);
+        if (!r.loc) return;
+        // make sure it's visible regardless of filters
+        els.search.value=""; els.district.value=""; els.upcoming.checked=r.loc.hasUpcoming;
+        render();
+        L.circleMarker([pos.coords.latitude,pos.coords.longitude],
+          {radius:7,color:"#2563eb",weight:2,fillColor:"#2563eb",fillOpacity:.35})
+          .addTo(map).bindTooltip("Ihr Standort");
+        focusLocation(r.loc);
+      }, function(){
+        nearMeBtn.disabled=false;
+        nmLabel.textContent="Standort nicht freigegeben";
+        setTimeout(function(){ nmLabel.textContent=nmDefault; }, 2600);
+      }, {enableHighAccuracy:true, timeout:10000, maximumAge:60000});
+    });
+  }
+
+  // sidebar collapse (desktop) / bottom sheet (mobile)
+  var sbToggle = document.getElementById("sidebarToggle");
+  var sheetBtn = document.querySelector(".sheet-handle-btn");
+  function isMobile(){ return window.matchMedia("(max-width:860px)").matches; }
+  sbToggle.addEventListener("click", function(){
+    if (isMobile()){
+      var open = document.body.classList.toggle("sheet-open");
+      sbToggle.setAttribute("aria-pressed", open?"true":"false");
+    } else {
+      var col = document.body.classList.toggle("sidebar-collapsed");
+      sbToggle.setAttribute("aria-pressed", col?"false":"true");
+      setTimeout(function(){ map.invalidateSize(); }, 280);
+    }
+  });
+  sheetBtn.addEventListener("click", function(){
+    if (isMobile()) document.body.classList.toggle("sheet-open");
+  });
+
+  // legend + info toggles (mobile)
+  var legend = document.getElementById("legend");
+  document.getElementById("legendToggle").addEventListener("click", function(){
+    var open = legend.classList.toggle("open");
+    this.setAttribute("aria-expanded", open?"true":"false");
+  });
+  // Info box is collapsed to the "i" FAB by default and re-openable on every
+  // breakpoint, so the required attribution/disclaimer is always reachable.
+  var infoBox = document.getElementById("infoBox");
+  var infoFab = document.getElementById("infoFab");
+  function setInfoOpen(open){
+    infoBox.classList.toggle("open", open);
+    document.body.classList.toggle("info-open", open);
+    infoFab.setAttribute("aria-expanded", open?"true":"false");
+  }
+  document.getElementById("infoClose").addEventListener("click", function(){
+    setInfoOpen(false); infoFab.focus();
+  });
+  infoFab.addEventListener("click", function(){
+    setInfoOpen(!infoBox.classList.contains("open"));
+  });
+
+  window.addEventListener("resize", function(){ map.invalidateSize(); });
+
+  // ---------- helpers ----------
+  function esc(s){ return String(s).replace(/[&<>"']/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+
+  // initial render
+  render();
+  } catch (err){
+    if (window.console) console.error(err);
+    showLoadError();
+  }
+})();
+</script>
+</body>
+</html>

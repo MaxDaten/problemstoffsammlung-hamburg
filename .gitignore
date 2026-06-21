@@ -1,0 +1,8 @@
+# intermediates / scratch
+linear.txt
+qa.txt
+schedule.txt
+geocode.log
+wf.js
+*.pyc
+__pycache__/

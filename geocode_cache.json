@@ -1,0 +1,798 @@
+{
+ "Allermöher Deich, Allermöhe, Hamburg, Deutschland": [
+  53.4696581,
+  10.1754945,
+  "Allermöher Deich, Allermöhe, Bergedorf, Hamburg, 21037, Deutschland"
+ ],
+ "Alsterdorfer Markt, Alsterdorf, Hamburg, Deutschland": [
+  53.6135099,
+  10.0231734,
+  "Alsterdorfer Markt, Alsterdorf, Hamburg-Nord, Hamburg, 22297, Deutschland"
+ ],
+ "Heubergredder, Alsterdorf, Hamburg, Deutschland": [
+  53.6075094,
+  10.0104049,
+  "Heubergredder, Alsterdorf, Hamburg-Nord, Hamburg, 22297, Deutschland"
+ ],
+ "Amundsenstr. 22, Altona, Hamburg, Deutschland": [
+  53.5467864,
+  9.9474262,
+  "22, Amundsenstraße, Altona, Altona-Altstadt, Altona, Hamburg, 22767, Deutschland"
+ ],
+ "Harkortstraße 97, Altona, Hamburg, Deutschland": [
+  53.5607784,
+  9.9400382,
+  "97, Harkortstraße, Altona-Nord, Altona, Hamburg, 22765, Deutschland"
+ ],
+ "Jessenstr. 4, Altona, Hamburg, Deutschland": [
+  53.551142,
+  9.94529,
+  "Caffe Buondi, 4, Jessenstraße, Altona, Altona-Altstadt, Altona, Hamburg, 22767, Deutschland"
+ ],
+ "Ruhrstraße 51, Altona, Hamburg, Deutschland": [
+  53.5655767,
+  9.9246935,
+  "Stilbruch, 51, Ruhrstraße, Bahrenfeld, Altona, Hamburg, 22761, Deutschland"
+ ],
+ "Dosestr. 8, Altona-altstadt, Hamburg, Deutschland": [
+  53.5485089,
+  9.9521529,
+  "8, Dosestraße, Altona, Altona-Altstadt, Altona, Hamburg, 22767, Deutschland"
+ ],
+ "Missundestr. 24, Altona-nord, Hamburg, Deutschland": [
+  53.5636042,
+  9.9523889,
+  "24, Missundestraße, Altona-Nord, Altona, Hamburg, 22769, Deutschland"
+ ],
+ "Waidmannstr. 10, Altona-nord, Hamburg, Deutschland": [
+  53.5697374,
+  9.9422894,
+  "POCO, 10, Waidmannstraße, Altona-Nord, Altona, Hamburg, 22769, Deutschland"
+ ],
+ "Celsiusweg 13, Bahrenfeld, Hamburg, Deutschland": [
+  53.5626665,
+  9.9240714,
+  "13a, Celsiusweg, Bahrenfeld, Altona, Hamburg, 22761, Deutschland"
+ ],
+ "Friedensallee, Bahrenfeld, Hamburg, Deutschland": [
+  53.5644502,
+  9.9018379,
+  "Friedensallee, Bahrenfeld, Altona, Hamburg, 22761, Deutschland"
+ ],
+ "Osdorfer Weg 95, Bahrenfeld, Hamburg, Deutschland": [
+  53.5677303,
+  9.8897573,
+  "Osdorfer Weg, Bahrenfeld, Altona, Hamburg, 22607, Deutschland"
+ ],
+ "Hartzloh, Barmbek-nord, Hamburg, Deutschland": [
+  53.6009992,
+  10.0399325,
+  "Hartzloh, Barmbek-Nord, Hamburg-Nord, Hamburg, 22307, Deutschland"
+ ],
+ "Wiesendamm, Barmbek-nord, Hamburg, Deutschland": [
+  53.5868335,
+  10.0440718,
+  "Wiesendamm, Barmbek-Nord, Hamburg-Nord, Hamburg, 22305, Deutschland"
+ ],
+ "Bartholomäusstraße 95, Barmbek-süd, Hamburg, Deutschland": [
+  53.5769282,
+  10.0271706,
+  "Bartholomäustherme, 95, Bartholomäusstraße, Barmbek-Süd, Hamburg-Nord, Hamburg, 22083, Deutschland"
+ ],
+ "Curslacker Neuer Deich 16, Bergedorf, Hamburg, Deutschland": [
+  53.483511,
+  10.2065471,
+  "Dat Backhus, 16, Curslacker Neuer Deich, Bergedorf, Hamburg, 21029, Deutschland"
+ ],
+ "Glasbläserhöfe 4, Bergedorf, Hamburg, Deutschland": [
+  53.4830148,
+  10.2014685,
+  "4, Glasbläserhöfe, Bergedorf, Hamburg, 21035, Deutschland"
+ ],
+ "Gojenbergsweg, Bergedorf, Hamburg, Deutschland": [
+  53.480563,
+  10.2351604,
+  "Gojenbergsweg, Bergedorf, Hamburg, 21029, Deutschland"
+ ],
+ "Neuer Weg 39, Bergedorf, Hamburg, Deutschland": [
+  53.4833873,
+  10.2126825,
+  "39, Neuer Weg, Bergedorf, Hamburg, 21029, Deutschland"
+ ],
+ "Werner-Neben-Platz, Bergedorf-west, Hamburg, Deutschland": [
+  53.4897546,
+  10.1816844,
+  "Werner-Neben-Platz, Bergedorf-West, Bergedorf, Hamburg, 21033, Deutschland"
+ ],
+ "Stüffelring 6, Bergstedt, Hamburg, Deutschland": [
+  53.6686694,
+  10.1427388,
+  "6, Stüffelring, Bergstedt, Wandsbek, Hamburg, 22359, Deutschland"
+ ],
+ "Gundermannstr. 8, Billstedt, Hamburg, Deutschland": [
+  53.5440136,
+  10.1154032,
+  "8, Gundermannstraße, Schiffbek, Billstedt, Hamburg-Mitte, Hamburg, 22119, Deutschland"
+ ],
+ "Möllner Landstr, Billstedt, Hamburg, Deutschland": [
+  53.541918,
+  10.1391249,
+  "Möllner Landstraße, Öjendorf, Billstedt, Hamburg-Mitte, Hamburg, 22117, Deutschland"
+ ],
+ "Schiffbeker Weg 127, Billstedt, Hamburg, Deutschland": [
+  53.5510749,
+  10.1097454,
+  "127, Schiffbeker Weg, Billstedt, Hamburg-Mitte, Hamburg, 22119, Deutschland"
+ ],
+ "Am Gleisdreieck, Billwerder, Hamburg, Deutschland": [
+  53.4950623,
+  10.13333,
+  "Am Gleisdreieck, Billwerder, Bergedorf, Hamburg, 21033, Deutschland"
+ ],
+ "Mühlenberger Weg 61 Blankeneser Markt, Blankenese, Hamburg, Deutschland": [
+  53.5609388,
+  9.812707,
+  "61, Mühlenberger Weg, Blankenese, Altona, Hamburg, 22587, Deutschland"
+ ],
+ "Mühlenberger Weg 61 Blankeneser Markt, Hamburg, Deutschland": null,
+ "Blankenese, Hamburg, Deutschland": [
+  53.5575,
+  9.80306,
+  "Blankenese, Altona, Hamburg, 22587, Deutschland"
+ ],
+ "Simrockstraße 84, Blankenese, Hamburg, Deutschland": [
+  53.5642386,
+  9.8214215,
+  "Simrockstraße, Blankenese, Altona, Hamburg, 22587, Deutschland"
+ ],
+ "Bengelsdorfstr. 2, Bramfeld, Hamburg, Deutschland": [
+  53.5980544,
+  10.0925998,
+  "2, Bengelsdorfstraße, Barmwisch, Bramfeld, Wandsbek, Hamburg, 22179, Deutschland"
+ ],
+ "Fabriciusstr. 35, Bramfeld, Hamburg, Deutschland": [
+  53.5999495,
+  10.0618961,
+  "Fabriciusstraße, Bramfeld, Wandsbek, Hamburg, 22177, Deutschland"
+ ],
+ "Herthastraße, Bramfeld, Hamburg, Deutschland": [
+  53.6118613,
+  10.0790943,
+  "Herthastraße, Bramfeld, Wandsbek, Hamburg, 22179, Deutschland"
+ ],
+ "Karlshöhe, Bramfeld, Hamburg, Deutschland": [
+  53.6256355,
+  10.1096034,
+  "Karlshöhe, Bramfeld, Wandsbek, Hamburg, 22175, Deutschland"
+ ],
+ "Königsberger Str. 2, Bramfeld, Hamburg, Deutschland": [
+  53.6232391,
+  10.0846096,
+  "2, Königsberger Straße, Gartenstadt Hohnerkamp, Bramfeld, Wandsbek, Hamburg, 22175, Deutschland"
+ ],
+ "Estebogen, Cranz, Hamburg, Deutschland": [
+  53.5305741,
+  9.7720367,
+  "Estebogen, Cranz, Harburg, Hamburg, 21129, Deutschland"
+ ],
+ "Odemanns Heck, Curslack, Hamburg, Deutschland": [
+  53.4473057,
+  10.2210001,
+  "Odemanns Heck, Curslack, Bergedorf, Hamburg, 21039, Deutschland"
+ ],
+ "Straßburger Platz, Dulsberg, Hamburg, Deutschland": [
+  53.581647,
+  10.0624783,
+  "Straßburger Platz, Dulsberg, Hamburg-Nord, Hamburg, 22049, Deutschland"
+ ],
+ "Duvenstedter Markt, Duvenstedt, Hamburg, Deutschland": [
+  53.7049864,
+  10.1070573,
+  "Duvenstedter Markt, Duvenstedt, Wandsbek, Hamburg, 22397, Deutschland"
+ ],
+ "Lohkampstr. 131, Eidelstedt, Hamburg, Deutschland": [
+  53.6126997,
+  9.8898548,
+  "131, Lohkampstraße, Eidelstedt, Eimsbüttel, Hamburg, 22523, Deutschland"
+ ],
+ "Alte Elbgaustr, Eidelstedt, Hamburg, Deutschland": [
+  53.6070147,
+  9.9033398,
+  "Alte Elbgaustraße, Eidelstedt, Eimsbüttel, Hamburg, 22523, Deutschland"
+ ],
+ "Maxstr, Eilbek, Hamburg, Deutschland": [
+  53.5710982,
+  10.0480883,
+  "Maxstraße, Eilbek, Wandsbek, Hamburg, 22089, Deutschland"
+ ],
+ "Eimsbütteler Chaussee 63, Eimsbüttel, Hamburg, Deutschland": [
+  53.5681606,
+  9.9554648,
+  "63, Eimsbütteler Chaussee, Eimsbüttel, Hamburg, 20259, Deutschland"
+ ],
+ "Lappenbergsallee, Eimsbüttel, Hamburg, Deutschland": [
+  53.5750707,
+  9.945841,
+  "Lappenbergsallee, Eimsbüttel, Hamburg, 20257, Deutschland"
+ ],
+ "Beerentalweg 156, Eißendorf, Hamburg, Deutschland": [
+  53.4469522,
+  9.9434684,
+  "156, Beerentalweg, Eißendorf, Harburg, Hamburg, 21077, Deutschland"
+ ],
+ "Bremer Str. 56, Eißendorf, Hamburg, Deutschland": [
+  53.4463799,
+  9.9572838,
+  "Bremer Straße, Eißendorf, Harburg, Hamburg, 21073, Deutschland"
+ ],
+ "Denickestr. 147, Eißendorf, Hamburg, Deutschland": [
+  53.459287,
+  9.956403,
+  "Denickestraße, Eißendorf, Harburg, Hamburg, 21075, Deutschland"
+ ],
+ "Marie-Jonas-Platz, Eppendorf, Hamburg, Deutschland": [
+  53.5905334,
+  9.9864339,
+  "Marie-Jonas-Platz, Eppendorf, Hamburg-Nord, Hamburg, 20249, Deutschland"
+ ],
+ "Berner Markt, Farmsen-berne, Hamburg, Deutschland": null,
+ "Berner Markt, Hamburg, Deutschland": [
+  53.6257244,
+  10.1397121,
+  "Berner Markt, Alte Berner Straße, Rahlstedt, Wandsbek, Hamburg, 22147, Deutschland"
+ ],
+ "Berner Heerweg, Farmsen-berne, Hamburg, Deutschland": [
+  53.6271238,
+  10.1389975,
+  "Berner Heerweg, Berne, Gartenstadt Berne, Farmsen-Berne, Wandsbek, Hamburg, 22159, Deutschland"
+ ],
+ "Finksweg, Finkenwerder, Hamburg, Deutschland": [
+  53.5374183,
+  9.8722901,
+  "Finksweg, Finkenwerder, Hamburg-Mitte, Hamburg, 21129, Deutschland"
+ ],
+ "Rudolf-Kinau-Allee 14, Finkenwerder, Hamburg, Deutschland": [
+  53.5338094,
+  9.8508108,
+  "14, Rudolf-Kinau-Allee, Finkenwerder, Hamburg-Mitte, Hamburg, 21129, Deutschland"
+ ],
+ "Ratsmühlendamm, Fuhlsbüttel, Hamburg, Deutschland": [
+  53.626899,
+  10.0198263,
+  "Ratsmühlendamm, Fuhlsbüttel, Hamburg-Nord, Hamburg, 22335, Deutschland"
+ ],
+ "Borsteler Chaussee 111, Groß Borstel, Hamburg, Deutschland": [
+  53.6064929,
+  9.9787743,
+  "111, Borsteler Chaussee, Groß Borstel, Hamburg-Nord, Hamburg, 22453, Deutschland"
+ ],
+ "Osdorfer Landstr, Groß Flottbek, Hamburg, Deutschland": [
+  53.5712756,
+  9.8678056,
+  "Osdorfer Landstraße, Groß Flottbek, Altona, Hamburg, 22609, Deutschland"
+ ],
+ "Oelsnerring 38, Groß Flottbek, Hamburg, Deutschland": null,
+ "Oelsnerring 38, Hamburg, Deutschland": [
+  53.5668379,
+  9.8642272,
+  "38, Oelsnerring, Osdorf, Altona, Hamburg, 22609, Deutschland"
+ ],
+ "Am Lohsepark 22, Hafencity, Hamburg, Deutschland": [
+  53.5413208,
+  10.0051127,
+  "22, Am Lohsepark, Quartier Am Lohsepark, HafenCity, Hamburg-Mitte, Hamburg, 20457, Deutschland"
+ ],
+ "Bei der Vogelstange, Hamm, Hamburg, Deutschland": [
+  53.5578932,
+  10.0547562,
+  "Bei der Vogelstange, Hamm, Hamburg-Mitte, Hamburg, 20535, Deutschland"
+ ],
+ "Süderstraße, Hammerbrook, Hamburg, Deutschland": [
+  53.5480804,
+  10.0411257,
+  "Süderstraße, Hammerbrook, Hamburg-Mitte, Hamburg, 20537, Deutschland"
+ ],
+ "Großmoordamm 98, Harburg, Hamburg, Deutschland": [
+  53.4536133,
+  10.001611,
+  "OBI, 98, Großmoordamm, Großmoorbogen, Harburg, Hamburg, 21079, Deutschland"
+ ],
+ "Neuwiedenthaler Str. 163, Hausbruch, Hamburg, Deutschland": [
+  53.4776768,
+  9.8944475,
+  "163, Neuwiedenthaler Straße, Neuwiedenthal, Hausbruch, Harburg, Hamburg, 21147, Deutschland"
+ ],
+ "Striepenweg, Hausbruch, Hamburg, Deutschland": [
+  53.4737657,
+  9.8768569,
+  "Striepenweg, Neuwiedenthal, Hausbruch, Harburg, Hamburg, 21147, Deutschland"
+ ],
+ "Heimfelder Straße 10, Heimfeld, Hamburg, Deutschland": [
+  53.4651535,
+  9.9616315,
+  "10, Heimfelder Straße, Heimfeld, Harburg, Hamburg, 21075, Deutschland"
+ ],
+ "Eppendorfer Weg 162, Hoheluft-west, Hamburg, Deutschland": [
+  53.5795554,
+  9.9670712,
+  "162, Eppendorfer Weg, Hoheluft-West, Eimsbüttel, Hamburg, 20253, Deutschland"
+ ],
+ "Dannerallee, Horn, Hamburg, Deutschland": [
+  53.563733,
+  10.1081717,
+  "Dannerallee, Horner Geest, Horn, Hamburg-Mitte, Hamburg, 22119, Deutschland"
+ ],
+ "Horner Weg 274, Horn, Hamburg, Deutschland": [
+  53.5545722,
+  10.0823636,
+  "274, Horner Weg, Horn, Hamburg-Mitte, Hamburg, 22111, Deutschland"
+ ],
+ "Querkamp 68, Horn, Hamburg, Deutschland": [
+  53.5560291,
+  10.103568,
+  "Brüder-Grimm-Schule, Standort Querkamp, 68, Querkamp, Horner Geest, Horn, Hamburg-Mitte, Hamburg, 22119, Deutschland"
+ ],
+ "Hummelsbütteler Weg 40, Hummelsbüttel, Hamburg, Deutschland": [
+  53.6420128,
+  10.045663,
+  "40, Hummelsbütteler Weg, Hummelsbüttel, Wandsbek, Hamburg, 22339, Deutschland"
+ ],
+ "Ruscheweyhstr. 37, Hummelsbüttel, Hamburg, Deutschland": [
+  53.6526356,
+  10.061698,
+  "37, Ruscheweyhstraße, Tegelsbarg, Hummelsbüttel, Wandsbek, Hamburg, 22399, Deutschland"
+ ],
+ "Bei den Höfen 7, Jenfeld, Hamburg, Deutschland": [
+  53.5727829,
+  10.1327029,
+  "7a, Bei den Höfen, Jenfeld, Wandsbek, Hamburg, 22043, Deutschland"
+ ],
+ "Oststeinbeker Weg 38, Kirchsteinbek, Hamburg, Deutschland": [
+  53.5373938,
+  10.1375901,
+  "38, Oststeinbeker Weg, Kirchsteinbek, Billstedt, Hamburg-Mitte, Hamburg, 22117, Deutschland"
+ ],
+ "Durchdeich 72, Kirchwerder, Hamburg, Deutschland": [
+  53.4443612,
+  10.1294009,
+  "Edeka Eggert, 72, Durchdeich, Kistendorf, Kirchwerder, Bergedorf, Fünfhausen, Hamburg, 21037, Deutschland"
+ ],
+ "Zollenspieker-Hauptdeich, Kirchwerder, Hamburg, Deutschland": [
+  53.4058161,
+  10.159147,
+  "Zollenspieker-Hauptdeich, Kirchwerder, Bergedorf, Howe, Hamburg, 21037, Deutschland"
+ ],
+ "Försterweg 45, Langenfelde, Hamburg, Deutschland": null,
+ "Försterweg 45, Hamburg, Deutschland": [
+  53.5786053,
+  9.9287925,
+  "Walther Reichert Bauunternehmung, 45, Försterweg, Stellingen, Eimsbüttel, Hamburg, 22525, Deutschland"
+ ],
+ "Eberhofweg 62, Langenhorn, Hamburg, Deutschland": [
+  53.6501665,
+  10.0147498,
+  "62, Eberhofweg, Langenhorn, Hamburg-Nord, Hamburg, 22415, Deutschland"
+ ],
+ "Essener Str. 59, Langenhorn, Hamburg, Deutschland": [
+  53.6713508,
+  9.9916905,
+  "59, Essener Straße, Langenhorn, Hamburg-Nord, Hamburg, 22419, Deutschland"
+ ],
+ "Heerwisch, Langenhorn, Hamburg, Deutschland": [
+  53.6572187,
+  10.0041313,
+  "Heerwisch, Langenhorn, Hamburg-Nord, Hamburg, 22419, Deutschland"
+ ],
+ "Tangstedter Landstr. 214, Langenhorn, Hamburg, Deutschland": [
+  53.6621641,
+  10.0237098,
+  "214, Tangstedter Landstraße, Fritz-Schumacher-Siedlung, Langenhorn, Hamburg-Nord, Hamburg, 22417, Deutschland"
+ ],
+ "Tangstedter Landstr. 486, Langenhorn, Hamburg, Deutschland": [
+  53.6654014,
+  10.0241079,
+  "Tangstedter Landstraße, Fritz-Schumacher-Siedlung, Langenhorn, Hamburg-Nord, Hamburg, 22417, Deutschland"
+ ],
+ "Wrangelkoppel, Langenhorn, Hamburg, Deutschland": [
+  53.6440211,
+  9.9965743,
+  "Wrangelkoppel, Langenhorn, Hamburg-Nord, Hamburg, 22415, Deutschland"
+ ],
+ "Tannenhof 53, Lemsahl, Hamburg, Deutschland": [
+  53.6862176,
+  10.0925921,
+  "53, Tannenhof, Lemsahl-Mellingstedt, Wandsbek, Hamburg, 22397, Deutschland"
+ ],
+ "Korachstr, Lohbrügge, Hamburg, Deutschland": [
+  53.5103099,
+  10.2005525,
+  "Korachstraße, Lohbrügge-Nord, Lohbrügge, Bergedorf, Hamburg, 21031, Deutschland"
+ ],
+ "Lohbrügger Markt, Lohbrügge, Hamburg, Deutschland": [
+  53.4954586,
+  10.2075429,
+  "Lohbrügger Markt, Lohbrügge, Bergedorf, Hamburg, 21031, Deutschland"
+ ],
+ "Röpraredder 70, Lohbrügge, Hamburg, Deutschland": [
+  53.510847,
+  10.2104843,
+  "70, Röpraredder, Lohbrügge-Nord, Lohbrügge, Bergedorf, Hamburg, 21031, Deutschland"
+ ],
+ "Grandweg 117, Lokstedt, Hamburg, Deutschland": [
+  53.5874427,
+  9.9671391,
+  "117, Grandweg, Lokstedt, Eimsbüttel, Hamburg, 22529, Deutschland"
+ ],
+ "Julius-Vosseler-Str. 135, Lokstedt, Hamburg, Deutschland": [
+  53.5883501,
+  9.948667,
+  "135, Julius-Vosseler-Straße, Lokstedt, Eimsbüttel, Hamburg, 22527, Deutschland"
+ ],
+ "Wehmerweg 2, Lokstedt, Hamburg, Deutschland": [
+  53.6055056,
+  9.948794,
+  "2, Wehmerweg, Lokstedt, Eimsbüttel, Hamburg, 22529, Deutschland"
+ ],
+ "Franzosenkoppel 104, Lurup, Hamburg, Deutschland": [
+  53.606086,
+  9.8746205,
+  "104, Franzosenkoppel, Lurup, Altona, Hamburg, 22547, Deutschland"
+ ],
+ "Friedrichshulder Weg, Lurup, Hamburg, Deutschland": [
+  53.6055352,
+  9.8820034,
+  "Friedrichshulder Weg, Ernst-Unger-Anlage, Lurup, Altona, Hamburg, 22547, Deutschland"
+ ],
+ "Luruper Hauptstraße 136, Lurup, Hamburg, Deutschland": [
+  53.5913936,
+  9.8733824,
+  "136, Luruper Hauptstraße, Lurup, Altona, Hamburg, 22547, Deutschland"
+ ],
+ "Oderstr. 28, Lurup, Hamburg, Deutschland": [
+  53.6075776,
+  9.8652619,
+  "28e, Oderstraße, Flüsseviertel, Lurup, Altona, Hamburg, 22547, Deutschland"
+ ],
+ "Oktaviostr. 127, Marienthal, Hamburg, Deutschland": [
+  53.5662832,
+  10.1004288,
+  "127, Oktaviostraße, Marienthal, Wandsbek, Hamburg, 22043, Deutschland"
+ ],
+ "Ernst-Bergeest-Weg 51, Marmstorf, Hamburg, Deutschland": [
+  53.4392186,
+  9.9652867,
+  "Ernst-Bergeest-Weg, Marmstorf, Harburg, Hamburg, 21077, Deutschland"
+ ],
+ "Saseler Str. 111, Meiendorf, Hamburg, Deutschland": null,
+ "Saseler Str. 111, Hamburg, Deutschland": [
+  53.6277184,
+  10.1518534,
+  "111, Saseler Straße, Rahlstedt, Wandsbek, Hamburg, 22145, Deutschland"
+ ],
+ "Wildschwanbrook 27, Meiendorf, Hamburg, Deutschland": [
+  53.6288894,
+  10.1717564,
+  "27, Wildschwanbrook, Meiendorf, Rahlstedt, Wandsbek, Hamburg, 22145, Deutschland"
+ ],
+ "Moorburger Elbdeich 227, Moorburg, Hamburg, Deutschland": [
+  53.493446,
+  9.9317546,
+  "Moorburger Elbdeich 227, Moorburger Elbdeich, Moorburg, Harburg, Hamburg, 21079, Deutschland"
+ ],
+ "Andreas-Meyer-Str. 53, Moorfleet, Hamburg, Deutschland": [
+  53.5101588,
+  10.0903315,
+  "Andreas-Meyer-Straße, Moorfleet, Bergedorf, Hamburg, 22113, Deutschland"
+ ],
+ "Havighorster Redder 35, Mümmelmannsberg, Hamburg, Deutschland": [
+  53.5276418,
+  10.1462557,
+  "35, Havighorster Redder, Mümmelmannsberg, Billstedt, Hamburg-Mitte, Hamburg, 22115, Deutschland"
+ ],
+ "Henriette-Herz-Ring 39, Neu-allermöhe, Hamburg, Deutschland": null,
+ "Henriette-Herz-Ring 39, Hamburg, Deutschland": [
+  53.4839998,
+  10.1720648,
+  "Henriette-Herz-Ring, Neuallermöhe-Ost, Neuallermöhe, Bergedorf, Hamburg, 21035, Deutschland"
+ ],
+ "Seehofring, Neuenfelde, Hamburg, Deutschland": [
+  53.5228462,
+  9.7838893,
+  "Seehofring, Neuenfelde, Harburg, Hamburg, 21129, Deutschland"
+ ],
+ "Neugrabener Markt, Neugraben, Hamburg, Deutschland": [
+  53.4697236,
+  9.8518629,
+  "Neugrabener Markt, Neugraben, Neugraben-Fischbek, Harburg, Hamburg, 21149, Deutschland"
+ ],
+ "Ohrnsweg 12, Neugraben, Hamburg, Deutschland": [
+  53.4741661,
+  9.8233927,
+  "12a, Ohrnsweg, Siedlung Sandbek, Fischbek, Neugraben-Fischbek, Harburg, Hamburg, 21149, Deutschland"
+ ],
+ "Am Johannisland, Neugraben-fischbek, Hamburg, Deutschland": [
+  53.4774223,
+  9.853527,
+  "Am Johannisland, Vogelkamp Neugraben, Neugraben-Fischbek, Harburg, Hamburg, 21147, Deutschland"
+ ],
+ "Im Fischbeker Heidbrook, Neugraben-fischbek, Hamburg, Deutschland": [
+  53.4669033,
+  9.8101072,
+  "Im Fischbeker Heidbrook, Fischbeker Heidbrook, Neugraben-Fischbek, Harburg, Hamburg, 21149, Deutschland"
+ ],
+ "Neumoorstück, Neugraben-fischbek, Hamburg, Deutschland": [
+  53.4776066,
+  9.8663867,
+  "Neumoorstück, Neugraben-Fischbek, Harburg, Hamburg, 21147, Deutschland"
+ ],
+ "Großneumarkt, Neustadt, Hamburg, Deutschland": [
+  53.5503862,
+  9.9801678,
+  "Großneumarkt, Neustadt, Hamburg-Mitte, Hamburg, Deutschland"
+ ],
+ "Niendorfer Kirchenweg 18, Niendorf, Hamburg, Deutschland": [
+  53.620315,
+  9.9495396,
+  "Sankt Ansgar, 18, Niendorfer Kirchenweg, Niendorf, Eimsbüttel, Hamburg, 22459, Deutschland"
+ ],
+ "Teutonenweg, Niendorf, Hamburg, Deutschland": [
+  53.6366065,
+  9.9718142,
+  "Teutonenweg, Niendorf, Eimsbüttel, Hamburg, 22453, Deutschland"
+ ],
+ "Wagrierweg 5, Niendorf, Hamburg, Deutschland": [
+  53.6400179,
+  9.945336,
+  "5, Wagrierweg, Niendorf, Eimsbüttel, Hamburg, 22455, Deutschland"
+ ],
+ "Nienstedtener Marktplatz, Nienstedten, Hamburg, Deutschland": [
+  53.5525113,
+  9.8441696,
+  "Nienstedtener Marktplatz, Nienstedten, Altona, Hamburg, 22609, Deutschland"
+ ],
+ "Feuerbergstr, Ohlsdorf, Hamburg, Deutschland": [
+  53.6140479,
+  10.0339537,
+  "Feuerbergstraße, Ohlsdorf, Hamburg-Nord, Hamburg, 22337, Deutschland"
+ ],
+ "Röntgenstraße 19, Ohlsdorf, Hamburg, Deutschland": [
+  53.6236702,
+  10.0188414,
+  "Röntgenstraße, Ohlsdorf, Hamburg-Nord, Hamburg, 22335, Deutschland"
+ ],
+ "Tornberg, Ohlsdorf, Hamburg, Deutschland": [
+  53.6325787,
+  10.0549339,
+  "Tornberg, Ohlsdorf, Hamburg-Nord, Hamburg, 22337, Deutschland"
+ ],
+ "Brunskrogweg 9, Ohlstedt, Hamburg, Deutschland": [
+  53.6937169,
+  10.1385279,
+  "Brunskrogweg, Wohldorf-Ohlstedt, Wandsbek, Hamburg, 22397, Deutschland"
+ ],
+ "Achtern Born, Osdorf, Hamburg, Deutschland": [
+  53.5872486,
+  9.8418078,
+  "Achtern Born, Osdorfer Born, Osdorf, Altona, Hamburg, 22549, Deutschland"
+ ],
+ "Blomkamp 62, Osdorf, Hamburg, Deutschland": [
+  53.5766204,
+  9.8582288,
+  "62, Blomkamp, Osdorf, Altona, Hamburg, 22549, Deutschland"
+ ],
+ "Bernadottestr. 216, Othmarschen, Hamburg, Deutschland": [
+  53.5486955,
+  9.887767,
+  "216, Bernadottestraße, Othmarschen, Altona, Hamburg, 22605, Deutschland"
+ ],
+ "Jungmannstr. 5, Othmarschen, Hamburg, Deutschland": [
+  53.557152,
+  9.8880549,
+  "5, Jungmannstraße, Othmarschen, Altona, Hamburg, 22605, Deutschland"
+ ],
+ "Spritzenplatz, Ottensen, Hamburg, Deutschland": [
+  53.5515987,
+  9.9305075,
+  "Spritzenplatz, Ottensen, Altona, Hamburg, 22765, Deutschland"
+ ],
+ "Auf der Koppel 12, Poppenbüttel, Hamburg, Deutschland": [
+  53.6615174,
+  10.0782714,
+  "12, Auf der Koppel, Poppenbüttel, Wandsbek, Hamburg, 22399, Deutschland"
+ ],
+ "Helmut-Steidl-Platz, Rahlstedt, Hamburg, Deutschland": [
+  53.6046014,
+  10.155021,
+  "Helmut-Steidl-Platz, Rahlstedt, Wandsbek, Hamburg, Deutschland"
+ ],
+ "Hoffmannstieg 1, Rahlstedt, Hamburg, Deutschland": [
+  53.6033211,
+  10.180759,
+  "1, Hoffmannstieg, Rahlstedt, Wandsbek, Hamburg, 22143, Deutschland"
+ ],
+ "Hüllenkamp 104, Rahlstedt, Hamburg, Deutschland": [
+  53.5871456,
+  10.1549329,
+  "104, Hüllenkamp, Hohenhorst, Rahlstedt, Wandsbek, Hamburg, 22149, Deutschland"
+ ],
+ "Kamminerstr, Rahlstedt, Hamburg, Deutschland": [
+  53.6190368,
+  10.1404337,
+  "Kamminer Straße, Rahlstedt, Wandsbek, Hamburg, 22147, Deutschland"
+ ],
+ "Treptower Str. 92, Rahlstedt, Hamburg, Deutschland": [
+  53.6140198,
+  10.1375338,
+  "92, Treptower Straße, Oldenfelde-Siedlung, Rahlstedt, Wandsbek, Hamburg, 22147, Deutschland"
+ ],
+ "Marschweg 15, Rissen, Hamburg, Deutschland": [
+  53.5853051,
+  9.7627135,
+  "15, Marschweg, Rissen, Altona, Hamburg, 22559, Deutschland"
+ ],
+ "Rissener Dorfstr. 41, Rissen, Hamburg, Deutschland": [
+  53.5808385,
+  9.755923,
+  "41, Rissener Dorfstraße, Rissen, Altona, Hamburg, 22559, Deutschland"
+ ],
+ "Rothenburgsorter Marktplatz, Rothenburgsort, Hamburg, Deutschland": [
+  53.534149,
+  10.039068,
+  "Rothenburgsorter Marktplatz, Rothenburgsort, Hamburg-Mitte, Hamburg, 20539, Deutschland"
+ ],
+ "Bei St. Johannis, Rotherbaum, Hamburg, Deutschland": [
+  53.5705778,
+  9.9940057,
+  "Bei St. Johannis, Rotherbaum, Eimsbüttel, Hamburg, 20148, Deutschland"
+ ],
+ "Grindelhof 23, Rotherbaum, Hamburg, Deutschland": [
+  53.5683927,
+  9.982405,
+  "23, Grindelhof, Rotherbaum, Eimsbüttel, Hamburg, 20146, Deutschland"
+ ],
+ "Marmorweg 14, Sasel, Hamburg, Deutschland": [
+  53.6602717,
+  10.0965707,
+  "14, Marmorweg, Sasel, Wandsbek, Hamburg, 22395, Deutschland"
+ ],
+ "Saseler Markt 21, Sasel, Hamburg, Deutschland": [
+  53.6530874,
+  10.1109175,
+  "21, Saseler Markt, Sasel, Wandsbek, Hamburg, 22393, Deutschland"
+ ],
+ "Graf-Johann-Weg 67, Schnelsen, Hamburg, Deutschland": [
+  53.6245568,
+  9.9168882,
+  "67, Graf-Johann-Weg, Schnelsen, Eimsbüttel, Hamburg, 22459, Deutschland"
+ ],
+ "Roman-Zeller-Platz, Schnelsen, Hamburg, Deutschland": [
+  53.6470698,
+  9.9099431,
+  "Roman-Zeller-Platz, Schnelsen, Eimsbüttel, Hamburg, 22457, Deutschland"
+ ],
+ "Hermannsburger Weg 36, Sinstorf, Hamburg, Deutschland": [
+  53.4279212,
+  9.9886689,
+  "36, Hermannsburger Weg, Sinstorf, Harburg, Hamburg, 21079, Deutschland"
+ ],
+ "Danziger Str. 26, St. Georg, Hamburg, Deutschland": [
+  53.5562241,
+  10.0146145,
+  "26, Danziger Straße, St. Georg, Hamburg-Mitte, Hamburg, 20099, Deutschland"
+ ],
+ "Gazellenkamp 201, Stellingen, Hamburg, Deutschland": [
+  53.596837,
+  9.9303868,
+  "201, Gazellenkamp, Stellingen, Eimsbüttel, Hamburg, 22527, Deutschland"
+ ],
+ "Oldenburger Str. 57, Stellingen, Hamburg, Deutschland": [
+  53.604584,
+  9.926851,
+  "Oldenburger Straße, Stellingen, Eimsbüttel, Hamburg, 22527, Deutschland"
+ ],
+ "Sülldorfer Kirchenweg 127, Sülldorf, Hamburg, Deutschland": [
+  53.5746051,
+  9.804784,
+  "127, Sülldorfer Kirchenweg, Sülldorf, Altona, Hamburg, 22589, Deutschland"
+ ],
+ "Walddörferstr. 343, Tonndorf, Hamburg, Deutschland": [
+  53.5871436,
+  10.1052892,
+  "343, Walddörferstraße, Tonndorf, Wandsbek, Hamburg, 22047, Deutschland"
+ ],
+ "Immenhof, Uhlenhorst, Hamburg, Deutschland": [
+  53.5672519,
+  10.0300176,
+  "Immenhof, Uhlenhorst, Hamburg-Nord, Hamburg, 22087, Deutschland"
+ ],
+ "Am Zollhafen 20, Veddel, Hamburg, Deutschland": [
+  53.5233756,
+  10.0209193,
+  "20, Am Zollhafen, Veddel, Hamburg-Mitte, Hamburg, 20539, Deutschland"
+ ],
+ "Buchenring 61, Volksdorf, Hamburg, Deutschland": [
+  53.6526369,
+  10.1847971,
+  "61, Buchenring, Volksdorf, Wandsbek, Hamburg, 22359, Deutschland"
+ ],
+ "Cornehlsweg 23, Volksdorf, Hamburg, Deutschland": [
+  53.6464595,
+  10.1770792,
+  "23, Cornehlsweg, Volksdorf, Wandsbek, Hamburg, 22359, Deutschland"
+ ],
+ "Kattjahren, Volksdorf, Hamburg, Deutschland": [
+  53.6520041,
+  10.1624414,
+  "Kattjahren, Volksdorf, Wandsbek, Hamburg, 22359, Deutschland"
+ ],
+ "Brauhausstieg 54, Wandsbek, Hamburg, Deutschland": [
+  53.5724681,
+  10.0636105,
+  "54, Brauhausstieg, Wandsbek, Hamburg, 22041, Deutschland"
+ ],
+ "Helbingstr. 63, Wandsbek, Hamburg, Deutschland": [
+  53.5864725,
+  10.0955667,
+  "Stilbruch, 63, Helbingstraße, Hinschenfelde, Wandsbek, Hamburg, 22047, Deutschland"
+ ],
+ "Lesserstr. 126, Wandsbek, Hamburg, Deutschland": [
+  53.5906065,
+  10.0778489,
+  "126, Lesserstraße, Hinschenfelde, Wandsbek, Hamburg, 22049, Deutschland"
+ ],
+ "Ziethenstr. 2, Wandsbek, Hamburg, Deutschland": [
+  53.5754898,
+  10.0980555,
+  "2b, Ziethenstraße, Hinschenfelde, Wandsbek, Hamburg, 22041, Deutschland"
+ ],
+ "Rolfinckstr. 22, Wellingsbüttel, Hamburg, Deutschland": [
+  53.6399526,
+  10.0847391,
+  "22, Rolfinckstraße, Wellingsbüttel, Wandsbek, Hamburg, 22391, Deutschland"
+ ],
+ "Berta-Kröger-Platz, Wilhelmsburg, Hamburg, Deutschland": [
+  53.4978916,
+  10.0106777,
+  "Berta-Kröger-Platz, Wilhelmsburg, Hamburg-Mitte, Hamburg, Deutschland"
+ ],
+ "Karl-Arnold-Ring 51, Wilhelmsburg, Hamburg, Deutschland": [
+  53.4840667,
+  10.0205148,
+  "51, Karl-Arnold-Ring, Kirchdorf-Süd, Wilhelmsburg, Hamburg-Mitte, Hamburg, 21109, Deutschland"
+ ],
+ "Kirchdorfer Str, Wilhelmsburg, Hamburg, Deutschland": [
+  53.5031995,
+  10.0272265,
+  "Kirchdorfer Straße, Niedergeorgswerder, Wilhelmsburg, Hamburg-Mitte, Hamburg, 21109, Deutschland"
+ ],
+ "Stübenplatz, Wilhelmsburg, Hamburg, Deutschland": [
+  53.517123,
+  9.9869682,
+  "Stübenplatz, Wilhelmsburg, Hamburg-Mitte, Hamburg, 21107, Deutschland"
+ ],
+ "Rönneburger Str. 58, Wilstorf, Hamburg, Deutschland": [
+  53.4383861,
+  9.9968532,
+  "58c, Rönneburger Straße, Wilstorf, Harburg, Hamburg, 21079, Deutschland"
+ ],
+ "Lattenkamp 29, Winterhude, Hamburg, Deutschland": [
+  53.5987737,
+  9.9953271,
+  "29, Lattenkamp, Winterhude, Hamburg-Nord, Hamburg, 22299, Deutschland"
+ ],
+ "Winterhuder Marktplatz, Winterhude, Hamburg, Deutschland": [
+  53.5946266,
+  9.9997012,
+  "Winterhuder Marktplatz, Winterhude, Hamburg-Nord, Hamburg, 22299, Deutschland"
+ ],
+ "Stammannstr. 15, Winterhude, Hamburg, Deutschland": [
+  53.5866006,
+  10.0231032,
+  "15, Stammannstraße, Jarrestadt, Winterhude, Hamburg-Nord, Hamburg, 22303, Deutschland"
+ ],
+ "Wiesendamm 131, Winterhude, Hamburg, Deutschland": [
+  53.5890437,
+  10.0212816,
+  "131, Wiesendamm, Winterhude, Hamburg-Nord, Hamburg, 22303, Deutschland"
+ ]
+}
